@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Global User Settings - AI Builder</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111722",
+                        "surface-dark": "#192233",
+                        "border-dark": "#232f48",
+                        "text-secondary": "#92a4c9",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: "Space Grotesk", "Noto Sans", sans-serif; }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111722; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232f48; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #324467; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex-none flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-border-dark px-6 py-3 bg-white dark:bg-background-dark z-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">dataset</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] font-display">AI Builder</h2>
+</div>
+<!-- Search Bar -->
+<label class="hidden md:flex flex-col min-w-40 !h-10 w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-gray-100 dark:bg-surface-dark border border-gray-200 dark:border-border-dark">
+<div class="text-text-secondary flex border-none items-center justify-center pl-3 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent focus:outline-0 focus:ring-0 border-none h-full placeholder:text-text-secondary px-3 text-sm font-normal leading-normal text-slate-900 dark:text-white" placeholder="Search settings..."/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="hidden lg:flex items-center gap-6">
+<a class="text-slate-600 dark:text-text-secondary hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-text-secondary hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Projects</a>
+<a class="text-slate-600 dark:text-text-secondary hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Deployments</a>
+<a class="text-slate-600 dark:text-text-secondary hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Community</a>
+</div>
+<div class="h-6 w-px bg-gray-200 dark:bg-border-dark hidden lg:block"></div>
+<button class="flex items-center justify-center rounded-lg size-9 hover:bg-gray-100 dark:hover:bg-surface-dark text-slate-600 dark:text-text-secondary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-gray-200 dark:ring-border-dark cursor-pointer" data-alt="User avatar profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA0Nm7EfRWUdgMdPaBR1d2c0grns9Z1HklLK2ZNFwNovU465eDawvkxvet1u3f4GFi_SNmAKMyxDlJi2qXP5Cwp8_vWVqKiudil68_KcFgUlPgbdGXs28G1XqbUL9skW3NljvhuqSP3htXL1Pmfj40wC_4_RdUAYCEi-R9pXO183imtJQAKxn5vloUHvQ4ZUKxeVI7aS6bYAPaeaOkwqRywUkdc9NbbuPJSeV_O38jhDSQLb-rcYO8x7xc2f7HnD2kr_fdKuCummkFd");'></div>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="flex flex-1 overflow-hidden relative">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-none flex flex-col bg-gray-50 dark:bg-background-dark border-r border-gray-200 dark:border-border-dark h-full overflow-y-auto hidden md:flex">
+<div class="p-4 flex flex-col gap-6">
+<!-- User Profile Summary -->
+<div class="flex gap-3 items-center pb-4 border-b border-gray-200 dark:border-border-dark">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10" data-alt="User avatar small" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAvaCOP8Kv5HGyQQsA3bIJe-hD_My6n6OzJcpw1s6bLotCjak9lMffEqUlTt0nW_DVOF62rnHstyjVos_t2glV8gU9JUdECZEj1Rz30AiP7xTycOFY9x_aoSzkTUZr_C4OJ_K79Lgzyu1qcW0E5PXK1FwMNcM87bYc_9dy4f9KItmF3O41oMM0O95V8fjvAw-tNhA5QhpFfTGYeVSOP-dCK53C4WNEjnMFEikfzJwqhxveL61L7dyE_teuFYGzgiuV6gY9w6eCx0Ccn");'></div>
+<div class="flex flex-col min-w-0">
+<h1 class="text-slate-900 dark:text-white text-sm font-medium leading-normal truncate font-display">Alex Chen</h1>
+<p class="text-slate-500 dark:text-text-secondary text-xs font-normal leading-normal truncate">Pro Plan Member</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-text-secondary hover:bg-gray-200 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary">person</span>
+<span class="text-sm font-medium">General Account</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-text-secondary hover:bg-gray-200 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary">notifications</span>
+<span class="text-sm font-medium">Notifications</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-text-secondary hover:bg-gray-200 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary">palette</span>
+<span class="text-sm font-medium">Appearance &amp; Theme</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-text-secondary hover:bg-gray-200 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary">verified_user</span>
+<span class="text-sm font-medium">Privacy &amp; Security</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-text-secondary hover:bg-gray-200 dark:hover:bg-surface-dark transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary">credit_card</span>
+<span class="text-sm font-medium">Billing &amp; Subscriptions</span>
+</a>
+<!-- Divider -->
+<div class="my-2 h-px bg-gray-200 dark:bg-border-dark mx-3"></div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary border border-primary/20 shadow-sm" href="#">
+<span class="material-symbols-outlined text-[20px] fill-current">memory</span>
+<span class="text-sm font-bold">AI Preferences</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-4">
+<button class="flex w-full items-center gap-3 px-3 py-2 rounded-lg text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="text-sm font-medium">Log Out</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-white dark:bg-background-dark relative">
+<!-- Header for content -->
+<div class="flex-none px-8 py-6 border-b border-gray-200 dark:border-border-dark flex justify-between items-start">
+<div class="flex flex-col gap-1 max-w-2xl">
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold leading-tight font-display tracking-tight">AI Preferences</h2>
+<p class="text-slate-500 dark:text-text-secondary text-sm font-normal leading-relaxed">
+                        Configure global defaults for your generative models, fine-tune prompt behavior, and manage safety layers across your projects.
+                    </p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded-lg border border-gray-300 dark:border-border-dark text-slate-700 dark:text-text-secondary text-sm font-medium hover:bg-gray-50 dark:hover:bg-surface-dark transition-colors">
+                        Reset Defaults
+                    </button>
+<button class="px-4 py-2 rounded-lg bg-primary text-white text-sm font-bold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
+                        Save Changes
+                    </button>
+</div>
+</div>
+<!-- Scrollable Settings Form -->
+<div class="flex-1 overflow-y-auto px-8 py-6 pb-20">
+<div class="max-w-4xl flex flex-col gap-10">
+<!-- Section: Model Configuration -->
+<section>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-5 flex items-center gap-2 font-display">
+<span class="material-symbols-outlined text-primary">tune</span>
+                            Model Configuration
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Default LLM Model -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-white text-sm font-medium">Default LLM Model</label>
+<div class="relative">
+<select class="w-full appearance-none rounded-lg border border-gray-300 dark:border-border-dark bg-white dark:bg-surface-dark text-slate-900 dark:text-white px-4 py-2.5 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow">
+<option value="gpt-4">GPT-4 Turbo (Recommended)</option>
+<option value="claude-3">Claude 3 Opus</option>
+<option value="llama-3">Llama 3 70B</option>
+<option value="mistral">Mistral Large</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-slate-500 dark:text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+<p class="text-xs text-slate-500 dark:text-text-secondary mt-1">Select the foundation model used for new projects.</p>
+</div>
+<!-- Fallback Model -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-white text-sm font-medium flex items-center gap-2">
+                                    Fallback Model
+                                    <span class="material-symbols-outlined text-[16px] text-slate-400 cursor-help" title="Used when the primary model is unavailable or rate limited">help</span>
+</label>
+<div class="relative">
+<select class="w-full appearance-none rounded-lg border border-gray-300 dark:border-border-dark bg-white dark:bg-surface-dark text-slate-900 dark:text-white px-4 py-2.5 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow">
+<option value="gpt-3.5">GPT-3.5 Turbo</option>
+<option value="claude-haiku">Claude 3 Haiku</option>
+<option value="llama-3-8b">Llama 3 8B</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-slate-500 dark:text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Temperature Slider -->
+<div class="md:col-span-2 p-5 rounded-xl border border-gray-200 dark:border-border-dark bg-gray-50 dark:bg-surface-dark/50">
+<div class="flex justify-between items-center mb-4">
+<label class="text-slate-700 dark:text-white text-sm font-medium flex gap-2 items-center">
+                                        Creativity (Temperature)
+                                        <span class="text-xs font-mono bg-primary/10 text-primary px-2 py-0.5 rounded">0.7</span>
+</label>
+<span class="text-xs text-slate-500 dark:text-text-secondary">Deterministic ↔ Creative</span>
+</div>
+<input class="w-full h-2 bg-gray-200 dark:bg-border-dark rounded-lg appearance-none cursor-pointer accent-primary" max="1" min="0" step="0.1" type="range" value="0.7"/>
+<div class="flex justify-between mt-2 text-xs text-slate-400">
+<span>0.0</span>
+<span>0.5</span>
+<span>1.0</span>
+</div>
+</div>
+</div>
+</section>
+<div class="h-px bg-gray-200 dark:bg-border-dark w-full"></div>
+<!-- Section: Safety & Behavior -->
+<section>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-5 flex items-center gap-2 font-display">
+<span class="material-symbols-outlined text-primary">shield</span>
+                            Safety &amp; Behavior
+                        </h3>
+<div class="flex flex-col gap-4">
+<!-- Toggle Item -->
+<div class="flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-border-dark hover:border-primary/50 transition-colors bg-white dark:bg-surface-dark/30">
+<div class="flex gap-4">
+<div class="mt-1 text-slate-400 dark:text-text-secondary">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-white text-sm font-medium">Content Safety Layer</h4>
+<p class="text-slate-500 dark:text-text-secondary text-sm mt-0.5">Automatically filter harmful or NSFW content from model outputs.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 dark:peer-focus:ring-primary/30 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Toggle Item -->
+<div class="flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-border-dark hover:border-primary/50 transition-colors bg-white dark:bg-surface-dark/30">
+<div class="flex gap-4">
+<div class="mt-1 text-slate-400 dark:text-text-secondary">
+<span class="material-symbols-outlined">code</span>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-white text-sm font-medium">Stream Responses</h4>
+<p class="text-slate-500 dark:text-text-secondary text-sm mt-0.5">Show partial results as they are generated (Typewriter effect).</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 dark:peer-focus:ring-primary/30 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Toggle Item -->
+<div class="flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-border-dark hover:border-primary/50 transition-colors bg-white dark:bg-surface-dark/30">
+<div class="flex gap-4">
+<div class="mt-1 text-slate-400 dark:text-text-secondary">
+<span class="material-symbols-outlined">history</span>
+</div>
+<div>
+<h4 class="text-slate-900 dark:text-white text-sm font-medium">History Retention</h4>
+<p class="text-slate-500 dark:text-text-secondary text-sm mt-0.5">Keep chat history for context continuity (uses more tokens).</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 dark:peer-focus:ring-primary/30 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<div class="h-px bg-gray-200 dark:bg-border-dark w-full"></div>
+<!-- Section: System Instructions -->
+<section>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-5 flex items-center gap-2 font-display">
+<span class="material-symbols-outlined text-primary">terminal</span>
+                            Global System Instructions
+                        </h3>
+<div class="flex flex-col gap-3">
+<p class="text-sm text-slate-500 dark:text-text-secondary">These instructions will be prepended to all new agent prompts created in your workspace.</p>
+<div class="relative">
+<textarea class="w-full min-h-[140px] p-4 rounded-xl bg-gray-50 dark:bg-surface-dark border border-gray-200 dark:border-border-dark text-slate-900 dark:text-white font-mono text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-y" placeholder="e.g. You are a helpful AI coding assistant. Always prioritize security and performance in your code snippets..."></textarea>
+<div class="absolute bottom-3 right-3 text-xs text-slate-400">0 / 2000</div>
+</div>
+<div class="flex justify-end">
+<button class="text-primary text-sm font-medium hover:text-primary/80 flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                                    Optimize Prompt with AI
+                                </button>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer for settings -->
+<div class="mt-16 flex items-center justify-center text-slate-400 dark:text-slate-600 text-xs gap-4">
+<span>AI Builder v2.4.0</span>
+<span>•</span>
+<a class="hover:text-primary" href="#">Documentation</a>
+<span>•</span>
+<a class="hover:text-primary" href="#">Support</a>
+</div>
+</div>
+</main>
+</div>
+</body></html>

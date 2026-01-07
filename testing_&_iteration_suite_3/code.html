@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Testing &amp; Iteration Suite</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2dd4bf", // Deep Teal/Aqua for success/info/primary
+                        "primary-hover": "#14b8a6",
+                        "warning": "#fb923c", // Soft Orange/Amber for alerts/warnings/failures
+                        "warning-hover": "#f97316",
+                        "background-light": "#fafafa", // Zinc 50
+                        "background-dark": "#09090b", // Zinc 950
+                        "surface-dark": "#18181b", // Zinc 900
+                        "surface-darker": "#121212", // Just off-black
+                        "border-dark": "#27272a", // Zinc 800
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46; 
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+             width: 6px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-zinc-900 dark:text-white font-display overflow-hidden h-screen flex">
+<aside class="w-64 flex-shrink-0 border-r border-border-dark bg-surface-darker flex flex-col justify-between hidden md:flex">
+<div class="flex flex-col">
+<div class="h-16 flex items-center px-6 border-b border-border-dark">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl">terminal</span>
+<span class="text-white text-lg font-bold tracking-tight">AI Builder</span>
+</div>
+</div>
+<div class="p-4 border-b border-border-dark">
+<h2 class="text-white text-sm font-bold uppercase tracking-wider mb-1">Project Alpha</h2>
+<p class="text-zinc-500 text-xs">v2.4 (Staging)</p>
+</div>
+<nav class="flex flex-col gap-1 p-3">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary border border-primary/20" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Test Overview</span>
+</a>
+<div class="mt-4 mb-2 px-3 text-xs font-bold text-zinc-500 uppercase tracking-wider">Configuration</div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-border-dark transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-sm font-medium">Functional Tests</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-border-dark transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">speed</span>
+<span class="text-sm font-medium">Performance</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-border-dark transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">security</span>
+<span class="text-sm font-medium">Security Scan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-border-dark transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">compare_arrows</span>
+<span class="text-sm font-medium">A/B Experiments</span>
+</a>
+<div class="mt-4 mb-2 px-3 text-xs font-bold text-zinc-500 uppercase tracking-wider">AI Optimization</div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-border-dark transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+<span class="text-sm font-medium">Self-Improvement</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-border-dark transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+<span class="text-sm font-medium">Prompt Tuning</span>
+</a>
+</nav>
+</div>
+<div class="p-4 border-t border-border-dark">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="User avatar profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCHwOSOCNChtvtlbDTvZ6HJ_5Oz0sPXlEcxQY21ww6YAjlJxHGdkjOt6Vr_B20IO527MR6eP61YnLoKXqr38S3cDaEH0XZFTAj-N3wQBMNN1LfLW9DDQcJCMd3Ws44nk4NUyVbd2kp0bVehTjdjUDkUdLq8Udb1S9I9YGkiNQwxGRKWrYiwavGPs1nPoh_tj3R3AfvKxCPm2ayCmbzKGPyZeuffz06kJS_51azz5QyM1HusjK_Ze4G8ig2fpDWqHI8oi4Jc5_v49qAB");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-white">Dev Team</span>
+<span class="text-xs text-zinc-500">Admin</span>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-full min-w-0 overflow-hidden bg-background-light dark:bg-background-dark relative">
+<header class="h-16 flex items-center justify-between px-8 border-b border-border-dark bg-surface-darker/50 backdrop-blur-md sticky top-0 z-20">
+<div class="flex items-center gap-2 text-sm">
+<span class="text-zinc-500">Projects</span>
+<span class="text-zinc-600">/</span>
+<span class="text-zinc-500">Project Alpha</span>
+<span class="text-zinc-600">/</span>
+<span class="font-medium text-white">Testing Suite</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 text-[20px]">search</span>
+<input class="bg-border-dark border-none rounded-lg pl-10 pr-4 py-2 text-sm text-white placeholder-zinc-500 focus:ring-1 focus:ring-primary w-64" placeholder="Search logs..." type="text"/>
+</div>
+<button class="bg-border-dark hover:bg-zinc-700 text-white p-2 rounded-lg transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-warning rounded-full border border-border-dark"></span>
+</button>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-8 relative">
+<div class="max-w-7xl mx-auto flex flex-col gap-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h1 class="text-3xl font-bold text-white tracking-tight mb-1">Testing &amp; Iteration Suite</h1>
+<p class="text-zinc-400">Real-time analysis of build <span class="text-primary font-mono">#build-8921</span></p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-border-dark hover:bg-zinc-700 text-white rounded-lg font-medium transition-colors border border-transparent hover:border-zinc-600">
+<span class="material-symbols-outlined text-[20px]">history</span>
+                            History
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-hover text-zinc-900 rounded-lg font-bold shadow-lg shadow-primary/20 transition-all">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+                            Run New Suite
+                        </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-surface-dark border border-border-dark p-5 rounded-xl flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">health_metrics</span>
+</div>
+<div class="flex justify-between items-start">
+<span class="text-zinc-400 font-medium">Global Health Score</span>
+<span class="text-primary bg-primary/10 px-2 py-0.5 rounded text-xs font-bold">+2.4%</span>
+</div>
+<div>
+<span class="text-4xl font-bold text-white">94%</span>
+<div class="w-full bg-border-dark h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 94%"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-dark border border-border-dark p-5 rounded-xl flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">browse_activity</span>
+</div>
+<div class="flex justify-between items-start">
+<span class="text-zinc-400 font-medium">Active Test Runs</span>
+<span class="text-primary bg-primary/10 px-2 py-0.5 rounded text-xs font-bold">Running</span>
+</div>
+<div>
+<span class="text-4xl font-bold text-white">3/12</span>
+<div class="flex gap-1 mt-3">
+<div class="h-1.5 flex-1 rounded-full bg-primary animate-pulse"></div>
+<div class="h-1.5 flex-1 rounded-full bg-primary animate-pulse" style="animation-delay: 100ms"></div>
+<div class="h-1.5 flex-1 rounded-full bg-primary animate-pulse" style="animation-delay: 200ms"></div>
+<div class="h-1.5 flex-1 rounded-full bg-border-dark"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-dark border border-border-dark p-5 rounded-xl flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-white">warning</span>
+</div>
+<div class="flex justify-between items-start">
+<span class="text-zinc-400 font-medium">Critical Alerts</span>
+<span class="text-warning bg-warning/10 px-2 py-0.5 rounded text-xs font-bold">Action Needed</span>
+</div>
+<div>
+<span class="text-4xl font-bold text-white">1</span>
+<p class="text-xs text-zinc-500 mt-2">API Latency Spike in Module B</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<div class="xl:col-span-2 flex flex-col gap-6">
+<div class="bg-surface-dark border border-border-dark rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h3 class="text-lg font-bold text-white">A/B Variant Performance</h3>
+<p class="text-sm text-zinc-400">Response time comparison (ms)</p>
+</div>
+<div class="flex gap-2">
+<div class="flex items-center gap-2 text-xs text-zinc-400">
+<div class="size-3 rounded-full bg-primary"></div> Variant A (Base)
+                                    </div>
+<div class="flex items-center gap-2 text-xs text-zinc-400">
+<div class="size-3 rounded-full bg-warning"></div> Variant B (New)
+                                    </div>
+</div>
+</div>
+<div class="h-64 flex items-end gap-2 sm:gap-4 w-full px-2 border-b border-border-dark pb-1 relative">
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-1">
+<div class="border-t border-border-dark border-dashed w-full h-0"></div>
+<div class="border-t border-border-dark border-dashed w-full h-0"></div>
+<div class="border-t border-border-dark border-dashed w-full h-0"></div>
+<div class="border-t border-border-dark border-dashed w-full h-0"></div>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-1 h-full group">
+<div class="w-full bg-warning/80 hover:bg-warning rounded-t-sm h-[60%] transition-all relative"></div>
+<div class="w-full bg-primary/80 hover:bg-primary rounded-t-sm h-[40%] transition-all relative"></div>
+<span class="text-[10px] text-zinc-500 text-center mt-2">Test 1</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-1 h-full group">
+<div class="w-full bg-warning/80 hover:bg-warning rounded-t-sm h-[45%] transition-all"></div>
+<div class="w-full bg-primary/80 hover:bg-primary rounded-t-sm h-[50%] transition-all"></div>
+<span class="text-[10px] text-zinc-500 text-center mt-2">Test 2</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-1 h-full group">
+<div class="w-full bg-warning/80 hover:bg-warning rounded-t-sm h-[75%] transition-all"></div>
+<div class="w-full bg-primary/80 hover:bg-primary rounded-t-sm h-[55%] transition-all"></div>
+<span class="text-[10px] text-zinc-500 text-center mt-2">Test 3</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-1 h-full group">
+<div class="w-full bg-warning/80 hover:bg-warning rounded-t-sm h-[30%] transition-all"></div>
+<div class="w-full bg-primary/80 hover:bg-primary rounded-t-sm h-[35%] transition-all"></div>
+<span class="text-[10px] text-zinc-500 text-center mt-2">Test 4</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-1 h-full group">
+<div class="w-full bg-warning/80 hover:bg-warning rounded-t-sm h-[50%] transition-all"></div>
+<div class="w-full bg-primary/80 hover:bg-primary rounded-t-sm h-[45%] transition-all"></div>
+<span class="text-[10px] text-zinc-500 text-center mt-2">Test 5</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-1 h-full group">
+<div class="w-full bg-warning/80 hover:bg-warning rounded-t-sm h-[20%] transition-all"></div>
+<div class="w-full bg-primary/80 hover:bg-primary rounded-t-sm h-[25%] transition-all"></div>
+<span class="text-[10px] text-zinc-500 text-center mt-2">Test 6</span>
+</div>
+<div class="flex-1 flex flex-col justify-end gap-1 h-full group">
+<div class="w-full bg-warning/80 hover:bg-warning rounded-t-sm h-[65%] transition-all"></div>
+<div class="w-full bg-primary/80 hover:bg-primary rounded-t-sm h-[60%] transition-all"></div>
+<span class="text-[10px] text-zinc-500 text-center mt-2">Test 7</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-dark border border-border-dark rounded-xl overflow-hidden flex flex-col flex-1">
+<div class="p-6 border-b border-border-dark flex justify-between items-center">
+<h3 class="text-lg font-bold text-white">Automated Test Results</h3>
+<button class="text-xs text-primary hover:text-white transition-colors font-medium">View All Logs</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm text-zinc-400">
+<thead class="bg-surface-darker text-xs uppercase font-semibold text-white">
+<tr>
+<th class="px-6 py-4">Test Case</th>
+<th class="px-6 py-4">Type</th>
+<th class="px-6 py-4">Duration</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-dark">
+<tr class="hover:bg-border-dark/50 transition-colors">
+<td class="px-6 py-4 font-medium text-white">Login Flow - Auth0</td>
+<td class="px-6 py-4">Functional</td>
+<td class="px-6 py-4">124ms</td>
+<td class="px-6 py-4"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary"><span class="material-symbols-outlined text-[14px]">check</span> Passed</span></td>
+<td class="px-6 py-4 text-right"><button class="text-zinc-500 hover:text-white"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></td>
+</tr>
+<tr class="hover:bg-border-dark/50 transition-colors">
+<td class="px-6 py-4 font-medium text-white">Checkout - Stripe Payment</td>
+<td class="px-6 py-4">Security</td>
+<td class="px-6 py-4">840ms</td>
+<td class="px-6 py-4"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary"><span class="material-symbols-outlined text-[14px]">check</span> Passed</span></td>
+<td class="px-6 py-4 text-right"><button class="text-zinc-500 hover:text-white"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></td>
+</tr>
+<tr class="bg-warning/5 hover:bg-warning/10 transition-colors cursor-pointer border-l-2 border-warning">
+<td class="px-6 py-4 font-medium text-white">Dashboard Load - Heavy Data</td>
+<td class="px-6 py-4">Performance</td>
+<td class="px-6 py-4 text-warning">4.2s</td>
+<td class="px-6 py-4"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-warning/10 text-warning"><span class="material-symbols-outlined text-[14px]">close</span> Failed</span></td>
+<td class="px-6 py-4 text-right"><button class="text-zinc-500 hover:text-white"><span class="material-symbols-outlined text-[18px]">bug_report</span></button></td>
+</tr>
+<tr class="hover:bg-border-dark/50 transition-colors">
+<td class="px-6 py-4 font-medium text-white">User Profile Update</td>
+<td class="px-6 py-4">Functional</td>
+<td class="px-6 py-4">45ms</td>
+<td class="px-6 py-4"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary"><span class="material-symbols-outlined text-[14px]">check</span> Passed</span></td>
+<td class="px-6 py-4 text-right"><button class="text-zinc-500 hover:text-white"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></td>
+</tr>
+<tr class="hover:bg-border-dark/50 transition-colors">
+<td class="px-6 py-4 font-medium text-white">Export to CSV</td>
+<td class="px-6 py-4">Functional</td>
+<td class="px-6 py-4">-</td>
+<td class="px-6 py-4"><span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-zinc-700/50 text-zinc-300"><span class="material-symbols-outlined text-[14px] animate-spin">refresh</span> Running</span></td>
+<td class="px-6 py-4 text-right"><button class="text-zinc-500 hover:text-white"><span class="material-symbols-outlined text-[18px]">stop_circle</span></button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="bg-gradient-to-b from-primary/20 to-surface-dark border border-primary/30 rounded-xl p-6 relative overflow-hidden">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/40 blur-3xl rounded-full"></div>
+<div class="flex items-center gap-3 mb-4">
+<div class="bg-primary p-2 rounded-lg text-zinc-900 shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<h3 class="text-lg font-bold text-white">AI Insights</h3>
+</div>
+<div class="flex flex-col gap-4">
+<div class="bg-surface-darker/80 backdrop-blur-sm p-4 rounded-lg border border-primary/20">
+<p class="text-sm text-zinc-300 leading-relaxed mb-3">
+<strong class="text-white block mb-1">Latency Recommendation</strong>
+                                        Variant B shows <span class="text-primary font-bold">15% better retention</span> but consumes 2x tokens. Consider switching model to <span class="font-mono text-xs bg-zinc-800 px-1 py-0.5 rounded text-primary">GPT-3.5-Turbo</span> for this module.
+                                    </p>
+<button class="text-xs font-bold text-primary hover:text-white flex items-center gap-1">Apply Config <span class="material-symbols-outlined text-[14px]">arrow_forward</span></button>
+</div>
+<div class="bg-surface-darker/80 backdrop-blur-sm p-4 rounded-lg border border-border-dark">
+<p class="text-sm text-zinc-300 leading-relaxed mb-3">
+<strong class="text-white block mb-1">Prompt Refinement</strong>
+                                        Detected ambiguity in user inputs for "Image Generation". Adding a clarification step could reduce retry rate by ~12%.
+                                    </p>
+<button class="text-xs font-bold text-primary hover:text-white flex items-center gap-1">Preview Change <span class="material-symbols-outlined text-[14px]">visibility</span></button>
+</div>
+</div>
+</div>
+<div class="bg-surface-dark border border-border-dark rounded-xl p-6">
+<h3 class="text-base font-bold text-white mb-4">Test Configuration</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-zinc-400">Coverage Target</span>
+<span class="text-white">85%</span>
+</div>
+<div class="w-full bg-border-dark h-1.5 rounded-full">
+<div class="bg-primary h-full rounded-full" style="width: 72%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between p-2 rounded bg-surface-darker border border-border-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-zinc-500 text-[18px]">devices</span>
+<span class="text-sm text-zinc-300">Browser Matrix</span>
+</div>
+<span class="text-xs text-zinc-500">Chrome, FF, Safari</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-darker border border-border-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-zinc-500 text-[18px]">smartphone</span>
+<span class="text-sm text-zinc-300">Mobile Viewport</span>
+</div>
+<span class="text-xs text-zinc-500">iPhone 14, Pixel 7</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface-darker border border-border-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-zinc-500 text-[18px]">network_check</span>
+<span class="text-sm text-zinc-300">Network Throttle</span>
+</div>
+<span class="text-xs text-zinc-500">Fast 3G</span>
+</div>
+</div>
+<button class="w-full py-2 border border-border-dark hover:bg-border-dark text-zinc-300 text-sm rounded-lg transition-colors mt-2">
+                                    Edit Configuration
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div aria-modal="true" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" role="dialog">
+<div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity"></div>
+<div class="relative w-full max-w-6xl max-h-[90vh] bg-background-dark rounded-2xl border border-border-dark shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200 ring-1 ring-white/10">
+<div class="flex items-center justify-between px-6 py-4 border-b border-border-dark bg-surface-dark">
+<div class="flex items-center gap-4">
+<div class="bg-warning/10 p-2 rounded-lg border border-warning/20">
+<span class="material-symbols-outlined text-warning">warning</span>
+</div>
+<div>
+<h2 class="text-xl font-bold text-white leading-none">Dashboard Load - Heavy Data</h2>
+<div class="flex items-center gap-3 mt-1.5 text-xs text-zinc-400">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> Oct 24, 14:32:01</span>
+<span class="size-1 bg-zinc-600 rounded-full"></span>
+<span>Performance Test</span>
+<span class="size-1 bg-zinc-600 rounded-full"></span>
+<span class="text-warning font-medium">Failed (4.2s timeout)</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-zinc-400 hover:text-white transition-colors rounded-lg hover:bg-border-dark">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="p-2 text-zinc-400 hover:text-white transition-colors rounded-lg hover:bg-border-dark">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar flex flex-col lg:flex-row min-h-0">
+<div class="flex-1 p-6 space-y-8 lg:border-r border-border-dark">
+<div class="rounded-xl border border-primary/30 bg-gradient-to-br from-primary/5 via-transparent to-transparent p-6 relative overflow-hidden">
+<div class="flex items-start gap-4 z-10 relative">
+<div class="bg-primary shadow-lg shadow-primary/20 rounded-lg p-2 flex-shrink-0">
+<span class="material-symbols-outlined text-zinc-900">psychology</span>
+</div>
+<div class="flex-1">
+<h3 class="text-lg font-bold text-white mb-2">AI Diagnosis: Infinite Re-render Loop</h3>
+<p class="text-zinc-300 text-sm leading-relaxed mb-4">
+                                    The spike in latency originates from the <code class="text-primary bg-primary/10 px-1 rounded border border-primary/20">UserDashboard</code> component. The <code class="text-zinc-200 bg-zinc-800 px-1 rounded">useMemo</code> hook dependency array includes an unstable object reference, causing the component to re-calculate heavy data on every frame.
+                                </p>
+<div class="flex flex-wrap gap-3">
+<button class="px-4 py-2 bg-primary hover:bg-primary-hover text-zinc-900 text-sm font-bold rounded-lg shadow-lg shadow-primary/20 flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[18px]">auto_fix</span> Generate Fix
+                                    </button>
+<button class="px-4 py-2 bg-border-dark hover:bg-zinc-700 text-white text-sm font-medium rounded-lg border border-zinc-700 flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-[18px]">bug_report</span> Report Bug
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-base font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-zinc-500">blur_on</span>
+                                UI Interaction Heatmap
+                            </h3>
+<div class="flex items-center gap-2 text-xs bg-surface-darker p-1 rounded-lg border border-border-dark">
+<button class="px-3 py-1 bg-border-dark text-white rounded shadow-sm">Heatmap</button>
+<button class="px-3 py-1 text-zinc-400 hover:text-white">Regression</button>
+</div>
+</div>
+<div class="relative w-full aspect-video bg-black rounded-lg border border-border-dark overflow-hidden group">
+<div class="absolute inset-0 p-8 opacity-50">
+<div class="w-full h-full border-2 border-dashed border-zinc-700 rounded flex gap-4">
+<div class="w-1/4 h-full border-r border-zinc-700 bg-zinc-800/20"></div>
+<div class="flex-1 h-full flex flex-col gap-4">
+<div class="w-full h-12 bg-zinc-800/50 rounded"></div>
+<div class="flex-1 grid grid-cols-3 gap-4">
+<div class="bg-zinc-800/30 rounded"></div>
+<div class="bg-zinc-800/30 rounded"></div>
+<div class="bg-zinc-800/30 rounded"></div>
+<div class="bg-zinc-800/30 rounded"></div>
+<div class="bg-zinc-800/30 rounded"></div>
+<div class="bg-zinc-800/30 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute top-[30%] left-[45%] w-32 h-32 bg-warning rounded-full blur-[50px] mix-blend-screen opacity-60"></div>
+<div class="absolute top-[35%] left-[50%] w-20 h-20 bg-primary rounded-full blur-[30px] mix-blend-screen opacity-80"></div>
+<div class="absolute bottom-4 right-4 bg-black/80 backdrop-blur text-xs text-white px-3 py-1.5 rounded-full border border-white/10">
+                                High Interaction Density (Rage Clicks detected)
+                            </div>
+</div>
+</div>
+<div>
+<h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-zinc-500">code</span>
+                            Stack Trace Analysis
+                        </h3>
+<div class="bg-surface-darker rounded-lg border border-border-dark overflow-hidden font-mono text-sm">
+<div class="flex items-center px-4 py-2 border-b border-border-dark bg-surface-dark">
+<span class="text-xs text-zinc-400">src/components/Dashboard/DataGrid.tsx</span>
+</div>
+<div class="p-4 overflow-x-auto">
+<div class="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-warning font-bold hidden group-hover:block">ERROR SOURCE</div>
+<table class="w-full text-left border-collapse">
+<tbody>
+<tr class="text-zinc-500">
+<td class="pr-4 select-none text-right w-8">42</td>
+<td>  const processData = (raw: any[]) =&gt; {</td>
+</tr>
+<tr class="text-zinc-500">
+<td class="pr-4 select-none text-right w-8">43</td>
+<td>    return raw.map(item =&gt; expensiveCalc(item));</td>
+</tr>
+<tr class="bg-warning/10 text-zinc-300 relative group">
+<td class="pr-4 select-none text-right w-8 text-warning border-l-2 border-warning">44</td>
+<td class="pl-2">  const heavyData = useMemo(() =&gt; {</td>
+</tr>
+<tr class="bg-warning/10 text-zinc-300">
+<td class="pr-4 select-none text-right w-8 text-warning border-l-2 border-warning">45</td>
+<td class="pl-2">    return processData(rawData);</td>
+</tr>
+<tr class="bg-warning/10 text-zinc-300">
+<td class="pr-4 select-none text-right w-8 text-warning border-l-2 border-warning">46</td>
+<td class="pl-2">  }, [rawData, unstableProp]); // Invalid dependency</td>
+</tr>
+<tr class="text-zinc-500">
+<td class="pr-4 select-none text-right w-8">47</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-96 bg-surface-darker p-6 space-y-6 flex-shrink-0">
+<div>
+<h4 class="text-xs font-bold uppercase text-zinc-500 tracking-wider mb-4">Performance Metrics</h4>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-dark p-3 rounded-lg border border-border-dark">
+<span class="text-zinc-400 text-xs block mb-1">Time to Interactive</span>
+<span class="text-xl font-bold text-warning">4.2s</span>
+<span class="text-[10px] text-zinc-500">Target: &lt;1.5s</span>
+</div>
+<div class="bg-surface-dark p-3 rounded-lg border border-border-dark">
+<span class="text-zinc-400 text-xs block mb-1">Memory Usage</span>
+<span class="text-xl font-bold text-warning">240MB</span>
+<span class="text-[10px] text-zinc-500">Target: &lt;100MB</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase text-zinc-500 tracking-wider mb-4">Accessibility Audit</h4>
+<div class="space-y-2">
+<div class="flex items-start gap-2 bg-surface-dark p-3 rounded-lg border border-border-dark">
+<span class="material-symbols-outlined text-warning text-[18px] mt-0.5">contrast</span>
+<div>
+<p class="text-sm text-white font-medium">Low Contrast</p>
+<p class="text-xs text-zinc-400">Button text fails AA standard.</p>
+</div>
+</div>
+<div class="flex items-start gap-2 bg-surface-dark p-3 rounded-lg border border-border-dark">
+<span class="material-symbols-outlined text-warning text-[18px] mt-0.5">alt_route</span>
+<div>
+<p class="text-sm text-white font-medium">Missing Alt Text</p>
+<p class="text-xs text-zinc-400">Data chart image is missing alt tag.</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase text-zinc-500 tracking-wider mb-4">Reproduction Steps</h4>
+<ol class="list-decimal list-inside space-y-3 text-sm text-zinc-300">
+<li class="pl-2">Navigate to <span class="font-mono text-xs bg-border-dark px-1 rounded">/dashboard</span></li>
+<li class="pl-2">Select "Yearly View" from dropdown</li>
+<li class="pl-2">Load dataset "Q3_Large_Dataset"</li>
+<li class="pl-2">Wait for grid to render</li>
+<li class="pl-2 text-warning font-medium">Crash / Freeze occurs here</li>
+</ol>
+</div>
+<div class="pt-4 border-t border-border-dark">
+<div class="flex flex-col gap-2 text-xs text-zinc-500">
+<div class="flex justify-between">
+<span>Browser:</span>
+<span class="text-zinc-300">Chrome 118.0 (Headless)</span>
+</div>
+<div class="flex justify-between">
+<span>OS:</span>
+<span class="text-zinc-300">Linux x86_64</span>
+</div>
+<div class="flex justify-between">
+<span>Viewport:</span>
+<span class="text-zinc-300">1920 x 1080</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-border-dark bg-surface-dark flex justify-between items-center">
+<div class="text-xs text-zinc-500">
+                    Log ID: <span class="font-mono select-all">err_9921_x82</span>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 hover:bg-border-dark text-zinc-300 text-sm font-medium rounded-lg transition-colors">
+                        Close
+                    </button>
+<button class="px-4 py-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 text-sm font-medium rounded-lg transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">refresh</span> Re-run Test
+                    </button>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

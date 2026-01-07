@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notifications Center - AI Builder</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec9213",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#221a10",
+                        "surface-dark": "#2c2216", // Slightly lighter than background-dark for cards
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for dark mode */
+        .dark ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #221a10; 
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #483923; 
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #ec9213; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex shrink-0 items-center justify-between whitespace-nowrap border-b border-solid border-black/5 dark:border-white/10 px-6 py-3 bg-white dark:bg-background-dark z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">AI Builder</h2>
+</div>
+<!-- Search Bar -->
+<label class="hidden md:flex flex-col min-w-40 !h-10 w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-100 dark:bg-white/5 border border-transparent focus-within:border-primary/50 transition-colors">
+<div class="text-slate-400 dark:text-[#c9b292] flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none h-full placeholder:text-slate-400 dark:placeholder:text-[#c9b292] px-3 text-sm font-normal leading-normal" placeholder="Search projects..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Projects</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Deployments</a>
+</nav>
+<div class="flex items-center gap-4 border-l border-slate-200 dark:border-white/10 pl-6">
+<button class="relative text-slate-600 dark:text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined icon-filled">notifications</span>
+<span class="absolute top-0 right-0 size-2.5 bg-primary rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-transparent hover:ring-primary transition-all cursor-pointer" data-alt="User profile avatar showing a generic gradient pattern" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDoS56Zw9QktwE0zshpncnlEZsto9zYOPy7X6_O6r-3LTYrfEKUhGynipAxWYswYvMXvcvYHaX11Ed3-zWnW0YtXT_90Tk7RIr2gq9xI0sk7BW1uKHexe7cCkBTxstGhvs9OAsZ2qtSL5aBcx7Q-FaM2oXIvjMkVT3JYJOHqmKcOGKq5VRXilbkUxPFwawQldSWtUvXxGxh8dEDYjFpTLfvvU5uCcjlvPAo6CJh-sZa5uxDA2NwbhmeF4qDzzejan-NXbfxQKzHM9Fe");'>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar Filters -->
+<aside class="hidden md:flex w-64 flex-col border-r border-black/5 dark:border-white/10 bg-white dark:bg-background-dark p-4 overflow-y-auto">
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-1 px-2">
+<h1 class="text-slate-900 dark:text-white text-base font-bold leading-normal">Inbox</h1>
+<p class="text-slate-500 dark:text-[#c9b292] text-xs font-normal">Manage your updates</p>
+</div>
+<div class="flex flex-col gap-1">
+<!-- Active Item -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary group transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined icon-filled text-[20px]">inbox</span>
+<span class="text-sm font-semibold">All Notifications</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">mark_email_unread</span>
+<span class="text-sm font-medium">Unread</span>
+</div>
+<span class="flex items-center justify-center bg-primary text-white text-[10px] font-bold px-1.5 h-5 min-w-5 rounded-full">3</span>
+</a>
+<div class="h-px bg-slate-200 dark:bg-white/10 my-2 mx-2"></div>
+<p class="px-3 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">Filters</p>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">admin_panel_settings</span>
+<span class="text-sm font-medium">System &amp; Security</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">layers</span>
+<span class="text-sm font-medium">Project Updates</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">forum</span>
+<span class="text-sm font-medium">Community</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">credit_card</span>
+<span class="text-sm font-medium">Billing</span>
+</a>
+</div>
+</div>
+<div class="mt-auto pt-6">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">settings</span>
+<span class="text-sm font-medium">Notification Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Feed -->
+<main class="flex-1 overflow-y-auto bg-slate-50 dark:bg-[#1c150d] relative">
+<div class="max-w-[800px] mx-auto w-full pb-20">
+<!-- Page Header -->
+<div class="sticky top-0 z-10 bg-slate-50/95 dark:bg-[#1c150d]/95 backdrop-blur-sm border-b border-black/5 dark:border-white/5 px-6 py-6 flex flex-wrap justify-between items-center gap-4">
+<h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Notifications</h1>
+<button class="flex items-center justify-center gap-2 px-4 h-9 rounded-lg bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-white text-sm font-semibold transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+<span>Mark all as read</span>
+</button>
+</div>
+<div class="px-6 flex flex-col gap-6 mt-6">
+<!-- Group: Today -->
+<section>
+<h3 class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider mb-3 ml-1">Today</h3>
+<div class="flex flex-col gap-3">
+<!-- Critical Notification (Unread) -->
+<div class="group relative flex flex-col sm:flex-row gap-4 bg-white dark:bg-surface-dark border-l-4 border-primary p-4 rounded-r-xl shadow-sm hover:shadow-md transition-all">
+<div class="absolute right-4 top-4 sm:hidden">
+<div class="size-2 rounded-full bg-primary"></div>
+</div>
+<div class="flex-shrink-0">
+<div class="flex items-center justify-center rounded-lg bg-red-50 dark:bg-red-500/20 text-red-600 dark:text-red-400 size-10">
+<span class="material-symbols-outlined">error</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<div class="flex justify-between items-start">
+<p class="text-slate-900 dark:text-white text-base font-bold leading-tight mb-1">Deployment Failed for Project X</p>
+<span class="hidden sm:block size-2 rounded-full bg-primary mt-1.5 ml-2 shrink-0"></span>
+</div>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-normal mb-2">Critical error in build pipeline #402. The process was terminated due to a timeout in the container registry.</p>
+<p class="text-slate-400 dark:text-[#c9b292] text-xs font-medium">10 mins ago • System Alert</p>
+<div class="flex gap-3 mt-3">
+<button class="px-4 py-1.5 rounded-lg bg-primary hover:bg-primary/90 text-white text-xs font-bold transition-colors">
+                                            View Logs
+                                        </button>
+<button class="px-4 py-1.5 rounded-lg border border-slate-200 dark:border-white/20 hover:bg-slate-100 dark:hover:bg-white/5 text-slate-600 dark:text-slate-300 text-xs font-medium transition-colors">
+                                            Retry Build
+                                        </button>
+</div>
+</div>
+</div>
+<!-- Warning Notification (Unread) -->
+<div class="group relative flex flex-col sm:flex-row gap-4 bg-white dark:bg-surface-dark border-l-4 border-primary p-4 rounded-r-xl shadow-sm hover:shadow-md transition-all">
+<div class="flex-shrink-0">
+<div class="flex items-center justify-center rounded-lg bg-primary/10 dark:bg-primary/20 text-primary size-10">
+<span class="material-symbols-outlined">warning</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<div class="flex justify-between items-start">
+<p class="text-slate-900 dark:text-white text-base font-bold leading-tight mb-1">Usage Limit Approaching</p>
+<span class="hidden sm:block size-2 rounded-full bg-primary mt-1.5 ml-2 shrink-0"></span>
+</div>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-normal mb-2">You have used 85% of your GPU compute hours for this billing cycle.</p>
+<p class="text-slate-400 dark:text-[#c9b292] text-xs font-medium">2 hours ago • Billing</p>
+<div class="flex gap-3 mt-3">
+<button class="px-4 py-1.5 rounded-lg border border-slate-200 dark:border-white/20 hover:bg-slate-100 dark:hover:bg-white/5 text-slate-600 dark:text-slate-300 text-xs font-medium transition-colors">
+                                            Upgrade Plan
+                                        </button>
+</div>
+</div>
+</div>
+<!-- Standard Notification (Read) -->
+<div class="group flex flex-col sm:flex-row gap-4 bg-white dark:bg-surface-dark/40 p-4 rounded-xl border border-transparent hover:border-slate-200 dark:hover:border-white/5 transition-all">
+<div class="flex-shrink-0">
+<div class="flex items-center justify-center rounded-lg bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400 size-10">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-200 text-base font-semibold leading-tight mb-1">Model training completed successfully</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-normal">Your "Customer_Sentiment_V2" model is now ready for deployment. Accuracy improved by 4.2%.</p>
+<div class="flex items-center justify-between mt-2">
+<p class="text-slate-400 dark:text-slate-500 text-xs font-medium">4 hours ago • Project Updates</p>
+<button class="opacity-0 group-hover:opacity-100 text-primary text-xs font-bold transition-opacity">View Model</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Group: Yesterday -->
+<section>
+<h3 class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider mb-3 ml-1">Yesterday</h3>
+<div class="flex flex-col gap-3">
+<!-- Community Notification (Read) -->
+<div class="group flex flex-col sm:flex-row gap-4 bg-white dark:bg-surface-dark/40 p-4 rounded-xl border border-transparent hover:border-slate-200 dark:hover:border-white/5 transition-all">
+<div class="flex-shrink-0">
+<div class="relative flex items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 size-10 overflow-hidden">
+<!-- User Avatar for comment -->
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="Portrait of Jane Doe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbkOsBJrwgAa8sCY1uldPyxskuJ3OcgmleKVmYN3sdHfsmE0wcu66NJMY8Q5lza7YX-g9KejlJDMzv57f33-og31hUvr2FxtnD_HNcre64_fW_rhevMFwOV_P8kT4jwRTEkeiHipOd1lV_J475B2klgoUf0QMEAM4GL2Tva4WPG1jVkbf4zd7RbvRYJtJXADrVSd-rWv4FRwfOS_VuAWLuWcQ5QAJXPU8NwlbqlLmQoMvMPQyjmsozsUPbEt3LUmus5Bc2CoRI_RU6"/>
+<div class="absolute bottom-0 right-0 bg-white dark:bg-surface-dark rounded-tl p-0.5">
+<span class="material-symbols-outlined text-[10px] text-blue-500 block">chat_bubble</span>
+</div>
+</div>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-200 text-base font-semibold leading-tight mb-1">Jane Doe commented on your workflow</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-normal">"Great structure! Have you considered adding a retry mechanism for the API node?"</p>
+<div class="flex items-center justify-between mt-2">
+<p class="text-slate-400 dark:text-slate-500 text-xs font-medium">Yesterday at 4:30 PM • Community</p>
+<button class="opacity-0 group-hover:opacity-100 text-primary text-xs font-bold transition-opacity">Reply</button>
+</div>
+</div>
+</div>
+<!-- Security Notification (Read) -->
+<div class="group flex flex-col sm:flex-row gap-4 bg-white dark:bg-surface-dark/40 p-4 rounded-xl border border-transparent hover:border-slate-200 dark:hover:border-white/5 transition-all">
+<div class="flex-shrink-0">
+<div class="flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700/30 text-slate-600 dark:text-slate-400 size-10">
+<span class="material-symbols-outlined">shield</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-200 text-base font-semibold leading-tight mb-1">New login from new device</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-normal">We detected a login from Chrome on Windows 10 (IP: 192.168.1.1). Was this you?</p>
+<div class="flex items-center justify-between mt-2">
+<p class="text-slate-400 dark:text-slate-500 text-xs font-medium">Yesterday at 9:15 AM • Security</p>
+<div class="flex gap-4">
+<button class="opacity-0 group-hover:opacity-100 text-slate-500 hover:text-white text-xs font-medium transition-opacity">Details</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Group: Last Week -->
+<section>
+<h3 class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-wider mb-3 ml-1">Last Week</h3>
+<div class="flex flex-col gap-3">
+<!-- Invoice Notification (Read) -->
+<div class="group flex flex-col sm:flex-row gap-4 bg-white dark:bg-surface-dark/40 p-4 rounded-xl border border-transparent hover:border-slate-200 dark:hover:border-white/5 transition-all opacity-75 hover:opacity-100">
+<div class="flex-shrink-0">
+<div class="flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700/30 text-slate-600 dark:text-slate-400 size-10">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-200 text-base font-semibold leading-tight mb-1">Invoice #2023-10 Available</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-normal">Your monthly invoice for October is ready for download.</p>
+<div class="flex items-center justify-between mt-2">
+<p class="text-slate-400 dark:text-slate-500 text-xs font-medium">Oct 24 • Billing</p>
+<button class="opacity-0 group-hover:opacity-100 text-primary text-xs font-bold transition-opacity">Download PDF</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- End of list message -->
+<div class="flex justify-center py-8">
+<div class="flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-slate-300 dark:text-slate-700 text-4xl">check</span>
+<p class="text-slate-400 dark:text-slate-600 text-sm">You've reached the end of your notifications.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

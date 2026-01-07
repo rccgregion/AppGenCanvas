@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI App Builder Canvas</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1e293b",
+                        "border-dark": "#232f48",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111722; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232f48; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #324467; 
+        }
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(35, 47, 72, 0.4) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(35, 47, 72, 0.4) 1px, transparent 1px);
+        }
+        @keyframes scan {
+            0% { top: -20%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 120%; opacity: 0; }
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: -100; }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen flex flex-col">
+<header class="flex flex-shrink-0 items-center justify-between border-b border-solid border-border-dark bg-[#111722] px-6 py-3 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 flex items-center justify-center bg-primary rounded-lg shadow-lg shadow-blue-900/20">
+<span class="material-symbols-outlined text-white" style="font-size: 20px;">smart_toy</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">AI Architect</h2>
+</div>
+<div class="flex items-center gap-6 ml-4 hidden md:flex">
+<a class="text-white text-sm font-medium transition-colors border-b-2 border-primary pb-0.5" href="#">Design</a>
+<a class="text-[#92a4c9] hover:text-white text-sm font-medium transition-colors" href="#">Data</a>
+<a class="text-[#92a4c9] hover:text-white text-sm font-medium transition-colors" href="#">Logic</a>
+<a class="text-[#92a4c9] hover:text-white text-sm font-medium transition-colors" href="#">Settings</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-9 px-4 bg-[#232f48] hover:bg-[#2c3b59] text-white text-sm font-bold transition-colors border border-transparent hover:border-white/10">
+<span class="material-symbols-outlined text-[18px] mr-2">ios_share</span>
+<span>Share</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-9 px-4 bg-primary hover:bg-blue-600 text-white text-sm font-bold shadow-lg shadow-blue-900/20 transition-colors">
+<span class="material-symbols-outlined text-[18px] mr-2">rocket_launch</span>
+<span>Deploy</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-[#232f48]" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZexLtY4cAxoa_xO9u4natK33pidYMz6QI4TPn7AxA64X-HtD-8aP20OgnwNbVP_hF7yhxaQDAYf_Dx9zg0jApgYQi-DKQtdqo5EkP-j4XcOZqsMiYpgisd0_ijdmHbHlf98YZjty7K9g3p2XmxpnmvmgazfFrUT4ECyjVNEWizOsKFJPYvoYXIA-j9hkhv5W13YFHWwo3yw8kNPE25PGB4cSwkRXhgqwzUbMLo8fjRZ9djSxRNUKTIoDYdMxX8DeraG_4wJEA4h9d");'></div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden relative">
+<aside class="w-72 flex flex-col border-r border-border-dark bg-[#111722] flex-shrink-0 z-40">
+<div class="p-5 border-b border-border-dark">
+<h2 class="text-white font-display font-semibold text-lg tracking-tight">Project Overview</h2>
+<p class="text-[#5f749a] text-xs mt-1">Context &amp; Configuration</p>
+</div>
+<div class="flex-1 overflow-y-auto p-5 space-y-6">
+<div>
+<label class="text-[#5f749a] text-[10px] font-bold uppercase tracking-wider block mb-2">Current Project</label>
+<div class="flex items-center justify-between text-white bg-[#151b26] border border-border-dark rounded-lg px-3 py-2.5 hover:border-[#34425e] transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="font-medium text-sm text-white">Shoe_Store_v1</span>
+<span class="text-xs text-[#5f749a]">Last edited 2m ago</span>
+</div>
+<span class="material-symbols-outlined text-[#5f749a] text-[16px] group-hover:text-white transition-colors">edit</span>
+</div>
+</div>
+<div>
+<label class="text-[#5f749a] text-[10px] font-bold uppercase tracking-wider block mb-2">Initial Prompt</label>
+<div class="bg-[#151b26] border border-border-dark rounded-lg p-3 relative group">
+<span class="material-symbols-outlined text-[#5f749a] text-[14px] absolute top-2 right-2">format_quote</span>
+<p class="text-[#d1d5db] text-sm italic leading-relaxed font-body pr-4">"Create a shoe store app with modern dark theme, focusing on high-quality imagery and a seamless checkout flow."</p>
+</div>
+</div>
+<div>
+<label class="text-[#5f749a] text-[10px] font-bold uppercase tracking-wider block mb-2">Configuration</label>
+<div class="space-y-2 bg-[#151b26] p-3 rounded-lg border border-border-dark">
+<div class="flex items-center justify-between py-1 border-b border-[#232f48] pb-2 mb-1">
+<span class="text-[#92a4c9] text-xs">Target Platform</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-white text-[14px]">phone_iphone</span>
+<span class="text-white text-xs font-medium">iOS Native</span>
+</div>
+</div>
+<div class="flex items-center justify-between py-1 border-b border-[#232f48] pb-2 mb-1">
+<span class="text-[#92a4c9] text-xs">App Type</span>
+<span class="px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-bold border border-blue-500/20 uppercase">E-Commerce</span>
+</div>
+<div class="flex items-center justify-between py-1">
+<span class="text-[#92a4c9] text-xs">Design System</span>
+<span class="text-white text-xs font-medium">Material 3 (Dark)</span>
+</div>
+</div>
+</div>
+<div>
+<label class="text-[#5f749a] text-[10px] font-bold uppercase tracking-wider block mb-2">Generated Assets</label>
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-[#151b26] py-2 px-3 rounded border border-border-dark flex items-center justify-between">
+<span class="text-xl font-display font-bold text-white">12</span>
+<span class="text-[10px] text-[#5f749a] uppercase font-bold text-right leading-tight">UI<br/>Comps</span>
+</div>
+<div class="bg-[#151b26] py-2 px-3 rounded border border-border-dark flex items-center justify-between">
+<span class="text-xl font-display font-bold text-white">4</span>
+<span class="text-[10px] text-[#5f749a] uppercase font-bold text-right leading-tight">Total<br/>Screens</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-border-dark bg-[#0d121c]">
+<div class="flex items-center gap-2 text-[#5f749a]">
+<span class="material-symbols-outlined text-[16px]">cloud_done</span>
+<span class="text-xs font-medium">All changes saved</span>
+</div>
+</div>
+</aside>
+<main class="flex-1 relative overflow-hidden bg-[#0d121c] grid-bg cursor-grab active:cursor-grabbing group/canvas">
+<div class="absolute top-6 left-8 z-10 flex items-center gap-2">
+<div class="flex items-center gap-2 bg-[#1e293b]/80 backdrop-blur-md px-4 py-2 rounded-lg border border-border-dark shadow-xl">
+<span class="material-symbols-outlined text-primary text-[18px]">account_tree</span>
+<span class="text-white text-sm font-medium">Main Flow</span>
+<span class="material-symbols-outlined text-[#5f749a] text-[16px]">chevron_right</span>
+<span class="text-[#92a4c9] text-sm">Auth Sequence</span>
+</div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center transform scale-100 origin-center pointer-events-none">
+<svg class="absolute w-full h-full overflow-visible" style="z-index: 0;">
+<path d="M 400 200 C 400 300, 200 300, 200 400" fill="none" stroke="#232f48" stroke-width="2"></path>
+<path class="animate-[dash_30s_linear_infinite]" d="M 400 200 C 400 300, 600 300, 600 400" fill="none" stroke="#135bec" stroke-dasharray="8 4" stroke-width="2"></path>
+<path d="M 600 540 C 600 580, 600 580, 600 620" fill="none" stroke="#135bec" stroke-width="2"></path>
+</svg>
+<div class="pointer-events-auto relative w-full h-full">
+<div class="absolute top-[100px] left-1/2 -translate-x-1/2 w-64 z-10 group">
+<div class="bg-[#1e293b] border border-[#34425e] rounded-xl p-0 shadow-2xl hover:border-primary/50 transition-all cursor-pointer overflow-hidden">
+<div class="h-1 bg-primary w-full"></div>
+<div class="p-3">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-[#92a4c9] uppercase tracking-wider">Concept</span>
+<span class="material-symbols-outlined text-green-500 text-[16px]">check_circle</span>
+</div>
+<p class="text-white text-sm font-medium line-clamp-2">Shoe store with dark theme</p>
+</div>
+<div class="bg-[#111722] px-3 py-2 border-t border-[#232f48] flex justify-between items-center">
+<span class="text-[10px] text-[#5f749a]">ID: #8291A</span>
+<span class="material-symbols-outlined text-[#5f749a] text-[14px]">more_horiz</span>
+</div>
+</div>
+<div class="absolute -bottom-3 left-1/2 -translate-x-1/2 size-6 rounded-full bg-[#1e293b] border border-[#34425e] flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-colors cursor-pointer z-20 shadow-md">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</div>
+</div>
+<div class="absolute top-[400px] left-[calc(50%-200px)] -translate-x-1/2 w-56 z-10 opacity-50 hover:opacity-100 transition-opacity">
+<div class="bg-[#1e293b] border border-[#232f48] rounded-xl p-3 shadow-lg cursor-pointer hover:border-[#5f749a]">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-[#92a4c9] text-[18px]">web</span>
+<span class="text-xs font-bold text-white uppercase">Web React</span>
+</div>
+<p class="text-[#92a4c9] text-xs">Layout Generation (Paused)</p>
+</div>
+</div>
+<div class="absolute top-[400px] left-[calc(50%+200px)] -translate-x-1/2 w-80 z-10">
+<div class="bg-[#1e293b] ring-2 ring-primary ring-offset-2 ring-offset-[#0d121c] rounded-xl shadow-[0_0_40px_rgba(19,91,236,0.2)] cursor-pointer relative overflow-hidden">
+<div class="bg-primary/10 px-4 py-2 border-b border-primary/20 flex items-center justify-between">
+<span class="text-xs font-bold text-primary flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                ACTIVE BRANCH
+                            </span>
+<span class="text-[10px] text-primary/80 font-mono">iOS</span>
+</div>
+<div class="p-4">
+<h3 class="text-white text-sm font-bold mb-1">Login &amp; Onboarding</h3>
+<p class="text-[#92a4c9] text-xs mb-3">Currently refining animation states for the login button component.</p>
+<div class="grid grid-cols-3 gap-2">
+<div class="aspect-[9/16] bg-[#111722] rounded border border-[#232f48] overflow-hidden">
+<div class="w-full h-full bg-cover bg-top" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfkEg8lMSvHrcyC26gs2YoUuFNQ5gn_4hV9vaFzIi6806MHGThGBWO10lGKKhzcJWJ9imb_rgvvc0_PWFB-LgwqmrbexTfqySn-4wAlVg5wIRMH1SYxalSgn1HdJpZdN18NXw6ny9-yKFGA6IHe4W6MM5R6o9yHlXR8Z7uNZG01tWZEQjT5INtGwgGztZf2u0MZW45kMJJOtd6S6_IEX52L9hK5Nr-k4dKDDtpSR8LNHsngPUZNnm60jnQITJR6q42zhk_OKzBt_sz');"></div>
+</div>
+<div class="aspect-[9/16] bg-[#111722] rounded border border-[#232f48] relative overflow-hidden">
+<div class="w-full h-full bg-cover bg-top opacity-50" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAy3boaezNeDZWAK1o-YCg4mIqjoY441-IL-z3dUiGOtaRVIl7VCo8DVDgYLgoNuGKqdpnmVua0M1mncQApCc-Y7WoEBu2FAY75YS_e67HCks_Mq0zb6FGtkPYgEVQHBz4uLtX9e1dNNrAMSTJK3nvmZn9pDbAMu6zjqaanlqSaGoO14wrLAgoPb8OAtM0YQwPP3ZGdy5MGrA46MBYj9Vb4I4pmCFLFiNbjwaVWwMsIy2c0p746TE5ggcnl5R1jolajPKPMWJ5myDqX');"></div>
+</div>
+<div class="aspect-[9/16] bg-[#111722] rounded border border-dashed border-[#34425e] flex items-center justify-center">
+<span class="material-symbols-outlined text-[#34425e] animate-spin">sync</span>
+</div>
+</div>
+</div>
+<div class="bg-[#111722] px-3 py-2 border-t border-[#232f48] flex gap-2">
+<button class="flex-1 py-1 rounded bg-[#232f48] text-[10px] text-white hover:bg-[#2c3b59] transition-colors">Inspect</button>
+<button class="flex-1 py-1 rounded bg-[#232f48] text-[10px] text-white hover:bg-[#2c3b59] transition-colors">Fork</button>
+</div>
+</div>
+<div class="absolute -bottom-4 left-1/2 -translate-x-1/2 size-8 rounded-full bg-primary border-4 border-[#0d121c] flex items-center justify-center text-white hover:scale-110 transition-transform cursor-pointer z-20 shadow-lg">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</div>
+</div>
+<div class="absolute top-[620px] left-[calc(50%+200px)] -translate-x-1/2 w-64 z-10">
+<div class="bg-[#1e293b]/90 backdrop-blur border border-dashed border-primary rounded-xl p-3 shadow-lg flex items-center gap-3 animate-pulse">
+<div class="size-8 flex items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[18px] animate-spin">autorenew</span>
+</div>
+<div class="flex flex-col">
+<span class="text-white text-sm font-medium">Refining UI Style...</span>
+<span class="text-[#92a4c9] text-xs">Applying dark mode palette</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 z-50">
+<div class="relative group/input">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-purple-600 rounded-2xl opacity-30 blur group-hover/input:opacity-75 transition duration-1000 group-hover/input:duration-200"></div>
+<div class="relative flex items-center bg-[#1e293b] rounded-xl p-2 shadow-2xl border border-[#34425e]">
+<div class="flex items-center justify-center size-10 rounded-lg bg-[#232f48] text-primary shrink-0">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<input autofocus="" class="w-full bg-transparent border-none text-white placeholder-[#92a4c9] focus:ring-0 text-base px-4 h-10" placeholder="Describe changes or new screens (e.g. 'Add a dark mode toggle to settings')..." type="text"/>
+<button class="h-10 px-4 bg-white text-black hover:bg-gray-200 rounded-lg text-sm font-bold flex items-center gap-2 transition-colors">
+<span>Generate</span>
+<span class="material-symbols-outlined text-[18px]">arrow_upward</span>
+</button>
+</div>
+</div>
+<div class="flex justify-center gap-4 mt-3">
+<button class="px-3 py-1 rounded-full bg-[#1e293b] border border-[#34425e] text-[#92a4c9] text-xs hover:text-white hover:border-[#5f749a] transition-all flex items-center gap-1 shadow-lg">
+<span class="material-symbols-outlined text-[14px]">refresh</span> Retry last step
+                 </button>
+<button class="px-3 py-1 rounded-full bg-[#1e293b] border border-[#34425e] text-[#92a4c9] text-xs hover:text-white hover:border-[#5f749a] transition-all flex items-center gap-1 shadow-lg">
+<span class="material-symbols-outlined text-[14px]">alt_route</span> Branch from here
+                 </button>
+</div>
+</div>
+<div class="absolute bottom-8 right-8 flex flex-col gap-2 bg-[#1e293b] border border-border-dark rounded-lg p-1 shadow-xl z-10">
+<button class="size-8 flex items-center justify-center rounded hover:bg-[#232f48] text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+<div class="h-[1px] bg-[#232f48] mx-1"></div>
+<button class="size-8 flex items-center justify-center rounded hover:bg-[#232f48] text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<div class="h-[1px] bg-[#232f48] mx-1"></div>
+<button class="size-8 flex items-center justify-center rounded hover:bg-[#232f48] text-white transition-colors" title="Fit to screen">
+<span class="material-symbols-outlined text-[20px]">center_focus_strong</span>
+</button>
+</div>
+</main>
+<aside class="w-80 flex flex-col border-l border-border-dark bg-[#111722] flex-shrink-0 z-40 shadow-xl">
+<div class="p-4 border-b border-border-dark flex items-center justify-between bg-[#111722]">
+<h2 class="text-white font-display font-semibold text-sm tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-[#92a4c9] text-[18px]">terminal</span>
+                Generation Log
+            </h2>
+<button class="text-[#5f749a] hover:text-white transition-colors"><span class="material-symbols-outlined text-[18px]">settings</span></button>
+</div>
+<div class="p-5 border-b border-border-dark bg-[#151b26]">
+<div class="flex items-center justify-between mb-3">
+<span class="text-white text-xs font-bold flex items-center gap-2">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+</span>
+                    Generating...
+                </span>
+<span class="text-primary text-xs font-mono font-bold">75%</span>
+</div>
+<div class="w-full bg-[#232f48] rounded-full h-1.5 mb-5 overflow-hidden">
+<div class="bg-primary h-1.5 rounded-full shadow-[0_0_10px_#135bec]" style="width: 75%"></div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<button class="flex items-center justify-center gap-2 h-8 bg-[#232f48] hover:bg-[#2c3b59] text-white text-xs font-bold rounded transition-colors border border-transparent hover:border-white/10">
+<span class="material-symbols-outlined text-[16px]">pause</span> Pause
+                </button>
+<button class="flex items-center justify-center gap-2 h-8 bg-[#232f48] hover:bg-[#2c3b59] text-white text-xs font-bold rounded transition-colors border border-transparent hover:border-white/10">
+<span class="material-symbols-outlined text-[16px]">stop_circle</span> Stop
+                </button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto bg-[#111722]">
+<div class="flex gap-3 p-4 border-b border-border-dark/50 hover:bg-[#1e293b]/30 transition-colors group relative">
+<div class="absolute left-4 top-8 bottom-0 w-px bg-[#232f48] group-last:hidden"></div>
+<div class="mt-0.5 relative z-10 bg-[#111722]">
+<span class="material-symbols-outlined text-green-500 text-[16px]">check_circle</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-white text-xs font-bold">Prompt Analysis</p>
+<span class="text-[#5f749a] text-[10px]">10:42:05</span>
+</div>
+<p class="text-[#92a4c9] text-xs mt-1 leading-normal">Identified "Shoe Store" intent. Extracted 4 key flows and dark mode preference.</p>
+</div>
+</div>
+<div class="flex gap-3 p-4 border-b border-border-dark/50 hover:bg-[#1e293b]/30 transition-colors group relative">
+<div class="absolute left-4 top-0 bottom-0 w-px bg-[#232f48] group-last:hidden"></div>
+<div class="mt-0.5 relative z-10 bg-[#111722]">
+<span class="material-symbols-outlined text-green-500 text-[16px]">check_circle</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-white text-xs font-bold">Data Structuring</p>
+<span class="text-[#5f749a] text-[10px]">10:42:08</span>
+</div>
+<p class="text-[#92a4c9] text-xs mt-1 leading-normal">Created `Products`, `Users` tables. Configured vector search for recommendations.</p>
+</div>
+</div>
+<div class="flex gap-3 p-4 border-b border-border-dark/50 bg-primary/5 border-l-2 border-l-primary relative">
+<div class="absolute left-4 top-0 bottom-0 w-px bg-[#232f48] group-last:hidden"></div>
+<div class="mt-0.5 relative z-10">
+<span class="material-symbols-outlined text-primary text-[16px] animate-spin">sync</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-white text-xs font-bold">Component Generation</p>
+<span class="text-[#5f749a] text-[10px]">Now</span>
+</div>
+<p class="text-[#92a4c9] text-xs mt-1 leading-normal">Drafting React Native components for Auth flow.</p>
+<div class="mt-3 space-y-1.5 bg-[#0d121c] p-2 rounded border border-[#232f48]">
+<div class="flex items-center justify-between text-[10px]">
+<span class="text-[#92a4c9] font-mono">LoginForm.tsx</span>
+<span class="text-green-400 flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">check</span>Done</span>
+</div>
+<div class="flex items-center justify-between text-[10px]">
+<span class="text-[#92a4c9] font-mono">SocialAuth.tsx</span>
+<span class="text-primary flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-primary animate-pulse"></span>Writing</span>
+</div>
+<div class="flex items-center justify-between text-[10px] opacity-50">
+<span class="text-[#92a4c9] font-mono">Onboarding.tsx</span>
+<span class="text-[#5f749a]">Queued</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex gap-3 p-4 border-b border-border-dark/50 opacity-40">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-[#5f749a] text-[16px]">radio_button_unchecked</span>
+</div>
+<div class="flex-1">
+<p class="text-white text-xs font-bold">Integration &amp; Polish</p>
+<p class="text-[#92a4c9] text-xs mt-1">Connecting API endpoints and final style pass.</p>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-border-dark bg-[#151b26]">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[#5f749a] text-[10px] font-bold uppercase tracking-wider">Latest Output</span>
+<button class="text-primary hover:text-blue-400 text-[10px] font-bold uppercase flex items-center gap-1 transition-colors">
+                    View Full <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</button>
+</div>
+<div class="bg-[#0f1218] rounded border border-border-dark h-36 w-full flex items-center justify-center relative overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-top opacity-80 group-hover:opacity-60 transition-opacity" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfkEg8lMSvHrcyC26gs2YoUuFNQ5gn_4hV9vaFzIi6806MHGThGBWO10lGKKhzcJWJ9imb_rgvvc0_PWFB-LgwqmrbexTfqySn-4wAlVg5wIRMH1SYxalSgn1HdJpZdN18NXw6ny9-yKFGA6IHe4W6MM5R6o9yHlXR8Z7uNZG01tWZEQjT5INtGwgGztZf2u0MZW45kMJJOtd6S6_IEX52L9hK5Nr-k4dKDDtpSR8LNHsngPUZNnm60jnQITJR6q42zhk_OKzBt_sz');"></div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white bg-black/50 p-2 rounded-full backdrop-blur-sm">visibility</span>
+</div>
+<div class="absolute top-2 right-2 flex items-center gap-1 bg-black/60 backdrop-blur-sm px-1.5 py-0.5 rounded text-[10px] text-white border border-white/10">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Live
+                 </div>
+</div>
+</div>
+</aside>
+</div>
+
+</body></html>

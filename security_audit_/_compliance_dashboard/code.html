@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Security Audit Dashboard</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#11b4d4",
+                        "secondary": "#325e67",
+                        "accent-warn": "#ffb74d", 
+                        "accent-danger": "#ff7070",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#111f22",
+                        "surface-dark": "#16282c",
+                        "border-dark": "#234248",
+                        "text-muted": "#92c0c9"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .glass-panel { background: rgba(35, 66, 72, 0.4); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-background-dark text-white overflow-x-hidden antialiased">
+<div class="relative flex h-full min-h-screen w-full flex-col group/design-root">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-[#111f22] px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center rounded bg-primary/20 text-primary">
+<span class="material-symbols-outlined">security</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">AI Builder Ecosystem</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden md:flex gap-6 text-sm font-medium text-text-muted">
+<a class="hover:text-white transition-colors" href="#">Projects</a>
+<a class="text-white" href="#">Security &amp; Compliance</a>
+<a class="hover:text-white transition-colors" href="#">Settings</a>
+</nav>
+<div class="h-6 w-px bg-border-dark mx-2"></div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-muted cursor-pointer hover:text-white">notifications</span>
+<span class="material-symbols-outlined text-text-muted cursor-pointer hover:text-white">help</span>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border border-border-dark" data-alt="User avatar profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAMTls0SE7B0qgYBjzYNd1RAQJ8KFJQdk9_J-JiZmIXinspOCrlfsaE_XxxYZBjwjUcXLzatb_bSBOVtmdL61nzHh2s8R3tPRMX5hY8cNiWSLZXWxvEdJdPlsEhM_1aI2E6XEL8kU-akhyOkU-m4jg5h7WrPTxTuqv7yG3KRiFB59wBi84CcwREdZGBYZv87zQHX9FI3z2FS4ICOjqM2PyCNsxbO0IxNH3VWG5-iehdATE2Y0cokvmTSjr3Nx4wwgZPs_MaiLG4hQ3p");'></div>
+</div>
+</header>
+<div class="flex flex-1 justify-center py-8 px-6 md:px-10 lg:px-20">
+<div class="flex flex-col max-w-[1200px] flex-1 gap-8">
+<!-- Page Header -->
+<div class="flex flex-wrap justify-between items-end gap-4 border-b border-border-dark pb-6">
+<div class="flex flex-col gap-2">
+<h1 class="text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Security Audit Dashboard</h1>
+<div class="flex items-center gap-3 text-text-muted text-sm md:text-base">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">domain</span> Environment: Production</span>
+<span class="h-1 w-1 rounded-full bg-border-dark"></span>
+<span class="flex items-center gap-1 text-primary"><span class="material-symbols-outlined text-[18px]">check_circle</span> System Status: Fully Operational</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-secondary/30 hover:bg-secondary/50 text-white rounded-lg text-sm font-medium transition-colors border border-secondary">
+<span class="material-symbols-outlined text-[20px]">file_download</span> Export Report
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-[#0b1719] rounded-lg text-sm font-bold transition-colors shadow-[0_0_15px_rgba(17,180,212,0.3)]">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span> Run Deep Scan
+                    </button>
+</div>
+</div>
+<!-- Overall Security Posture (Hero Stats) -->
+<section>
+<h3 class="text-white text-xl font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">shield</span> Overall Security Posture
+                </h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Score Card -->
+<div class="flex flex-col justify-between rounded-xl p-6 border border-border-dark bg-surface-dark relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl text-primary">verified_user</span>
+</div>
+<p class="text-text-muted text-sm font-medium uppercase tracking-wider">Security Score</p>
+<div class="flex items-end gap-3 mt-2">
+<span class="text-5xl font-black text-white">92</span>
+<span class="text-2xl text-text-muted font-medium mb-1">/100</span>
+</div>
+<div class="mt-4 flex items-center gap-2 text-primary text-sm font-medium bg-primary/10 w-fit px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +2% this week
+                        </div>
+</div>
+<!-- Active Defenses -->
+<div class="flex flex-col justify-between rounded-xl p-6 border border-border-dark bg-surface-dark">
+<div class="flex justify-between items-start">
+<p class="text-text-muted text-sm font-medium uppercase tracking-wider">Active Defenses</p>
+<span class="flex h-3 w-3 rounded-full bg-primary shadow-[0_0_8px_#11b4d4]"></span>
+</div>
+<div class="mt-4">
+<p class="text-2xl font-bold text-white mb-1">Secure</p>
+<p class="text-text-muted text-sm">Firewall &amp; IPS Active</p>
+</div>
+<div class="w-full bg-secondary/30 h-1.5 mt-4 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<!-- API Security -->
+<div class="flex flex-col justify-between rounded-xl p-6 border border-border-dark bg-surface-dark">
+<div class="flex justify-between items-start">
+<p class="text-text-muted text-sm font-medium uppercase tracking-wider">API Gateways</p>
+<span class="flex h-3 w-3 rounded-full bg-accent-warn shadow-[0_0_8px_#ffb74d]"></span>
+</div>
+<div class="mt-4">
+<p class="text-2xl font-bold text-white mb-1">Warning</p>
+<p class="text-text-muted text-sm">2 High Latency Endpoints</p>
+</div>
+<div class="w-full bg-secondary/30 h-1.5 mt-4 rounded-full overflow-hidden">
+<div class="bg-accent-warn h-full rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<!-- Data Encryption -->
+<div class="flex flex-col justify-between rounded-xl p-6 border border-border-dark bg-surface-dark">
+<div class="flex justify-between items-start">
+<p class="text-text-muted text-sm font-medium uppercase tracking-wider">Data Encryption</p>
+<span class="flex h-3 w-3 rounded-full bg-primary shadow-[0_0_8px_#11b4d4]"></span>
+</div>
+<div class="mt-4">
+<p class="text-2xl font-bold text-white mb-1">AES-256</p>
+<p class="text-text-muted text-sm">At rest &amp; in transit</p>
+</div>
+<div class="w-full bg-secondary/30 h-1.5 mt-4 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column (2/3 width) -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- OWASP Compliance Section -->
+<div class="bg-surface-dark border border-border-dark rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-text-muted">policy</span> OWASP Compliance Status
+                            </h3>
+<button class="text-sm text-primary hover:text-white transition-colors font-medium">View Detailed Report</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- LLM 2025 -->
+<div class="flex flex-col gap-4">
+<h4 class="text-white text-sm font-semibold uppercase tracking-wide border-b border-border-dark pb-2 mb-1">LLM Applications (2025)</h4>
+<div class="space-y-3">
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-300">LLM01: Prompt Injection</span>
+<span class="text-primary font-bold">100%</span>
+</div>
+<div class="h-2 rounded bg-secondary/30 overflow-hidden"><div class="h-full bg-primary w-full"></div></div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-300">LLM02: Insecure Output</span>
+<span class="text-accent-warn font-bold">92%</span>
+</div>
+<div class="h-2 rounded bg-secondary/30 overflow-hidden"><div class="h-full bg-accent-warn w-[92%]"></div></div>
+<p class="text-xs text-text-muted mt-1">Minor sanitation issue in Chat Module B</p>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-300">LLM06: Sensitive Info Disclosure</span>
+<span class="text-primary font-bold">98%</span>
+</div>
+<div class="h-2 rounded bg-secondary/30 overflow-hidden"><div class="h-full bg-primary w-[98%]"></div></div>
+</div>
+</div>
+</div>
+<!-- Agentic 2026 -->
+<div class="flex flex-col gap-4">
+<h4 class="text-white text-sm font-semibold uppercase tracking-wide border-b border-border-dark pb-2 mb-1">Agentic Applications (2026)</h4>
+<div class="space-y-3">
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-300">AGNT01: Unbounded Execution</span>
+<span class="text-primary font-bold">100%</span>
+</div>
+<div class="h-2 rounded bg-secondary/30 overflow-hidden"><div class="h-full bg-primary w-full"></div></div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-300">AGNT03: Unauthorized Access</span>
+<span class="text-primary font-bold">100%</span>
+</div>
+<div class="h-2 rounded bg-secondary/30 overflow-hidden"><div class="h-full bg-primary w-full"></div></div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-300">AGNT05: Goal Hijacking</span>
+<span class="text-accent-warn font-bold">88%</span>
+</div>
+<div class="h-2 rounded bg-secondary/30 overflow-hidden"><div class="h-full bg-accent-warn w-[88%]"></div></div>
+<p class="text-xs text-text-muted mt-1">Reviewing autonomy limits on Agent-04</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Activity Log -->
+<div class="bg-surface-dark border border-border-dark rounded-xl p-0 flex flex-col overflow-hidden h-96">
+<div class="p-4 border-b border-border-dark bg-[#1a2e33] flex justify-between items-center sticky top-0">
+<h3 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-text-muted">history</span> SecurityAgent Activity Log
+                            </h3>
+<div class="flex gap-2">
+<input class="bg-surface-dark border border-secondary text-sm text-white px-3 py-1.5 rounded focus:outline-none focus:border-primary placeholder-text-muted/50" placeholder="Search logs..." type="text"/>
+<button class="p-1.5 rounded hover:bg-white/5 text-text-muted"><span class="material-symbols-outlined">filter_list</span></button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-0">
+<table class="w-full text-left text-sm border-collapse">
+<thead class="bg-[#111f22] text-text-muted sticky top-0 shadow-sm">
+<tr>
+<th class="p-3 font-medium">Time</th>
+<th class="p-3 font-medium">Level</th>
+<th class="p-3 font-medium">Event Description</th>
+<th class="p-3 font-medium">Source</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-dark">
+<tr class="hover:bg-white/5 transition-colors">
+<td class="p-3 text-text-muted font-mono text-xs">10:42:15 AM</td>
+<td class="p-3"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold bg-accent-danger/20 text-accent-danger border border-accent-danger/30">BLOCKED</span></td>
+<td class="p-3 text-white">SQL Injection attempt detected in payload</td>
+<td class="p-3 text-text-muted">Gateway 01</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="p-3 text-text-muted font-mono text-xs">10:40:02 AM</td>
+<td class="p-3"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold bg-primary/20 text-primary border border-primary/30">INFO</span></td>
+<td class="p-3 text-white">SecurityAgent daily scan completed</td>
+<td class="p-3 text-text-muted">System</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="p-3 text-text-muted font-mono text-xs">10:35:11 AM</td>
+<td class="p-3"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold bg-accent-warn/20 text-accent-warn border border-accent-warn/30">WARN</span></td>
+<td class="p-3 text-white">Unusual login velocity detected</td>
+<td class="p-3 text-text-muted">User: admin_dev</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="p-3 text-text-muted font-mono text-xs">10:15:45 AM</td>
+<td class="p-3"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold bg-primary/20 text-primary border border-primary/30">INFO</span></td>
+<td class="p-3 text-white">GDPR Data Export request initiated</td>
+<td class="p-3 text-text-muted">Compliance Module</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="p-3 text-text-muted font-mono text-xs">09:55:20 AM</td>
+<td class="p-3"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold bg-primary/20 text-primary border border-primary/30">INFO</span></td>
+<td class="p-3 text-white">Model version 2.4.1 deployed</td>
+<td class="p-3 text-text-muted">CI/CD Pipeline</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Charts Area -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Chart 1 -->
+<div class="bg-surface-dark border border-border-dark rounded-xl p-5">
+<h4 class="text-white font-semibold mb-4 text-sm">Security Events (Last 24h)</h4>
+<div class="h-40 w-full flex items-end justify-between gap-2 px-2">
+<div class="w-full bg-secondary/20 rounded-t hover:bg-primary/50 transition-colors relative group" style="height: 30%">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">12</div>
+</div>
+<div class="w-full bg-secondary/20 rounded-t hover:bg-primary/50 transition-colors relative group" style="height: 45%"></div>
+<div class="w-full bg-secondary/20 rounded-t hover:bg-primary/50 transition-colors relative group" style="height: 25%"></div>
+<div class="w-full bg-accent-warn rounded-t hover:bg-accent-warn/80 transition-colors relative group" style="height: 70%">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">High</div>
+</div>
+<div class="w-full bg-secondary/20 rounded-t hover:bg-primary/50 transition-colors relative group" style="height: 40%"></div>
+<div class="w-full bg-secondary/20 rounded-t hover:bg-primary/50 transition-colors relative group" style="height: 55%"></div>
+<div class="w-full bg-secondary/20 rounded-t hover:bg-primary/50 transition-colors relative group" style="height: 35%"></div>
+<div class="w-full bg-secondary/20 rounded-t hover:bg-primary/50 transition-colors relative group" style="height: 20%"></div>
+</div>
+<div class="flex justify-between text-xs text-text-muted mt-2 px-2">
+<span>00:00</span>
+<span>12:00</span>
+<span>23:59</span>
+</div>
+</div>
+<!-- Chart 2 -->
+<div class="bg-surface-dark border border-border-dark rounded-xl p-5">
+<h4 class="text-white font-semibold mb-4 text-sm">Vulnerability Resolution Rate</h4>
+<div class="flex items-center justify-center h-40 relative">
+<!-- Simulated Pie Chart with Conic Gradient -->
+<div class="h-32 w-32 rounded-full relative" style="background: conic-gradient(#11b4d4 0% 75%, #ffb74d 75% 90%, #ff7070 90% 100%);">
+<div class="absolute inset-0 m-auto h-24 w-24 bg-surface-dark rounded-full flex flex-col items-center justify-center">
+<span class="text-2xl font-bold text-white">94%</span>
+<span class="text-[10px] text-text-muted uppercase">Resolved</span>
+</div>
+</div>
+<div class="ml-6 flex flex-col justify-center gap-2 text-xs">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-gray-300">Resolved within SLA</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-accent-warn"></span>
+<span class="text-gray-300">Pending Review</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-accent-danger"></span>
+<span class="text-gray-300">Overdue</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (1/3 width) -->
+<div class="flex flex-col gap-6">
+<!-- Red Teaming Card -->
+<div class="bg-surface-dark border border-border-dark rounded-xl p-6 flex flex-col gap-4 shadow-lg">
+<div class="flex items-start justify-between">
+<div class="bg-accent-danger/10 p-3 rounded-lg border border-accent-danger/20">
+<span class="material-symbols-outlined text-accent-danger text-3xl">bug_report</span>
+</div>
+<div class="text-right">
+<p class="text-xs text-text-muted uppercase font-bold">Last Simulation</p>
+<p class="text-white font-medium">2 Hours ago</p>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white">Red-Teaming Results</h3>
+<p class="text-text-muted text-sm mt-1">Simulating advanced persistent threats (APT) on payment modules.</p>
+</div>
+<div class="bg-black/40 rounded p-3 border border-border-dark">
+<div class="flex justify-between items-center mb-1">
+<span class="text-sm text-gray-400">Critical Exploits</span>
+<span class="text-sm text-white font-bold">0 Found</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-gray-400">Medium Vulnerabilities</span>
+<span class="text-sm text-accent-warn font-bold">3 Found</span>
+</div>
+</div>
+<button class="w-full py-2.5 mt-2 bg-gradient-to-r from-accent-danger to-red-600 hover:from-red-500 hover:to-red-700 text-white text-sm font-bold rounded-lg transition-all shadow-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">swords</span> Run New Simulation
+                        </button>
+</div>
+<!-- Recommended Actions -->
+<div class="bg-surface-dark border border-border-dark rounded-xl p-6 flex-1">
+<h3 class="text-white text-lg font-bold flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-accent-warn">warning</span> Recommended Actions
+                        </h3>
+<div class="flex flex-col gap-3">
+<!-- Action Item 1 -->
+<div class="p-3 rounded-lg border border-border-dark bg-[#1a2e33] hover:bg-[#1f363b] transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-accent-warn bg-accent-warn/10 px-2 py-0.5 rounded border border-accent-warn/20">HIGH PRIORITY</span>
+<button class="text-primary text-xs font-bold group-hover:underline">FIX NOW</button>
+</div>
+<p class="text-sm text-white font-medium leading-snug">Update Agent-04 permissions policy</p>
+<p class="text-xs text-text-muted mt-1">Prevent unrestricted file system access.</p>
+</div>
+<!-- Action Item 2 -->
+<div class="p-3 rounded-lg border border-border-dark bg-[#1a2e33] hover:bg-[#1f363b] transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-text-muted bg-secondary/20 px-2 py-0.5 rounded border border-secondary/30">MEDIUM</span>
+<button class="text-primary text-xs font-bold group-hover:underline">REVIEW</button>
+</div>
+<p class="text-sm text-white font-medium leading-snug">Rotate API Keys for LLM Service B</p>
+<p class="text-xs text-text-muted mt-1">Keys older than 90 days detected.</p>
+</div>
+<!-- Action Item 3 -->
+<div class="p-3 rounded-lg border border-border-dark bg-[#1a2e33] hover:bg-[#1f363b] transition-colors group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-text-muted bg-secondary/20 px-2 py-0.5 rounded border border-secondary/30">MEDIUM</span>
+<button class="text-primary text-xs font-bold group-hover:underline">Enable</button>
+</div>
+<p class="text-sm text-white font-medium leading-snug">Enable 2FA for 'Analyst' Role</p>
+<p class="text-xs text-text-muted mt-1">Compliance requirement for Q3.</p>
+</div>
+</div>
+</div>
+<!-- Privacy Mini-Card -->
+<div class="bg-gradient-to-br from-[#1e3a8a] to-[#111f22] border border-border-dark rounded-xl p-5 relative overflow-hidden">
+<div class="absolute right-0 top-0 p-3 opacity-20">
+<span class="material-symbols-outlined text-6xl text-white">gavel</span>
+</div>
+<h4 class="text-white font-bold text-md mb-1 relative z-10">Privacy Status</h4>
+<p class="text-blue-200 text-xs mb-3 relative z-10">GDPR &amp; CCPA Readiness</p>
+<div class="flex items-center gap-3 relative z-10">
+<div class="flex-1 bg-black/30 rounded-full h-2">
+<div class="bg-blue-400 h-2 rounded-full" style="width: 85%"></div>
+</div>
+<span class="text-white font-bold text-sm">85%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

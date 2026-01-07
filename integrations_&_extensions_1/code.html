@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Integrations &amp; Extensions - AI Builder</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-hover": "#1d65f5",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111722",
+                        "surface-dark": "#1a1d23",
+                        "surface-hover": "#23272f",
+                        "border-dark": "#232f48",
+                        "text-secondary": "#92a4c9",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111722; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232f48; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4b68; 
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-hidden h-screen flex flex-col">
+<header class="flex-none flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-[#111722] px-6 py-3 z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">AI Builder</h2>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-text-secondary hover:text-white text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-text-secondary hover:text-white text-sm font-medium transition-colors" href="#">Workflows</a>
+<a class="text-text-secondary hover:text-white text-sm font-medium transition-colors" href="#">Agents</a>
+<a class="text-white text-sm font-bold border-b-2 border-primary py-4 -my-4" href="#">Integrations</a>
+<a class="text-text-secondary hover:text-white text-sm font-medium transition-colors" href="#">Settings</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="block w-64 rounded-lg border-none bg-surface-dark py-2 pl-10 pr-3 text-sm text-white placeholder-text-secondary focus:ring-1 focus:ring-primary" placeholder="Global Search..." type="text"/>
+</div>
+<button class="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-primary-hover shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+<span>Deploy Agent</span>
+</button>
+<div class="size-9 rounded-full bg-cover bg-center border border-border-dark" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCIz1GQxeK8cpcf-MtKGRtyoSaY9rdUGqnYPOOWazbuFHgIfjo8roUJ614w-MEef5Io8ZLT02nBIy2Dtsh5B-abfb8fIxazaSLh-lACwbhhXfckcFJJoexbl-lDUQlito5zHrE55TDkOrW59LX2-FKAK7XBhZv26fyL3EtfrXq_KXs8Onm1LHMoltNMUJKaXsAE1iZlXzyD8m7byq9dA7DBY9F1go7FhbC1WxunNQWkHgT4I9oyL3JDvykoD7VB8U2EnwsxfZ_YddDw");'></div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden relative">
+<aside class="w-64 flex-none border-r border-border-dark bg-[#111722] flex flex-col hidden md:flex">
+<div class="p-4">
+<div class="flex flex-col gap-1 mb-6">
+<h1 class="text-white text-xs font-bold uppercase tracking-wider opacity-70">Categories</h1>
+<p class="text-text-secondary text-xs">Filter by function</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-dark border border-border-dark/50 text-white shadow-sm" href="#">
+<span class="material-symbols-outlined text-[20px] text-primary">grid_view</span>
+<span class="text-sm font-medium">All Integrations</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-dark/50 text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">neurology</span>
+<span class="text-sm font-medium">AI Models</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-dark/50 text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">database</span>
+<span class="text-sm font-medium">Data Storage</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-dark/50 text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">forum</span>
+<span class="text-sm font-medium">Communication</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-dark/50 text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="text-sm font-medium">Payments</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-dark/50 text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">link</span>
+<span class="text-sm font-medium">Blockchain</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-4 border-t border-border-dark">
+<div class="bg-gradient-to-br from-surface-dark to-[#161b26] rounded-xl p-4 border border-border-dark">
+<div class="flex items-center gap-2 mb-2 text-white">
+<span class="material-symbols-outlined text-yellow-500">lightbulb</span>
+<span class="font-bold text-sm">Pro Tip</span>
+</div>
+<p class="text-xs text-text-secondary leading-relaxed">
+                    Connect custom APIs to build bespoke agent behaviors.
+                </p>
+</div>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto bg-background-dark relative">
+<div class="max-w-6xl mx-auto p-6 md:p-10 pb-20">
+<div class="flex flex-wrap justify-between items-end gap-6 mb-8">
+<div class="flex flex-col gap-2 max-w-2xl">
+<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Integrations &amp; Extensions</h1>
+<p class="text-text-secondary text-lg font-light">Supercharge your AI agents with external tools, A2A protocols, and MCoT capabilities.</p>
+</div>
+<div class="flex gap-2 bg-surface-dark p-1 rounded-lg border border-border-dark h-fit">
+<button class="px-4 py-1.5 rounded bg-border-dark text-white text-sm font-medium shadow-sm">Available</button>
+<button class="px-4 py-1.5 rounded hover:bg-surface-hover text-text-secondary hover:text-white text-sm font-medium transition-colors">Installed</button>
+</div>
+</div>
+<div class="mb-10 rounded-xl bg-gradient-to-r from-blue-900/40 via-purple-900/40 to-background-dark border border-blue-500/30 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div class="flex items-start gap-4">
+<div class="p-2 rounded-lg bg-blue-500/20 text-blue-400">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div>
+<h3 class="text-white font-bold text-base">Multi-Chain of Thought (MCoT) Enabled</h3>
+<p class="text-text-secondary text-sm max-w-xl mt-1">
+                            Enabled integrations automatically feed into the MCoT engine for intelligent document fusion and cross-modal reasoning.
+                        </p>
+</div>
+</div>
+<button class="text-sm text-white font-medium underline underline-offset-4 decoration-blue-500/50 hover:decoration-blue-500 transition-all whitespace-nowrap">Learn more</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="group relative flex flex-col justify-between rounded-xl border border-border-dark bg-surface-dark p-6 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 cursor-pointer">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div class="size-12 rounded-lg bg-white p-2 flex items-center justify-center">
+<img alt="OpenAI Logo" class="size-8" data-alt="OpenAI Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzRHWDLqa_MIeu-H0gX5vifiFST6CP8yaAFbqxKWlLCu5nda2rBaYbdwiHZGxvGWC9DLMQ8YWnwWA3UthvZByNc5mVAb0eknt-PEiDhgV9ORDWDW8QWsKsnj7LFtlRVenWnhhJlrIjxU8IMlMVjxA9J5hJJrxZro614S_MythIyKxPR5XxvSwaWDrN8HI9h9h6G8hzBWwbsfv_zjOcgrU1AMBNLb8JFDxjHEvr-lJXipYe77EXcwIYskEubJJf34BkrDAUvZnOCcye"/>
+</div>
+<span class="inline-flex items-center gap-1 rounded-full bg-green-500/10 px-2.5 py-0.5 text-xs font-medium text-green-500 border border-green-500/20">
+<span class="size-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                Active
+                            </span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">OpenAI GPT-4</h3>
+<p class="text-text-secondary text-sm leading-relaxed mb-4">
+                            Advanced language model integration. Supports function calling and large context windows for complex agent tasks.
+                        </p>
+<div class="flex gap-2 flex-wrap mb-4">
+<span class="px-2 py-1 rounded-md bg-[#111722] text-[10px] text-text-secondary border border-border-dark font-mono">MCoT Ready</span>
+<span class="px-2 py-1 rounded-md bg-[#111722] text-[10px] text-text-secondary border border-border-dark font-mono">A2A</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-primary/10 hover:bg-primary text-primary hover:text-white text-sm font-bold transition-all border border-primary/20 hover:border-primary">
+                        Configure
+                    </button>
+</div>
+<div class="group relative flex flex-col justify-between rounded-xl border border-border-dark bg-surface-dark p-6 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div class="size-12 rounded-lg bg-[#635BFF] p-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">payments</span>
+</div>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Stripe Payments</h3>
+<p class="text-text-secondary text-sm leading-relaxed mb-4">
+                            Enable your agents to process subscriptions, invoices, and one-time payments securely.
+                        </p>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-surface-hover hover:bg-white text-white hover:text-black text-sm font-bold transition-all border border-border-dark">
+                        Enable Integration
+                    </button>
+</div>
+<div class="group relative flex flex-col justify-between rounded-xl border border-border-dark bg-surface-dark p-6 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div class="size-12 rounded-lg bg-white p-2 flex items-center justify-center">
+<svg class="size-8 text-black" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2 17L12 22L22 17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2 12L12 17L22 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Pinecone</h3>
+<p class="text-text-secondary text-sm leading-relaxed mb-4">
+                            Long-term vector memory for your agents. Store and retrieve embeddings at scale.
+                        </p>
+<div class="flex gap-2 flex-wrap mb-4">
+<span class="px-2 py-1 rounded-md bg-[#111722] text-[10px] text-text-secondary border border-border-dark font-mono">Memory</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-surface-hover hover:bg-white text-white hover:text-black text-sm font-bold transition-all border border-border-dark">
+                        Enable Integration
+                    </button>
+</div>
+<div class="group relative flex flex-col justify-between rounded-xl border border-border-dark bg-surface-dark p-6 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div class="size-12 rounded-lg bg-[#4A154B] p-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">chat</span>
+</div>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Slack</h3>
+<p class="text-text-secondary text-sm leading-relaxed mb-4">
+                            Allow agents to read channels, send messages, and interact with your team in real-time.
+                        </p>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-surface-hover hover:bg-white text-white hover:text-black text-sm font-bold transition-all border border-border-dark">
+                        Enable Integration
+                    </button>
+</div>
+<div class="group relative flex flex-col justify-between rounded-xl border border-border-dark bg-surface-dark p-6 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div class="size-12 rounded-lg bg-[#3C3C3D] p-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">currency_bitcoin</span>
+</div>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Ethereum</h3>
+<p class="text-text-secondary text-sm leading-relaxed mb-4">
+                            Interact with smart contracts, sign transactions, and monitor on-chain events via RPC.
+                        </p>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-surface-hover hover:bg-white text-white hover:text-black text-sm font-bold transition-all border border-border-dark">
+                        Enable Integration
+                    </button>
+</div>
+<div class="group relative flex flex-col justify-center items-center text-center rounded-xl border-2 border-dashed border-border-dark bg-transparent p-6 transition-all hover:border-primary/50 hover:bg-surface-dark/30">
+<div class="size-16 rounded-full bg-surface-dark mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-text-secondary text-3xl group-hover:text-primary">add_link</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-1">Custom Integration</h3>
+<p class="text-text-secondary text-sm mb-6 max-w-[200px]">
+                        Connect a bespoke API or internal tool manually.
+                    </p>
+<button class="px-6 py-2 rounded-lg bg-surface-dark hover:bg-primary text-white text-sm font-bold transition-colors border border-border-dark hover:border-primary">
+                        Add New
+                    </button>
+</div>
+</div>
+</div>
+<div class="absolute inset-y-0 right-0 w-full max-w-lg bg-[#111722]/95 backdrop-blur-xl border-l border-border-dark shadow-2xl z-30 transform transition-transform duration-300 ease-in-out flex flex-col">
+<div class="flex-none p-6 border-b border-border-dark bg-[#111722]">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="size-12 rounded-lg bg-white p-2 flex items-center justify-center shrink-0 border border-border-dark shadow-sm">
+<img alt="OpenAI Logo" class="size-8" data-alt="OpenAI Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzRHWDLqa_MIeu-H0gX5vifiFST6CP8yaAFbqxKWlLCu5nda2rBaYbdwiHZGxvGWC9DLMQ8YWnwWA3UthvZByNc5mVAb0eknt-PEiDhgV9ORDWDW8QWsKsnj7LFtlRVenWnhhJlrIjxU8IMlMVjxA9J5hJJrxZro614S_MythIyKxPR5XxvSwaWDrN8HI9h9h6G8hzBWwbsfv_zjOcgrU1AMBNLb8JFDxjHEvr-lJXipYe77EXcwIYskEubJJf34BkrDAUvZnOCcye"/>
+</div>
+<div>
+<h2 class="text-xl font-bold text-white">OpenAI GPT-4</h2>
+<p class="text-sm text-text-secondary mt-1 leading-relaxed max-w-xs">
+                                Connect powerful language models for text generation, reasoning, and data extraction.
+                            </p>
+</div>
+</div>
+<button class="text-text-secondary hover:text-white transition-colors p-1.5 rounded-md hover:bg-surface-dark ml-2">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-8">
+<div class="rounded-xl border border-blue-500/30 bg-blue-500/10 p-4 relative overflow-hidden group">
+<div class="flex gap-3 relative z-10">
+<span class="material-symbols-outlined text-blue-400 shrink-0">auto_awesome</span>
+<div>
+<h3 class="text-sm font-bold text-white">AI-Assisted Setup Guide</h3>
+<p class="text-xs text-text-secondary mt-1 mb-2 leading-relaxed">
+                                MCoT has scanned the documentation. 3 critical settings have been pre-filled for optimal performance.
+                            </p>
+<button class="text-xs font-bold text-blue-400 hover:text-blue-300 flex items-center gap-1 group-hover:underline underline-offset-2 transition-all">
+                                View Step-by-Step Guide <span class="material-symbols-outlined text-[12px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-8 w-24 h-24 bg-blue-500/20 blur-3xl rounded-full"></div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-sm font-bold text-white uppercase tracking-wider">Credentials</h3>
+<span class="text-[10px] text-green-500 font-mono flex items-center gap-1 bg-green-500/10 px-2 py-0.5 rounded border border-green-500/20">
+<span class="material-symbols-outlined text-[10px]">lock</span> Encrypted
+                        </span>
+</div>
+<div class="space-y-4">
+<div>
+<label class="text-xs font-medium text-text-secondary mb-1.5 block">API Key <span class="text-red-400">*</span></label>
+<div class="relative">
+<input class="w-full bg-surface-dark border border-border-dark rounded-lg pl-3 pr-10 py-2.5 text-white text-sm focus:ring-1 focus:ring-primary focus:border-primary font-mono tracking-wide" type="password" value="sk-xxxxxxxxxxxxxxxxxxxx"/>
+<button class="absolute right-3 top-2.5 text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility_off</span>
+</button>
+</div>
+</div>
+<div>
+<label class="text-xs font-medium text-text-secondary mb-1.5 block">Organization ID (Optional)</label>
+<input class="w-full bg-surface-dark border border-border-dark rounded-lg px-3 py-2.5 text-white text-sm focus:ring-1 focus:ring-primary focus:border-primary placeholder-text-secondary/30" placeholder="org-..." type="text"/>
+</div>
+</div>
+</div>
+<hr class="border-border-dark/50"/>
+<div class="space-y-5">
+<h3 class="text-sm font-bold text-white uppercase tracking-wider">Configuration Options</h3>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="text-xs font-medium text-text-secondary mb-1.5 block">Default Model</label>
+<div class="relative">
+<select class="w-full bg-surface-dark border border-border-dark rounded-lg px-3 py-2.5 text-white text-sm focus:ring-1 focus:ring-primary focus:border-primary appearance-none cursor-pointer">
+<option>GPT-4 Turbo</option>
+<option>GPT-4</option>
+<option>GPT-3.5 Turbo</option>
+</select>
+<span class="absolute right-3 top-3 pointer-events-none text-text-secondary">
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</span>
+</div>
+</div>
+<div>
+<label class="text-xs font-medium text-text-secondary mb-1.5 block">Max Tokens</label>
+<input class="w-full bg-surface-dark border border-border-dark rounded-lg px-3 py-2.5 text-white text-sm focus:ring-1 focus:ring-primary focus:border-primary" type="number" value="4096"/>
+</div>
+</div>
+<div>
+<label class="text-xs font-medium text-text-secondary mb-1.5 block">Webhook URL</label>
+<input class="w-full bg-surface-dark border border-border-dark rounded-lg px-3 py-2.5 text-white text-sm focus:ring-1 focus:ring-primary focus:border-primary font-mono text-xs" placeholder="https://api.yourdomain.com/callbacks" type="url"/>
+<p class="text-[10px] text-text-secondary mt-1">Endpoint for asynchronous event notifications.</p>
+</div>
+<div>
+<label class="text-xs font-medium text-text-secondary mb-2 block">Event Triggers</label>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 pl-2.5 pr-1 py-1 rounded-full bg-surface-dark border border-border-dark text-xs text-white">
+                                OnCompletion
+                                <button class="hover:bg-white/10 rounded-full p-0.5 transition-colors"><span class="material-symbols-outlined text-[12px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1 pl-2.5 pr-1 py-1 rounded-full bg-surface-dark border border-border-dark text-xs text-white">
+                                OnError
+                                <button class="hover:bg-white/10 rounded-full p-0.5 transition-colors"><span class="material-symbols-outlined text-[12px]">close</span></button>
+</span>
+<button class="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-dashed border-text-secondary/50 text-text-secondary text-xs hover:text-white hover:border-white transition-colors">
+<span class="material-symbols-outlined text-[12px]">add</span> Add
+                            </button>
+</div>
+</div>
+</div>
+<hr class="border-border-dark/50"/>
+<div class="space-y-4">
+<h3 class="text-sm font-bold text-white uppercase tracking-wider">Advanced Capabilities</h3>
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-sm font-medium text-white">Enable MCoT Reasoning</p>
+<p class="text-xs text-text-secondary mt-0.5 max-w-[280px]">Allow system to fuse document context with model outputs for chain-of-thought processing.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-surface-dark border border-border-dark peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[1px] after:start-[1px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary peer-checked:border-primary"></div>
+</label>
+</div>
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-sm font-medium text-white">Agent Chaining (A2A)</p>
+<p class="text-xs text-text-secondary mt-0.5 max-w-[280px]">Permit direct invocation by other agents in the mesh.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-surface-dark border border-border-dark peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[1px] after:start-[1px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary peer-checked:border-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="flex-none p-6 border-t border-border-dark bg-[#111722] flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<button class="flex items-center gap-2 text-xs font-bold text-text-secondary hover:text-white transition-colors group">
+<span class="material-symbols-outlined text-[16px] text-green-500 group-hover:animate-pulse">bolt</span>
+                        Test Connection
+                    </button>
+<a class="flex items-center gap-1.5 text-xs font-medium text-text-secondary hover:text-white transition-colors" href="#">
+                        Full Documentation
+                        <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="w-full py-2.5 rounded-lg border border-border-dark bg-transparent text-white text-sm font-bold hover:bg-surface-dark hover:border-text-secondary/50 transition-all">
+                        Cancel
+                    </button>
+<button class="w-full py-2.5 rounded-lg bg-primary hover:bg-primary-hover text-white text-sm font-bold shadow-lg shadow-primary/20 transition-all transform active:scale-[0.98]">
+                        Save Configuration
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

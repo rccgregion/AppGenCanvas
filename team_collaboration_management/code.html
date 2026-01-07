@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Team Collaboration Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#11c4d4",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#112122", /* Adjusted to match component bg */
+                        "surface-dark": "#1a2c2e", /* Slightly lighter for cards */
+                        "border-dark": "#234548",
+                        "text-secondary": "#92c5c9"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #112122; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #234548; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #326267; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white h-screen flex overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-[#112122] border-r border-border-dark flex-shrink-0 flex flex-col transition-all duration-300 hidden md:flex">
+<div class="flex flex-col h-full p-4 justify-between">
+<div class="flex flex-col gap-6">
+<!-- Team/Company Identity -->
+<div class="flex gap-3 items-center px-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border border-border-dark" data-alt="Company Logo Abstract Geometry" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBPMpqU0BOTIrBRGY5It2NnWU5TkdS1EUJsTmRCTRNwa7qsWDRjpDoZycEWHyklX2txA4NPbuasIuK17XmG4idU_2PTnDowuhRXxa4CiTSjC1doCN-ywKIUQnv8-cL19Ufj6JTmtEmAZKuCEWfBNImqIfTsOXDu-iZZMB8_X6wCt_zO6CR6eV2si-SuAtfFsDIMpq7IEqEgHDZw2YxcIvssKAPM-c_NnhpuoTV_2Boz_xiIJdmjrEn73mCa5zPE5brgYiChLPrYb_Vl");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-bold leading-normal">Acme Corp</h1>
+<p class="text-text-secondary text-xs font-normal leading-normal">Enterprise Plan</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary hover:text-white hover:bg-[#234548]/50 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary hover:text-white hover:bg-[#234548]/50 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">folder_open</span>
+<p class="text-sm font-medium leading-normal">Projects</p>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-[#234548] text-white" href="#">
+<span class="material-symbols-outlined text-xl text-primary">group</span>
+<p class="text-sm font-medium leading-normal">Team</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary hover:text-white hover:bg-[#234548]/50 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">credit_card</span>
+<p class="text-sm font-medium leading-normal">Billing</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary hover:text-white hover:bg-[#234548]/50 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+</nav>
+</div>
+<!-- User Profile Snippet at bottom of sidebar -->
+<div class="flex items-center gap-3 px-3 py-4 border-t border-border-dark mt-auto">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8" data-alt="User Avatar Smiling Man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDMeucaSwMZOoKGKW1Lr-ZWp7EYBTx8PcqtdUuBzlvH0xxHgUh9exVc2kkRNyPmwuRjz4hTu7ot9dB1hrqC4W4foxbID_kHjZW0VfGpYC4lol97ifvrBbBDH6K2GSAB7DQ8fgME6m3CUuksBe784o5IB465Wruikxt6ayxfm0_Smcbc6J-R3MaPxvRBIhuFZVOXSJSy4I7xQDjMxRu-8gTL7g8ATub6HY2uVYQu8vI349_7pay3KAK--uYCNJHFDj6cCyE5pDggbeRB");'></div>
+<div class="flex flex-col">
+<p class="text-white text-sm font-medium">John Doe</p>
+<p class="text-text-secondary text-xs">Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-w-0 bg-[#112122] overflow-hidden relative">
+<!-- Top Navbar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-border-dark px-6 py-4 bg-[#112122] z-10">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center gap-2 text-white">
+<!-- Logo Icon -->
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold tracking-tight">AI Nexus</h2>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<!-- Search Bar -->
+<label class="hidden sm:flex flex-col min-w-40 h-10 w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#234548] overflow-hidden group focus-within:ring-2 focus-within:ring-primary/50 transition-all">
+<div class="text-text-secondary flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full bg-transparent border-none text-white placeholder:text-text-secondary/70 focus:outline-none focus:ring-0 px-3 text-sm" placeholder="Search ecosystem..."/>
+</div>
+</label>
+<div class="flex items-center gap-4">
+<button class="text-text-secondary hover:text-white transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-primary rounded-full"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-transparent hover:ring-primary cursor-pointer transition-all" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCXBZsyci9VxIz8MC_JVSFIn9beSTWRehiuEax9br1DBMV0jLNVbGsBtdWopbWM80Uf6yR9nKRV7G4E3LzviH4bnDBWh-m-UkZugxmo9R2asrkAXGSLui5uTnfyE1uS_hi3H_nrAOclaHP5mWEgVhdcbsF_OROXKoEYl5fuaEQcpBeJG5WRafRnTAY9XpdSBt-HP9SVH3eE1nnUfBBC7YV8Kzns5YYqNV-d3CYMvtZIFO7RDctIV2yPgv7PgTSeFCBgZscSM3mBgw13");'></div>
+</div>
+</div>
+</header>
+<!-- Scrollable Content Area -->
+<main class="flex-1 overflow-y-auto p-4 md:p-8">
+<div class="max-w-[1200px] mx-auto flex flex-col gap-8">
+<!-- Page Heading & Team Overview -->
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<h1 class="text-white text-4xl font-black tracking-tight">Team Collaboration</h1>
+<p class="text-text-secondary text-base">Manage your team members, roles, and project access permissions.</p>
+</div>
+<!-- Team Overview Card -->
+<div class="bg-surface-dark border border-border-dark rounded-xl p-6 relative overflow-hidden">
+<!-- Decorative gradient background opacity -->
+<div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none"></div>
+<div class="flex flex-col md:flex-row gap-6 md:items-center justify-between relative z-10">
+<!-- Team Info -->
+<div class="flex items-center gap-5">
+<div class="bg-center bg-no-repeat bg-cover rounded-xl w-20 h-20 shadow-lg" data-alt="Team Avatar Abstract Geometric Shapes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4obs3xyjaDeDOjgo8jaVeer8Jwe2bgp91HHIYLmouAyJ5LecI8QiqDZ0D8YgQO3C3AG0fE3TQmY4Q8QOkCeWUoX-pCKsDLkfMdXCcL4zVAR2x4Wr_ispl8IUp6mEKkA4ZLZ-4EwSKY00bv1Clqs6AwF8dGsNoR6cUJ-_00Z7FIuDWhXIZT4dkKs7isNCx0Kn0JJKNjfm7t_zIaecOqgR1N1qznyJ1vvEiN_MKDhBVB0a1NuGqTCWdu6frbhG536ZpNqIdka9QbUPA");'></div>
+<div class="flex flex-col gap-1">
+<h2 class="text-2xl font-bold text-white">Engineering Team</h2>
+<div class="flex items-center gap-2 text-text-secondary text-sm">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>Owner: <span class="text-white font-medium">Sarah Jenkins</span></span>
+</div>
+</div>
+</div>
+<!-- Quick Stats -->
+<div class="flex gap-4 flex-wrap">
+<div class="flex flex-col items-center justify-center bg-[#112122] border border-border-dark rounded-lg px-6 py-3 min-w-[120px]">
+<span class="text-text-secondary text-xs uppercase font-semibold tracking-wider">Members</span>
+<span class="text-white text-2xl font-bold">12</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#112122] border border-border-dark rounded-lg px-6 py-3 min-w-[120px]">
+<span class="text-text-secondary text-xs uppercase font-semibold tracking-wider">Active Projects</span>
+<span class="text-white text-2xl font-bold">5</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#112122] border border-border-dark rounded-lg px-6 py-3 min-w-[120px]">
+<span class="text-text-secondary text-xs uppercase font-semibold tracking-wider">Invites</span>
+<span class="text-white text-2xl font-bold text-primary">2</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Members List Section -->
+<div class="flex flex-col gap-4">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<h3 class="text-xl font-bold text-white">Members List</h3>
+<div class="flex gap-3 w-full sm:w-auto">
+<!-- Member Search -->
+<div class="relative flex-1 sm:flex-initial">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-text-secondary text-[20px]">search</span>
+<input class="bg-surface-dark border border-border-dark rounded-lg pl-10 pr-4 py-2 text-sm text-white focus:ring-1 focus:ring-primary focus:border-primary outline-none w-full sm:w-64" placeholder="Filter members..." type="text"/>
+</div>
+<!-- Invite Button -->
+<button class="bg-primary hover:bg-[#0eb0be] text-black font-semibold px-4 py-2 rounded-lg flex items-center gap-2 transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                                Invite New Member
+                            </button>
+</div>
+</div>
+<!-- Members Table -->
+<div class="bg-surface-dark border border-border-dark rounded-xl overflow-hidden overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[600px]">
+<thead>
+<tr class="border-b border-border-dark bg-[#182628]">
+<th class="py-3 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary">Member</th>
+<th class="py-3 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary">Role</th>
+<th class="py-3 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary">Status</th>
+<th class="py-3 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary">Last Active</th>
+<th class="py-3 px-6 text-right text-xs font-semibold uppercase tracking-wider text-text-secondary">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-dark">
+<!-- Row 1 -->
+<tr class="hover:bg-[#1f3133] transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10" data-alt="Avatar of Sarah Jenkins" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAsPB1aWxZ6WXcu77pzZXRK1p8_qIFgIFjiVV8jf2kmsY6qg1sj1-3B-k8CCogRXWYMfKgWaioQps3L4h5S_94_0b3q4Q52cy2qOruGfsWbLPoDvdDEM7dOlyOB-kUt_s9Ks0zmGbkh068uywlPhsIefP3jsIHJdYcJ8Y9kcZBPX9Nd5_vmG7KvpeK2GNXQ64by6kMrV4-B5F0Pm3YzxhNDthZQFI23geU021X723dR6S-BTTWFdp2Cx5_AVIPEn8M0fIlWGCfctHhb");'></div>
+<div>
+<p class="text-white font-medium text-sm">Sarah Jenkins</p>
+<p class="text-text-secondary text-xs">sarah.jenkins@acme.com</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/20 text-primary border border-primary/20">
+                                            Owner
+                                        </span>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-green-500"></div>
+<span class="text-text-secondary text-sm">Online</span>
+</div>
+</td>
+<td class="py-4 px-6 text-text-secondary text-sm">Now</td>
+<td class="py-4 px-6 text-right">
+<button class="text-text-secondary hover:text-white p-1 rounded-md hover:bg-white/5 transition-colors" disabled="" title="Cannot edit owner">
+<span class="material-symbols-outlined text-[20px] opacity-50">lock</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#1f3133] transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10" data-alt="Avatar of Michael Chen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAGCRQ8BiPJ5ncpx7PlXVliCWpXISQZOSIIpePDkvx7tikbjUo5m7nWtCL5DQGm46ZqTPQAjIyCSQ5w3NAV6czOcBVhCiXA9WzEY6ZHukcCiJIrqkbmjTqkwThk05hNvi6gXCDY6hccCDpY7btuPVUUt91D0nIws8LF2xPOwvpwb0CAy5Bag5phpHifPxdjppkmVsS6iGyvnFLcnbblTw32ZGpTv-Pw9F9On-Zka7_hHN_q_973Fw-VRTJvR6beNRIQIvAqix3S5jUY");'></div>
+<div>
+<p class="text-white font-medium text-sm">Michael Chen</p>
+<p class="text-text-secondary text-xs">michael.chen@acme.com</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-500/20 text-purple-300 border border-purple-500/20">
+                                            Admin
+                                        </span>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-gray-500"></div>
+<span class="text-text-secondary text-sm">Offline</span>
+</div>
+</td>
+<td class="py-4 px-6 text-text-secondary text-sm">2 hours ago</td>
+<td class="py-4 px-6 text-right">
+<div class="flex justify-end gap-2 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-text-secondary hover:text-primary p-1 rounded-md hover:bg-white/5 transition-colors" title="Edit Role">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-text-secondary hover:text-red-400 p-1 rounded-md hover:bg-white/5 transition-colors" title="Remove Member">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-[#1f3133] transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10" data-alt="Avatar of Alex Rivera" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC4s_Lrz8K3HnFhwby2Pk5lCY0ZcCToWKN9JYePAONiYQOcpoXUGBenehCyMxZaI3v8-suCtNN1v0Z6T4buMaSe_0bMf5sIuh4QgyBKAAo_P-vLMVZ9cDKD_pHc3zaboLjOfFRjwWkO-nWhTcK1CqINiAnrqeSuyf7o-YRFAPfReNpeJtIHcrG5-ewCw6c_xpSdugOGgxZXnMXvCc0Cp0t-ZVQg-FQywXkYfADdOo_XSKjcag0u11zkSXwgEcQTHvJWdJlEinS6639S");'></div>
+<div>
+<p class="text-white font-medium text-sm">Alex Rivera</p>
+<p class="text-text-secondary text-xs">alex.rivera@acme.com</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-500/20 text-blue-300 border border-blue-500/20">
+                                            Developer
+                                        </span>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-green-500"></div>
+<span class="text-text-secondary text-sm">Online</span>
+</div>
+</td>
+<td class="py-4 px-6 text-text-secondary text-sm">5 mins ago</td>
+<td class="py-4 px-6 text-right">
+<div class="flex justify-end gap-2 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-text-secondary hover:text-primary p-1 rounded-md hover:bg-white/5 transition-colors" title="Edit Role">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="text-text-secondary hover:text-red-400 p-1 rounded-md hover:bg-white/5 transition-colors" title="Remove Member">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Shared Projects -->
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<h3 class="text-xl font-bold text-white">Shared Projects</h3>
+<a class="text-primary text-sm font-medium hover:underline" href="#">View All</a>
+</div>
+<div class="grid gap-4">
+<!-- Project Card 1 -->
+<div class="bg-surface-dark border border-border-dark p-4 rounded-xl flex items-center gap-4 hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="w-16 h-16 rounded-lg bg-cover bg-center shrink-0" data-alt="Abstract purple gradient representing AI bot" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCkY0Z3hlm3IQFee2l0k-7gfpr9bbELvLUgol7ndk19-V_kaANo86pf8OzdmJKWOH5aEgvx-AE-Lv6ibPK8OAE7XKu6MWwa1Yh8E0_e6Br0MToBc4vs4MBOTsayHW_WWtRQSv7wNBd1zuRgsbukcgp4TAqGG4HPb4ufEjxqqYx8ixipazlMUvlIbOUy89KvPcUML2__wwblUpT6U654JVuffNY5M7c8o7ZgIFb7JHXSqatXyVQAedbuyZH6xyNF1GZgfkIs1dCLFHAN");'></div>
+<div class="flex-1 min-w-0">
+<h4 class="text-white font-semibold text-base truncate group-hover:text-primary transition-colors">Customer Support Bot</h4>
+<p class="text-text-secondary text-sm truncate">Updated 2 days ago</p>
+</div>
+<div class="px-3 py-1 rounded-full bg-[#112122] border border-border-dark text-xs text-text-secondary whitespace-nowrap">
+                                    Full Access
+                                </div>
+<span class="material-symbols-outlined text-text-secondary group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Project Card 2 -->
+<div class="bg-surface-dark border border-border-dark p-4 rounded-xl flex items-center gap-4 hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="w-16 h-16 rounded-lg bg-cover bg-center shrink-0" data-alt="Abstract teal lines graph chart" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA29DAhbbvHTUdXJg1T2qnfx1VEj1w4iZSAtc9gQt0NzbASqTL85vrbuhdExb0uyRdT5UjTkCM3AhzJkFApYiLHmW6QTNsUpaG_sVCCTBGfBnRZnlK462hqGS3PoC7mDPiHzz-5t8BJ9gq-_vrAiSpexaaGQA1_CCUY-McUm3-idTFL0DkxtTZ8F54-zjUe1-W9rBPuku7BsK0MkNRRYN3Qpe7zyHjTaEJDxv9ASOePbFIm4GVMQqfOTz5SRAaTxKYqjfmcBTmy-5LA");'></div>
+<div class="flex-1 min-w-0">
+<h4 class="text-white font-semibold text-base truncate group-hover:text-primary transition-colors">Internal Data Analyzer</h4>
+<p class="text-text-secondary text-sm truncate">Updated 5 hours ago</p>
+</div>
+<div class="px-3 py-1 rounded-full bg-[#112122] border border-border-dark text-xs text-text-secondary whitespace-nowrap">
+                                    View Only
+                                </div>
+<span class="material-symbols-outlined text-text-secondary group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Add Project placeholder -->
+<div class="border border-dashed border-border-dark p-4 rounded-xl flex items-center justify-center gap-2 hover:bg-surface-dark transition-colors cursor-pointer text-text-secondary hover:text-white h-[82px]">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-medium">Link new project</span>
+</div>
+</div>
+</div>
+<!-- Role & Permission Management -->
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<h3 class="text-xl font-bold text-white">Role &amp; Permissions</h3>
+<select class="bg-surface-dark border-none text-sm text-white focus:ring-0 cursor-pointer py-1 pl-0 pr-8 font-medium">
+<option>Admin Role</option>
+<option>Developer Role</option>
+<option>Viewer Role</option>
+</select>
+</div>
+<div class="bg-surface-dark border border-border-dark rounded-xl p-5 flex flex-col gap-6">
+<!-- Permission Group 1 -->
+<div class="flex flex-col gap-4">
+<h5 class="text-xs font-bold text-text-secondary uppercase tracking-wider">Project Management</h5>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex flex-col">
+<span class="text-white font-medium text-sm">Create &amp; Delete Projects</span>
+<span class="text-text-secondary text-xs">Allow users to initialize new apps</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex flex-col">
+<span class="text-white font-medium text-sm">Manage Deployments</span>
+<span class="text-text-secondary text-xs">Publish apps to live environment</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</div>
+</label>
+</div>
+<div class="h-px bg-border-dark w-full"></div>
+<!-- Permission Group 2 -->
+<div class="flex flex-col gap-4">
+<h5 class="text-xs font-bold text-text-secondary uppercase tracking-wider">Billing &amp; Administrative</h5>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex flex-col">
+<span class="text-white font-medium text-sm">Manage Subscription</span>
+<span class="text-text-secondary text-xs">View invoices and change plans</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex flex-col">
+<span class="text-white font-medium text-sm">Invite New Members</span>
+<span class="text-text-secondary text-xs">Send invitations to join team</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

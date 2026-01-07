@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Generated App Preview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2dd4bf", // Aqua / Teal 400 - Main Brand Color
+                        "primary-hover": "#14b8a6", // Teal 500
+                        "accent": "#fbbf24", // Soft Orange / Amber 400 - Secondary Highlights
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0f172a", // Deep Neutral Slate 900
+                        "surface-dark": "#1e293b", // Slate 800
+                        "surface-border": "#334155", // Slate 700
+                        "text-secondary": "#94a3b8", // Slate 400
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                        "preview": ["Inter", "sans-serif"], 
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen flex flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-surface-border px-6 py-3 bg-background-dark shrink-0 z-20">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 rounded bg-gradient-to-br from-primary to-teal-600 flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined text-xl font-bold">auto_awesome</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">AI App Builder</h2>
+</div>
+<div class="hidden md:flex items-center gap-2 border-l border-surface-border pl-6 h-6">
+<a class="text-text-secondary text-sm font-medium hover:text-primary transition-colors" href="#">Projects</a>
+<span class="text-text-secondary text-sm font-medium">/</span>
+<a class="text-text-secondary text-sm font-medium hover:text-primary transition-colors" href="#">CRM Dashboard</a>
+<span class="text-text-secondary text-sm font-medium">/</span>
+<span class="text-primary text-sm font-medium px-2 py-0.5 rounded bg-surface-dark border border-surface-border/50">Preview</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-4">
+<div class="hidden md:flex items-center gap-2 text-text-secondary text-sm font-medium mr-4">
+<span class="size-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-emerald-500 font-medium">Build successful</span> <span class="text-xs opacity-60">(2.4s)</span>
+</div>
+<button class="flex items-center justify-center gap-2 h-9 px-4 bg-primary hover:bg-primary-hover text-background-dark text-sm font-bold leading-normal tracking-[0.015em] rounded-lg transition-colors shadow-[0_0_15px_rgba(45,212,191,0.2)]">
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+<span class="truncate">Deploy</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 border border-surface-border ring-2 ring-transparent hover:ring-primary/50 transition-all cursor-pointer" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD0ffvSY2qwfFxILQ8bFc0BGpgDNsoj1BTj2oSLiP5bZ9K6jCt8-bPx6qz6UrdZJiCdHYfj5vXxvIhlj7zWxM4Uj7GhyRec9EyPQcyQLUFQC95wRtgeZ_LFKS3BNY_knEag05Ys1RGTfAEwyh8hEhSQxHMedtdksnI834VxAu5vhVgnsVNtXwNtOaFPD6ziuWgQkBXZqjkqVas0XTFryne0So1mhqbKYJv4FDiCRbfTmSRQiE9Rk2KTCnPYMvwiILcvVxhC-qYVAZx9");'></div>
+</div>
+</header>
+<main class="flex flex-1 overflow-hidden relative">
+<aside class="w-64 bg-background-dark border-r border-surface-border flex flex-col shrink-0 hidden lg:flex">
+<div class="p-4 border-b border-surface-border flex items-center justify-between">
+<span class="text-xs font-bold text-text-secondary uppercase tracking-wider">Pages</span>
+<button class="text-text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">add</span></button>
+</div>
+<div class="flex-1 overflow-y-auto py-2">
+<div class="flex items-center gap-3 px-4 py-2 bg-surface-dark/50 border-l-2 border-primary text-white cursor-pointer">
+<span class="material-symbols-outlined text-[18px] text-primary">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-2 text-text-secondary hover:text-white hover:bg-surface-dark/30 cursor-pointer transition-colors border-l-2 border-transparent">
+<span class="material-symbols-outlined text-[18px]">analytics</span>
+<span class="text-sm font-medium">Analytics</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-2 text-text-secondary hover:text-white hover:bg-surface-dark/30 cursor-pointer transition-colors border-l-2 border-transparent">
+<span class="material-symbols-outlined text-[18px]">people</span>
+<span class="text-sm font-medium">Customers</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-2 text-text-secondary hover:text-white hover:bg-surface-dark/30 cursor-pointer transition-colors border-l-2 border-transparent">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</div>
+<div class="p-4 mt-4 border-t border-surface-border flex items-center justify-between">
+<span class="text-xs font-bold text-text-secondary uppercase tracking-wider">Components</span>
+</div>
+<div class="px-4 py-1">
+<div class="pl-2 border-l border-surface-border flex flex-col gap-1">
+<div class="flex items-center gap-2 text-text-secondary text-sm py-1 hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[14px]">view_agenda</span> Header
+                    </div>
+<div class="flex items-center gap-2 text-text-secondary text-sm py-1 hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[14px]">table_chart</span> Data Table
+                    </div>
+<div class="flex items-center gap-2 text-text-secondary text-sm py-1 hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[14px]">monitoring</span> Chart Widget
+                    </div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-surface-border">
+<button class="w-full flex items-center justify-center gap-2 py-2 rounded-lg bg-surface-dark hover:bg-surface-border text-text-secondary hover:text-white text-sm transition-colors border border-surface-border hover:border-text-secondary">
+<span class="material-symbols-outlined text-[16px]">code</span>
+                View Source
+            </button>
+</div>
+</aside>
+<section class="flex-1 flex flex-col bg-background-dark relative min-w-0">
+<div class="h-14 border-b border-surface-border bg-background-dark flex items-center justify-between px-4 shrink-0 gap-4">
+<div class="flex-1 max-w-xl flex items-center bg-surface-dark rounded-lg border border-surface-border h-9 px-3 gap-2 group focus-within:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-text-secondary text-[16px] group-focus-within:text-primary">lock</span>
+<span class="text-text-secondary text-xs md:text-sm font-mono truncate select-all group-focus-within:text-white">https://preview-crm-v2.aiapp.dev/dashboard</span>
+<span class="material-symbols-outlined text-text-secondary text-[16px] ml-auto cursor-pointer hover:text-primary transition-colors">refresh</span>
+</div>
+<div class="hidden sm:flex h-9 items-center justify-center rounded-lg bg-surface-border/50 p-1 border border-surface-border">
+<label class="flex cursor-pointer h-full items-center justify-center rounded px-3 bg-surface-dark shadow-sm text-primary text-xs font-medium transition-all">
+<input checked="" class="invisible w-0 absolute" name="viewport" type="radio" value="Desktop"/>
+<span class="material-symbols-outlined text-[18px]">desktop_windows</span>
+</label>
+<label class="flex cursor-pointer h-full items-center justify-center rounded px-3 hover:bg-surface-dark/50 text-text-secondary hover:text-white text-xs font-medium transition-all">
+<input class="invisible w-0 absolute" name="viewport" type="radio" value="Tablet"/>
+<span class="material-symbols-outlined text-[18px]">tablet_mac</span>
+</label>
+<label class="flex cursor-pointer h-full items-center justify-center rounded px-3 hover:bg-surface-dark/50 text-text-secondary hover:text-white text-xs font-medium transition-all">
+<input class="invisible w-0 absolute" name="viewport" type="radio" value="Mobile"/>
+<span class="material-symbols-outlined text-[18px]">smartphone</span>
+</label>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-text-secondary hover:text-primary rounded hover:bg-surface-border transition-colors" title="Open in new tab">
+<span class="material-symbols-outlined text-[20px]">open_in_new</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-auto p-4 md:p-8 flex justify-center items-start bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:20px_20px]">
+<div class="w-full max-w-[1100px] bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col min-h-[600px] ring-1 ring-white/10 relative font-preview">
+<div class="h-16 border-b border-slate-200 bg-white flex items-center justify-between px-6 shrink-0">
+<div class="flex items-center gap-8">
+<div class="font-bold text-xl text-indigo-600 flex items-center gap-2">
+<div class="size-6 bg-indigo-600 rounded-md"></div>
+                            NexusCRM
+                        </div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-slate-900" href="#">Dashboard</a>
+<a class="text-sm font-medium text-slate-500 hover:text-slate-900" href="#">Leads</a>
+<a class="text-sm font-medium text-slate-500 hover:text-slate-900" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+</div>
+<div class="size-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xs">
+                            JD
+                        </div>
+</div>
+</div>
+<div class="flex-1 bg-slate-50 p-6 md:p-8 overflow-y-auto">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h1 class="text-2xl font-bold text-slate-900">Welcome back, John</h1>
+<p class="text-slate-500 mt-1">Here's what's happening with your projects today.</p>
+</div>
+<button class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-sm hover:bg-indigo-700 transition-colors">
+                            + Add Lead
+                        </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-medium text-slate-500">Total Revenue</h3>
+<span class="text-green-600 bg-green-50 text-xs font-bold px-2 py-1 rounded-full">+12.5%</span>
+</div>
+<div class="text-3xl font-bold text-slate-900">$48,295</div>
+<div class="mt-4 h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-indigo-500 w-[70%] rounded-full"></div>
+</div>
+</div>
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-medium text-slate-500">Active Projects</h3>
+<span class="text-slate-600 bg-slate-100 text-xs font-bold px-2 py-1 rounded-full">0%</span>
+</div>
+<div class="text-3xl font-bold text-slate-900">24</div>
+<div class="mt-4 h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 w-[45%] rounded-full"></div>
+</div>
+</div>
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-medium text-slate-500">New Clients</h3>
+<span class="text-green-600 bg-green-50 text-xs font-bold px-2 py-1 rounded-full">+4.2%</span>
+</div>
+<div class="text-3xl font-bold text-slate-900">12</div>
+<div class="mt-4 h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[20%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-white">
+<h3 class="font-bold text-slate-900">Recent Transactions</h3>
+<button class="text-indigo-600 text-sm font-medium hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm text-slate-600">
+<thead class="bg-slate-50 text-slate-500 border-b border-slate-200">
+<tr>
+<th class="px-6 py-3 font-medium">Company</th>
+<th class="px-6 py-3 font-medium">Status</th>
+<th class="px-6 py-3 font-medium">Date</th>
+<th class="px-6 py-3 font-medium text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 font-medium text-slate-900 flex items-center gap-3">
+<div class="size-8 rounded bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-xs">A</div>
+                                            Acme Corp
+                                        </td>
+<td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">Completed</span></td>
+<td class="px-6 py-4">Oct 24, 2023</td>
+<td class="px-6 py-4 text-right font-medium text-slate-900">$12,400</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 font-medium text-slate-900 flex items-center gap-3">
+<div class="size-8 rounded bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">G</div>
+                                            Global Inc
+                                        </td>
+<td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">Pending</span></td>
+<td class="px-6 py-4">Oct 23, 2023</td>
+<td class="px-6 py-4 text-right font-medium text-slate-900">$3,200</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 font-medium text-slate-900 flex items-center gap-3">
+<div class="size-8 rounded bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-xs">T</div>
+                                            Tech Solutions
+                                        </td>
+<td class="px-6 py-4"><span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-600">Draft</span></td>
+<td class="px-6 py-4">Oct 21, 2023</td>
+<td class="px-6 py-4 text-right font-medium text-slate-900">$950</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<aside class="w-80 bg-background-dark border-l border-surface-border flex flex-col shrink-0 z-10">
+<div class="flex border-b border-surface-border">
+<button class="flex-1 py-3 text-sm font-medium text-white border-b-2 border-primary bg-surface-dark/50">Design</button>
+<button class="flex-1 py-3 text-sm font-medium text-text-secondary hover:text-white transition-colors">Data</button>
+<button class="flex-1 py-3 text-sm font-medium text-text-secondary hover:text-white transition-colors">Export</button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-6">
+<div class="space-y-3">
+<label class="text-xs font-bold text-text-secondary uppercase tracking-wider block">Theme Colors</label>
+<div class="flex gap-2">
+<div class="size-8 rounded-full bg-indigo-600 border-2 border-white ring-2 ring-primary cursor-pointer shadow-lg"></div>
+<div class="size-8 rounded-full bg-emerald-500 border border-transparent hover:scale-110 transition-transform cursor-pointer"></div>
+<div class="size-8 rounded-full bg-rose-500 border border-transparent hover:scale-110 transition-transform cursor-pointer"></div>
+<div class="size-8 rounded-full bg-amber-500 border border-transparent hover:scale-110 transition-transform cursor-pointer"></div>
+<div class="size-8 rounded-full bg-surface-dark border-2 border-surface-border flex items-center justify-center cursor-pointer text-text-secondary hover:border-primary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<label class="text-xs font-bold text-text-secondary uppercase tracking-wider block">Typography</label>
+<div class="p-3 bg-surface-dark rounded-lg border border-surface-border flex items-center justify-between cursor-pointer hover:border-primary transition-colors group">
+<div class="flex flex-col">
+<span class="text-text-secondary text-xs group-hover:text-primary transition-colors">Headings</span>
+<span class="text-white text-sm font-medium">Inter</span>
+</div>
+<span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">expand_more</span>
+</div>
+<div class="p-3 bg-surface-dark rounded-lg border border-surface-border flex items-center justify-between cursor-pointer hover:border-primary transition-colors group">
+<div class="flex flex-col">
+<span class="text-text-secondary text-xs group-hover:text-primary transition-colors">Body</span>
+<span class="text-white text-sm font-medium">Roboto</span>
+</div>
+<span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors">expand_more</span>
+</div>
+</div>
+<div class="space-y-3 pt-4 border-t border-surface-border">
+<div class="flex items-center justify-between">
+<label class="text-xs font-bold text-text-secondary uppercase tracking-wider">Selected: Table</label>
+<span class="text-xs text-primary cursor-pointer hover:text-primary-hover hover:underline">Reset</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-text-secondary">Pagination</span>
+<div class="w-10 h-5 bg-primary rounded-full relative cursor-pointer">
+<div class="absolute right-0.5 top-0.5 size-4 bg-background-dark rounded-full shadow-sm"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-text-secondary">Searchable</span>
+<div class="w-10 h-5 bg-surface-border rounded-full relative cursor-pointer">
+<div class="absolute left-0.5 top-0.5 size-4 bg-text-secondary rounded-full shadow-sm"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-text-secondary">Row Actions</span>
+<div class="w-10 h-5 bg-primary rounded-full relative cursor-pointer">
+<div class="absolute right-0.5 top-0.5 size-4 bg-background-dark rounded-full shadow-sm"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-surface-border bg-surface-dark/30">
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-2 text-xs font-medium text-text-secondary mb-1">
+<span class="material-symbols-outlined text-[16px] text-accent">colors_spark</span>
+                    Ask AI to iterate
+                </label>
+<div class="relative w-full">
+<textarea class="w-full bg-background-dark border border-surface-border rounded-xl p-3 text-sm text-white placeholder:text-text-secondary focus:ring-1 focus:ring-primary focus:border-primary resize-none h-24 outline-none transition-all" placeholder="e.g., Change the header background to blue and make the stats cards larger..."></textarea>
+<button class="absolute bottom-2 right-2 p-1.5 bg-primary hover:bg-primary-hover rounded-lg text-background-dark transition-colors flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[18px]">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+</main>
+
+</body></html>

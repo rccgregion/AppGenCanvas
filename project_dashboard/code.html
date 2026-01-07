@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Project Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Noto+Sans:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "accent-teal": "#0d9488",
+                        "accent-amber": "#f59e0b",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111722",
+                        "surface-dark": "#232f48",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for sidebar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111722;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #232f48;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display overflow-x-hidden text-slate-900 dark:text-white">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#232f48] bg-white dark:bg-[#111722] px-6 py-3 shadow-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white cursor-pointer">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">deployed_code</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">AI Builder</h2>
+</div>
+<!-- Search Bar -->
+<label class="hidden md:flex flex-col min-w-40 h-10 w-64 lg:w-80">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-100 dark:bg-[#232f48] overflow-hidden group focus-within:ring-2 focus-within:ring-primary/50 transition-all">
+<div class="text-slate-400 dark:text-[#92a4c9] flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none bg-transparent border-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-[#92a4c9] px-3 text-sm font-normal focus:outline-none focus:ring-0 h-full" placeholder="Search projects, templates..."/>
+</div>
+</label>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-slate-900 dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-[#92a4c9] text-sm font-medium hover:text-primary transition-colors" href="#">Projects</a>
+<a class="text-slate-500 dark:text-[#92a4c9] text-sm font-medium hover:text-primary transition-colors" href="#">Deployments</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex items-center justify-center gap-2 rounded-lg h-9 px-4 bg-accent-teal hover:bg-teal-600 text-white text-sm font-bold transition-all shadow-lg shadow-teal-900/20">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>New Project</span>
+</button>
+<button class="relative p-2 text-slate-500 dark:text-[#92a4c9] hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-accent-amber rounded-full"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 border-2 border-slate-200 dark:border-[#232f48] cursor-pointer" data-alt="User profile avatar showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAL1qpqfnSES7M_QeLfSvxbc6lramP6j7O1Tmhx8hTO_OP_y0kcvjvjF0keaqYAbwD-5GHt2oGCtF2CocEXvvRsMW-VKbS7RcaFxs3SArONVAJZc_uSb3hMSHp7WFdjri3_DT-Lpc5HgL1VTx1iLQ4LnZjxk6aqcVUWHZSTl-qzt8qYodhdumf1nHeyOgdfq7fBTuKIY4GamQDkJ49KuyveigXogowdNteA0lyKfQIGgrnL3p0jec8TOUbvo9UcQaUoU8rA0TT1BKOD");'></div>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<div class="flex flex-col lg:flex-row flex-1 max-w-[1440px] mx-auto w-full">
+<!-- Left Content (Dashboard) -->
+<main class="flex-1 flex flex-col p-4 md:p-8 lg:p-10 gap-8 min-w-0">
+<!-- Greeting & Stats Section -->
+<section class="flex flex-col gap-6">
+<div class="flex flex-col gap-1">
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-black tracking-tight">Good morning, Alex</h1>
+<p class="text-slate-500 dark:text-[#92a4c9] text-base">Here's what's happening with your AI ecosystem today.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-white dark:bg-[#232f48] border border-slate-200 dark:border-none shadow-sm">
+<div class="flex items-center gap-2 text-slate-500 dark:text-[#92a4c9]">
+<span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+<span class="text-sm font-medium">Active Projects</span>
+</div>
+<p class="text-slate-900 dark:text-white text-3xl font-bold">5</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-white dark:bg-[#232f48] border border-slate-200 dark:border-none shadow-sm relative overflow-hidden">
+<div class="absolute right-0 top-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-6xl">pending</span>
+</div>
+<div class="flex items-center gap-2 text-accent-amber">
+<span class="material-symbols-outlined text-[20px]">hourglass_top</span>
+<span class="text-sm font-medium">Pending Review</span>
+</div>
+<p class="text-slate-900 dark:text-white text-3xl font-bold">2</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-white dark:bg-[#232f48] border border-slate-200 dark:border-none shadow-sm">
+<div class="flex items-center gap-2 text-emerald-500">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-sm font-medium">System Uptime</span>
+</div>
+<p class="text-slate-900 dark:text-white text-3xl font-bold">98%</p>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section class="flex flex-col gap-5">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">Your Projects</h2>
+<!-- Filters -->
+<div class="flex gap-2 overflow-x-auto pb-1 sm:pb-0 no-scrollbar">
+<button class="flex h-8 items-center justify-center rounded-full bg-slate-200 dark:bg-white px-4 text-xs font-bold text-slate-900 dark:text-slate-900 transition-colors">
+                            All
+                        </button>
+<button class="flex h-8 items-center justify-center rounded-full bg-white dark:bg-[#232f48] border border-slate-200 dark:border-[#334155] px-4 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#2d3b55] transition-colors whitespace-nowrap">
+                            Deployed
+                        </button>
+<button class="flex h-8 items-center justify-center rounded-full bg-white dark:bg-[#232f48] border border-slate-200 dark:border-[#334155] px-4 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#2d3b55] transition-colors whitespace-nowrap">
+                            In Development
+                        </button>
+<button class="flex h-8 items-center justify-center rounded-full bg-white dark:bg-[#232f48] border border-slate-200 dark:border-[#334155] px-4 text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#2d3b55] transition-colors whitespace-nowrap">
+                            Drafts
+                        </button>
+</div>
+</div>
+<!-- Projects Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Card 1: Active -->
+<div class="group flex flex-col bg-white dark:bg-[#232f48] rounded-xl overflow-hidden border border-slate-200 dark:border-transparent hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
+<div class="relative h-40 bg-cover bg-center" data-alt="Abstract blue digital network representing a chatbot AI" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBEok5s5QJMNa3cTe8Yx1cPQJ3lX99D5a6Yc2lYMtpP1hzIVTOjU_RpwFsc49Me6zV0r5u4wXj4n-uVUPHiAqW_FhOPkJcCjksDFIZ5tif8e4p8FJxYkeiO3zoHlE1t2jw6vT1iB4aCiYUn0FCB5VDqwtQcUblW-yQG8X6E7g7UnC4Ws5iNiJOPbPBHq6bxiiX5kQZU4u9d4KHz7Zg23v2r_DlNF9SZIRoJZ75YCa-AdpzT6L5fsCIN1esN4R_WkMrfxPSZeBdK3CXz');">
+<div class="absolute inset-0 bg-gradient-to-t from-[#232f48] to-transparent opacity-90 dark:opacity-90"></div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-1 rounded-md bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold uppercase tracking-wider backdrop-blur-md">Deployed</span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-4 flex-1">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">Customer Support Bot V2</h3>
+<p class="text-xs text-slate-500 dark:text-[#92a4c9] mt-1">Updated 2h ago</p>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-slate-100 dark:border-[#334155] flex items-center justify-between gap-2">
+<button class="flex-1 h-8 rounded text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#334155] transition-colors">Edit</button>
+<button class="flex-1 h-8 rounded text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#334155] transition-colors">Analytics</button>
+<button class="size-8 flex items-center justify-center rounded text-accent-amber hover:bg-accent-amber/10 transition-colors" title="Quick Actions">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Needs Review -->
+<div class="group flex flex-col bg-white dark:bg-[#232f48] rounded-xl overflow-hidden border border-slate-200 dark:border-transparent hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
+<div class="relative h-40 bg-cover bg-center" data-alt="Data visualization dashboard interface concept" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBri3Iht6aAQcD1lLlQmYJJiMxaE6lc-oS0P8_TAwSFU2g7-qrNtfcwWmJsRGMV_Dl8vP8_rxDZSbiWv_iA8_CRifJH4VNm3WOsT43EQ4dFxj-F62gz7E4n91UdAFvy1vCwsnU8jF006909DQTT04BYV-iW2epVcSDYuuj2bPvTBVb6nXKkyVbL7Rni470xyJJOlGgcvmVj_MKDny8oRXXhM_h5ob6c40_ZoP3lmMIa_4TEm1wMnMWFgqc9gHdBaYMsEyOg7z1mPqgq');">
+<div class="absolute inset-0 bg-gradient-to-t from-[#232f48] to-transparent opacity-90 dark:opacity-90"></div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-1 rounded-md bg-accent-amber/20 text-accent-amber border border-accent-amber/30 text-xs font-bold uppercase tracking-wider backdrop-blur-md">Review</span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-4 flex-1">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">Sales Data Predictor</h3>
+<p class="text-xs text-slate-500 dark:text-[#92a4c9] mt-1">Updated 1d ago</p>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-slate-100 dark:border-[#334155] flex items-center justify-between gap-2">
+<button class="flex-1 h-8 rounded text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#334155] transition-colors">Edit</button>
+<button class="flex-1 h-8 rounded text-xs font-bold text-accent-amber bg-accent-amber/10 hover:bg-accent-amber/20 transition-colors">Deploy</button>
+</div>
+</div>
+</div>
+<!-- Card 3: In Development -->
+<div class="group flex flex-col bg-white dark:bg-[#232f48] rounded-xl overflow-hidden border border-slate-200 dark:border-transparent hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
+<div class="relative h-40 bg-cover bg-center" data-alt="Code syntax on a dark screen background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDpMXTNxI8_LUO72QZ16hDpSOlzwvOSjWctaO6Bx1VYl9NqZKVER51_0PZqpuiyx5hennnZaErCHVeD9NbdMAZ9TZ8LjyOUh3ZXBSOXN-aS9d32Y9tLX39Edr1SMvSH7MZjeP3GuINfgUf7bP88uHSVt889G13UxA7cQ64Bcg_MdmTmgRgxtN3KEgdrz2V0PFvL1ezQOezv-WCavj9_1eG736XbQ0mwk5Ku21_6LSOuxyHRdWXL0CvCRxdmrI_C51CPIJB4mvw_5xCD');">
+<div class="absolute inset-0 bg-gradient-to-t from-[#232f48] to-transparent opacity-90 dark:opacity-90"></div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-1 rounded-md bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs font-bold uppercase tracking-wider backdrop-blur-md">Dev</span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-4 flex-1">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-400 shrink-0">
+<span class="material-symbols-outlined">image</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">Image Gen Alpha</h3>
+<p class="text-xs text-slate-500 dark:text-[#92a4c9] mt-1">Updated 3h ago</p>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-slate-100 dark:border-[#334155] flex items-center justify-between gap-2">
+<button class="flex-1 h-8 rounded text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#334155] transition-colors">Edit</button>
+<button class="flex-1 h-8 rounded text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#334155] transition-colors">Test</button>
+<button class="size-8 flex items-center justify-center rounded text-accent-amber hover:bg-accent-amber/10 transition-colors" title="Quick Actions">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4: Draft -->
+<div class="group flex flex-col bg-white dark:bg-[#232f48] rounded-xl overflow-hidden border border-slate-200 dark:border-transparent hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
+<div class="relative h-40 bg-cover bg-center" data-alt="Wireframe sketch on paper for app design" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCu3X6MwseQUBdb6FeaTHiBoETjr75F1rf_vFDkkX3DgQcbtZj_NaPKHfF-880G8CqXlmiE9jWv7mgOD_Pi0sEVcdEBH5Ofbr9XlT5H_4ihpNKjykQ28RyMoaUDY1QhdDoQ2Rq9ymAhJLSTYKm77rnLvSpdi2jZMAOW4zuLsn813S0FWv1eApj1qz-cWCk_d7N7O1B8PIDMeQK3AH4z_5prONHO8L1Sy_xDgnPxTMHfytGG6kd2WY_FvBdhORc7qFYPDsgS6C3gjzTH');">
+<div class="absolute inset-0 bg-gradient-to-t from-[#232f48] to-transparent opacity-90 dark:opacity-90"></div>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-1 rounded-md bg-slate-500/20 text-slate-400 border border-slate-500/30 text-xs font-bold uppercase tracking-wider backdrop-blur-md">Draft</span>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-4 flex-1">
+<div class="flex gap-3">
+<div class="size-10 rounded-lg bg-slate-500/20 flex items-center justify-center text-slate-400 shrink-0">
+<span class="material-symbols-outlined">edit_note</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">Content Moderator</h3>
+<p class="text-xs text-slate-500 dark:text-[#92a4c9] mt-1">Created 2d ago</p>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-slate-100 dark:border-[#334155] flex items-center justify-between gap-2">
+<button class="flex-1 h-8 rounded text-xs font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#334155] transition-colors">Resume</button>
+<button class="size-8 flex items-center justify-center rounded text-red-400 hover:bg-red-400/10 transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Right Sidebar (Activity) -->
+<aside class="w-full lg:w-80 xl:w-96 border-l border-slate-200 dark:border-[#232f48] bg-white dark:bg-[#111722]/50 p-6 flex flex-col gap-6 lg:h-[calc(100vh-65px)] lg:sticky lg:top-[65px] custom-scrollbar overflow-y-auto">
+<div class="flex items-center justify-between">
+<h3 class="text-slate-900 dark:text-white font-bold text-lg">Recent Activity</h3>
+<button class="text-xs text-primary hover:text-primary/80 font-medium">View All</button>
+</div>
+<div class="flex flex-col gap-6 relative">
+<!-- Vertical Line -->
+<div class="absolute left-[19px] top-2 bottom-2 w-px bg-slate-200 dark:bg-[#232f48]"></div>
+<!-- Item 1: Alert -->
+<div class="flex gap-4 relative">
+<div class="relative z-10 size-10 rounded-full bg-accent-amber/10 border-2 border-white dark:border-[#111722] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-accent-amber text-[20px]">warning</span>
+</div>
+<div class="flex flex-col gap-1 pt-1">
+<p class="text-sm text-slate-900 dark:text-white leading-snug"><span class="font-bold">System Alert:</span> API usage limit approaching 80% for <span class="text-accent-amber">Sales Predictor</span>.</p>
+<span class="text-xs text-slate-400 dark:text-[#92a4c9]">10 mins ago</span>
+</div>
+</div>
+<!-- Item 2: Comment -->
+<div class="flex gap-4 relative">
+<div class="relative z-10 size-10 rounded-full bg-blue-500/10 border-2 border-white dark:border-[#111722] flex items-center justify-center shrink-0">
+<div class="size-full rounded-full bg-cover bg-center" data-alt="Avatar of Sarah user" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBsAR9UWvMx2wH3YvjNTUiVaRta4p1GIPiu-SPrdLlO088HOkArV9Sf35LZdTd_5z0ffxtMPApgX0UvH4S3C4PP5_-gShr3uwbGEWh5Mpk0U8zvBMfxUDs_ng8SokjlCqymyhdxfTMOwXV3If1MbM4kKitCU5T1m_9t8TGn6Lv-rRIf5j4ZiFAz7LBQzlpX2n275EBJzwQay58YLDJ62fNuURO5SmIttzrdWwiB2lSR_r7I1ouLBeHNAEcNuHolnWBWmAG10gYugJQo');"></div>
+</div>
+<div class="flex flex-col gap-1 pt-1">
+<p class="text-sm text-slate-900 dark:text-white leading-snug"><span class="font-bold">Sarah</span> commented on <span class="text-primary cursor-pointer hover:underline">Chatbot Gen V2</span>.</p>
+<div class="p-2 rounded bg-slate-100 dark:bg-[#232f48] text-xs text-slate-600 dark:text-slate-300 italic border-l-2 border-primary">
+                            "Looks good, but we need to fix the context window size..."
+                        </div>
+<span class="text-xs text-slate-400 dark:text-[#92a4c9]">45 mins ago</span>
+</div>
+</div>
+<!-- Item 3: Deployment -->
+<div class="flex gap-4 relative">
+<div class="relative z-10 size-10 rounded-full bg-emerald-500/10 border-2 border-white dark:border-[#111722] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-emerald-500 text-[20px]">rocket</span>
+</div>
+<div class="flex flex-col gap-1 pt-1">
+<p class="text-sm text-slate-900 dark:text-white leading-snug"><span class="font-bold">Customer Support Bot V2</span> was successfully deployed to production.</p>
+<span class="text-xs text-slate-400 dark:text-[#92a4c9]">2 hours ago</span>
+</div>
+</div>
+<!-- Item 4: Edit -->
+<div class="flex gap-4 relative">
+<div class="relative z-10 size-10 rounded-full bg-slate-500/10 border-2 border-white dark:border-[#111722] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-slate-500 text-[20px]">edit</span>
+</div>
+<div class="flex flex-col gap-1 pt-1">
+<p class="text-sm text-slate-900 dark:text-white leading-snug">Updated configuration for <span class="font-medium">Image Gen Alpha</span>.</p>
+<span class="text-xs text-slate-400 dark:text-[#92a4c9]">Yesterday, 4:30 PM</span>
+</div>
+</div>
+</div>
+<!-- Quick Link / Promo in Sidebar -->
+<div class="mt-auto rounded-lg bg-gradient-to-br from-primary/20 to-accent-teal/10 p-4 border border-primary/20">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined">tips_and_updates</span>
+<span class="text-sm font-bold">Pro Tip</span>
+</div>
+<p class="text-xs text-slate-600 dark:text-slate-300 mb-3">You can automate your deployments using the new CI/CD pipeline feature.</p>
+<button class="w-full py-1.5 rounded text-xs font-bold bg-primary text-white hover:bg-blue-700 transition-colors">Learn More</button>
+</div>
+</aside>
+</div>
+</body></html>

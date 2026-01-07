@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Community User Profile - AI Builder</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "teal-main": "#0d9488", // Deep Teal/Aqua
+                        "teal-dark": "#115e59",
+                        "teal-light": "#ccfbf1",
+                        "orange-main": "#f59e0b", // Soft Orange/Amber
+                        "orange-light": "#fef3c7",
+                        "background-light": "#f8fafc", // Neutral Tone
+                        "background-dark": "#0f172a", // Neutral Tone (Slate 900)
+                        "surface-dark": "#1e293b", // Neutral Tone (Slate 800)
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-200 min-h-screen flex flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark px-4 lg:px-10 py-3 shadow-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-teal-main">
+<span class="material-symbols-outlined text-3xl">smart_toy</span>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] font-display">AI Builder Community</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-main dark:hover:text-teal-main text-sm font-medium leading-normal transition-colors" href="#">Explore</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-main dark:hover:text-teal-main text-sm font-medium leading-normal transition-colors" href="#">Marketplace</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-main dark:hover:text-teal-main text-sm font-medium leading-normal transition-colors" href="#">Community</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-main dark:hover:text-teal-main text-sm font-medium leading-normal transition-colors" href="#">Learn</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 sm:gap-8">
+<label class="hidden sm:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-100 dark:bg-slate-800/50 border border-transparent focus-within:border-teal-main/50 transition-colors">
+<div class="text-slate-400 flex border-none items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-slate-400 px-3 rounded-l-none border-l-0 text-sm font-normal leading-normal" placeholder="Search creators, apps..." value=""/>
+</div>
+</label>
+<button class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-teal-main/20 hover:ring-teal-main/50 transition-all" data-alt="User profile avatar showing a colorful abstract gradient" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbwjp5lABRkvZsLbp_Hns5TRv_IZClixz2qgAsGs7wD_cuNCy4hV1nziTAGNsiUXVQpfrSl6uS0yyACxIURvsUgXP3v_gFYUlZuYpkaNaqhHVtO_7dXw7EVEdIVfqOiehAQyOLN4Uzye7ExhXiujBRNSRVrDlNqg_Y7f3nVbpANFgyWHLrlpqtslULrFNXHsobZ-RxiWiinVEyytJ27rUNCtB1oGOew4wWyUmyzuAitbX0QxgyHf2gPuWsDRkjgl23y7KO0Fw7Abj_");'></button>
+</div>
+</header>
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-8">
+<div class="layout-content-container flex flex-col max-w-[1024px] flex-1 gap-6">
+<div class="flex flex-col gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm @container relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-main to-orange-main"></div>
+<div class="flex w-full flex-col gap-6 @[600px]:flex-row @[600px]:justify-between @[600px]:items-start mt-2">
+<div class="flex gap-5 items-start">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-24 w-24 ring-4 ring-teal-light dark:ring-teal-900/30" data-alt="Profile picture of a person with glasses looking at a screen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCWPxaAxNZUZ2XKQz9mPqxA4wAB_QORkTKaooe8Zhj7LNjvqk-ttsAKb7mnYqI8IUPs1Lt_4xqB0ZB1HKqdRkJUNyjypvkFz3dIZBrwfTNe56WV3W-A03gGYdjg90Oc2_hK1wJnamccS5uSQYO9WXb-EaHhSTNILA2BPC00aX3yGjJTLG0itBsh7Z0BfU9c2KNg8lQQr5B1ZPcHI-9M8xbboj8Amn2bNzfOW9wOwFRPnsm016MRcQAIL-LNvTDZVLYXUpta3KScyfaH");'></div>
+<div class="absolute bottom-0 right-0 bg-orange-main text-white rounded-full p-1 border-2 border-white dark:border-surface-dark flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+</div>
+</div>
+<div class="flex flex-col pt-1">
+<div class="flex items-center gap-2">
+<h1 class="text-slate-900 dark:text-white text-2xl font-bold font-display leading-tight tracking-tight">Alex Chen</h1>
+<span class="material-symbols-outlined text-teal-main text-[20px]" title="Verified Creator">verified</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-2">@AI_Wizard</p>
+<p class="text-slate-600 dark:text-slate-300 text-base font-normal leading-normal max-w-md">Building autonomous agents to automate the mundane. Python enthusiast &amp; Open Source contributor. 🚀</p>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-sm">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span>San Francisco, CA</span>
+</div>
+<div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-sm">
+<span class="material-symbols-outlined text-[18px]">link</span>
+<a class="hover:text-teal-main transition-colors" href="#">github.com/aichen</a>
+</div>
+</div>
+</div>
+</div>
+<div class="flex w-full @[600px]:w-auto gap-3 pt-1">
+<button class="flex-1 @[600px]:flex-none cursor-pointer items-center justify-center rounded-lg h-10 px-6 bg-teal-main hover:bg-teal-dark transition-colors text-white text-sm font-bold tracking-wide shadow-lg shadow-teal-500/20 font-display">
+                                Follow
+                            </button>
+<button class="flex-1 @[600px]:flex-none cursor-pointer items-center justify-center rounded-lg h-10 px-6 bg-orange-50 dark:bg-orange-900/20 hover:bg-orange-100 dark:hover:bg-orange-900/30 text-orange-700 dark:text-orange-200 text-sm font-bold tracking-wide transition-colors border border-orange-200 dark:border-orange-800/30 font-display">
+                                Message
+                            </button>
+<button class="cursor-pointer items-center justify-center rounded-lg h-10 w-10 flex bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white transition-colors border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="flex flex-col gap-1 rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 p-4 items-start shadow-sm hover:border-teal-main/30 transition-colors group">
+<div class="flex items-center gap-2 mb-1 text-slate-500 dark:text-slate-400 group-hover:text-teal-main transition-colors">
+<span class="material-symbols-outlined text-[20px]">apps</span>
+<span class="text-xs font-bold uppercase tracking-wider font-display">Apps</span>
+</div>
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-none font-display">12</p>
+</div>
+<div class="flex flex-col gap-1 rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 p-4 items-start shadow-sm hover:border-teal-main/30 transition-colors group">
+<div class="flex items-center gap-2 mb-1 text-slate-500 dark:text-slate-400 group-hover:text-teal-main transition-colors">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+<span class="text-xs font-bold uppercase tracking-wider font-display">Total Runs</span>
+</div>
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-none font-display">1.5k</p>
+</div>
+<div class="flex flex-col gap-1 rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 p-4 items-start shadow-sm hover:border-teal-main/30 transition-colors group">
+<div class="flex items-center gap-2 mb-1 text-slate-500 dark:text-slate-400 group-hover:text-teal-main transition-colors">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="text-xs font-bold uppercase tracking-wider font-display">Followers</span>
+</div>
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-none font-display">450</p>
+</div>
+<div class="flex flex-col gap-1 rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 p-4 items-start shadow-sm hover:border-teal-main/30 transition-colors group">
+<div class="flex items-center gap-2 mb-1 text-slate-500 dark:text-slate-400 group-hover:text-orange-main transition-colors">
+<span class="material-symbols-outlined text-[20px]">star</span>
+<span class="text-xs font-bold uppercase tracking-wider font-display">Reputation</span>
+</div>
+<p class="text-slate-900 dark:text-white text-3xl font-bold leading-none font-display">4.9</p>
+</div>
+</div>
+</div>
+<div class="sticky top-[73px] z-40 bg-background-light dark:bg-background-dark pt-2">
+<div class="flex border-b border-slate-200 dark:border-slate-800 overflow-x-auto no-scrollbar">
+<a class="flex items-center gap-2 px-6 border-b-2 border-teal-main text-teal-main pb-3 pt-2 whitespace-nowrap bg-teal-50/50 dark:bg-teal-900/10 rounded-t-lg transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+<p class="text-sm font-bold leading-normal tracking-wide font-display">My Apps</p>
+</a>
+<a class="flex items-center gap-2 px-6 border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2 whitespace-nowrap hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-600 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">deployed_code</span>
+<p class="text-sm font-bold leading-normal tracking-wide font-display">My Contributions</p>
+</a>
+<a class="flex items-center gap-2 px-6 border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2 whitespace-nowrap hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-600 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">history</span>
+<p class="text-sm font-bold leading-normal tracking-wide font-display">Activity Feed</p>
+</a>
+<a class="flex items-center gap-2 px-6 border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2 whitespace-nowrap hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-600 transition-all ml-auto" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<p class="text-sm font-bold leading-normal tracking-wide font-display">Settings</p>
+</a>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-12">
+<div class="group flex flex-col gap-0 rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-teal-main/50 transition-all hover:shadow-lg dark:hover:shadow-teal-main/5">
+<div class="relative w-full aspect-video bg-cover bg-center" data-alt="Screenshot of an SEO dashboard with charts" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCMIW2Ye3FG714XJrzfT-GLrKf9Q5jKOiUOCfv3nNrIlM6K0naue5A_cv4Fc2xarktmjyTz_i4mup7wI0r0qSK9ni2dbMzzuUqZGyiHyHipcoY-2Wc9bvKj0Tig_QpSRgTZquMuT3k6sEDNyPN7VTcAxdDyr8jPEMG-Dg2x60klN6WGFNMMv7UGAeao72TUiJ1vI5gdiSVEqPdhMbk7T2zfWhwUf3BbV_xRu7PAKZ2UhwFrI_Zsz6mOQTuFc_zkoIEFmw4Y_vOXhbZb");'>
+<div class="absolute inset-0 bg-teal-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+<button class="bg-teal-main hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform font-display">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                                Run App
+                            </button>
+</div>
+<div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md rounded-md px-2 py-1 text-xs font-mono text-white flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[14px] text-teal-400">check_circle</span> v1.2
+                        </div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight font-display">SEO Generator</h3>
+<div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-xs">
+<span class="material-symbols-outlined text-[16px] text-orange-main">star</span>
+<span>4.8</span>
+</div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal line-clamp-2">Automated SEO optimization for blog posts using NLP to target high-value keywords.</p>
+<div class="mt-auto pt-4 flex items-center justify-between text-xs text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>2.3k views</span>
+</div>
+<span class="text-slate-300 dark:text-slate-600">Updated 2d ago</span>
+</div>
+</div>
+</div>
+<div class="group flex flex-col gap-0 rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-teal-main/50 transition-all hover:shadow-lg dark:hover:shadow-teal-main/5">
+<div class="relative w-full aspect-video bg-cover bg-center" data-alt="Abstract visualization of image upscaling pixels" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCoC7FZcziN2YsyQiHXDsCdKlD-HWCXJ87I5pG4NtxZSl0hRU79izh-dqixE8HYnPBZvew21_H4uPKvNJlgu4nl7b1XsccGpXcwVLQyy6pq4pb3GDyz000QNbJbUKfPK_XCqS8MP4To8DO8GUnc3FLlYqsxowAMuqhULIwpbWPuNVPHMXwgJDGBOCQ1FETl7l2bXHujaS69cbVU8eeLBPPObDOf8HfKhmfixMnAZhUK9rBnpKwF0_Atd2ZtAUHgv7G-t3wBp7-mAwrN");'>
+<div class="absolute inset-0 bg-teal-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+<button class="bg-teal-main hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform font-display">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                                Run App
+                            </button>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight font-display">Image Upscaler Pro</h3>
+<div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-xs">
+<span class="material-symbols-outlined text-[16px] text-orange-main">star</span>
+<span>5.0</span>
+</div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal line-clamp-2">Enhance low-resolution images to 4K using GANs. Perfect for restoring old photos.</p>
+<div class="mt-auto pt-4 flex items-center justify-between text-xs text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>8.1k views</span>
+</div>
+<span class="text-slate-300 dark:text-slate-600">Updated 1w ago</span>
+</div>
+</div>
+</div>
+<div class="group flex flex-col gap-0 rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-teal-main/50 transition-all hover:shadow-lg dark:hover:shadow-teal-main/5">
+<div class="relative w-full aspect-video bg-cover bg-center" data-alt="Chat interface bubble graphic" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB2wzWEeA7yEATCRtEMtBAQ-VLfDHTtlQF7wmVyV5zjLl2BQdoBrwZrqZPdbRBy-2T6qhyaMmjOVzzD2eA0Ceaw_ha6PPGLWEQbEVj9Fr355Ft8dm1-xPXr7LcXknF0eCqMoJRx_U-pYctLVtmz27IcmvrTgA7YbHJY1nJGkqsWnALILfT9-q9Z-r1pENr_uDbEoFnSUqu-3zwdFK22_H6MAbthz1beFbmpiej7uV5hlOlvO26ABOy_W3YXMtjkcfD4jRF1xWsN1nEw");'>
+<div class="absolute inset-0 bg-teal-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+<button class="bg-teal-main hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform font-display">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                                Run App
+                            </button>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight font-display">ChatBot-X</h3>
+<div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-xs">
+<span class="material-symbols-outlined text-[16px] text-slate-300 dark:text-slate-600">star</span>
+<span>--</span>
+</div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal line-clamp-2">A conversational AI assistant template that can be fine-tuned on your own documents.</p>
+<div class="mt-auto pt-4 flex items-center justify-between text-xs text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>156 views</span>
+</div>
+<span class="text-slate-300 dark:text-slate-600">Updated 3h ago</span>
+</div>
+</div>
+</div>
+<div class="group flex flex-col gap-0 rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-teal-main/50 transition-all hover:shadow-lg dark:hover:shadow-teal-main/5">
+<div class="relative w-full aspect-video bg-cover bg-center" data-alt="Data spreadsheet cleanup illustration" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDQD7cefoVCWDk0aDIe_eoD9Hw-y_UBI3KfMFD1hVx-wTTMA7i2DQNApTQAMMLezJHmKv0IVJKhLcHNHQLsS_K8wxQo6KpNjZElUIyqWmJfDPz5RZhsslLs0vO35SLOA2x_JEuApr4gJ4QJwO_973G9oTNxrD-r6aLGhFJ5TqC-gxaQJ3z4G5TEBkiWytg3gHiKIVuuazanrQaG0zo7_jtOenOepsNhLnBVVO0MZPQPKRVaTVyc3gKASq6dJzFbsDoR1AZSWtEeSbeW");'>
+<div class="absolute inset-0 bg-teal-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+<button class="bg-teal-main hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform font-display">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                                Run App
+                            </button>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight font-display">Data Cleaner Agent</h3>
+<div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-xs">
+<span class="material-symbols-outlined text-[16px] text-orange-main">star</span>
+<span>4.5</span>
+</div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal line-clamp-2">Upload messy CSVs and get clean, structured data back instantly.</p>
+<div class="mt-auto pt-4 flex items-center justify-between text-xs text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>3.4k views</span>
+</div>
+<span class="text-slate-300 dark:text-slate-600">Updated 1mo ago</span>
+</div>
+</div>
+</div>
+<div class="group flex flex-col gap-0 rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-teal-main/50 transition-all hover:shadow-lg dark:hover:shadow-teal-main/5">
+<div class="relative w-full aspect-video bg-cover bg-center" data-alt="Email icon with summarization text lines" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDxHoUjDWOlQMGkZoIHxSE-heecoz5_GnkM7_2BI6e3f_yptd9ASI014oV0-H8LZgpFr5C_ePTgle_SoPkwQeLfChmZ0J68yidACta4VjGNFl6Py1xYH_PoAB3D89C4zU22BLqw9FuPA4F9C-mdJhaZyYO2uOurZkh--6iZr1j71L8ec7jmW5yiH4xhR5KJ3C7V707SD6S5KYMvHrANyGSlZzl7UBLz3_O3G35NJosPke_SMjj3Dj0u-B2TmDYDP77P_Lk4lB2hZCCx");'>
+<div class="absolute inset-0 bg-teal-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+<button class="bg-teal-main hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform font-display">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                                Run App
+                            </button>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight font-display">Email Summarizer</h3>
+<div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-xs">
+<span class="material-symbols-outlined text-[16px] text-orange-main">star</span>
+<span>4.2</span>
+</div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal line-clamp-2">Connects to Gmail API to generate a daily morning briefing of your inbox.</p>
+<div class="mt-auto pt-4 flex items-center justify-between text-xs text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>1.2k views</span>
+</div>
+<span class="text-slate-300 dark:text-slate-600">Updated 2w ago</span>
+</div>
+</div>
+</div>
+<div class="group flex flex-col gap-0 rounded-xl bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-teal-main/50 transition-all hover:shadow-lg dark:hover:shadow-teal-main/5">
+<div class="relative w-full aspect-video bg-cover bg-center" data-alt="Code syntax highlighting graphic" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDtqIr2vL0jf4ZDxpk7pP5MhINU-6na7l6bm_7l6Dak9kXSqvXTJW3AK-xz75a1BabKmOBsxwxcrk7G8O7cTpaKPBZPCtDxf-SJhJ-j_d5TylxrISIxSAgtdIxUmP0_w1n-US7nsvSaBw3fgxfgU2lneLBvW5wchuE1K_lbTnKqOWeGy9JA67NAiy4-HT9gDDtmOc_K6-3J8WYngFiyBUJvRg_FB6r8UAX39wems-bO0apldtASvI5dIv2tLcEUMedEpPJrIzWxSx28");'>
+<div class="absolute inset-0 bg-teal-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+<button class="bg-teal-main hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform font-display">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                                Run App
+                            </button>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1">
+<div class="flex justify-between items-start">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight font-display">Code Refactor Tool</h3>
+<div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-xs">
+<span class="material-symbols-outlined text-[16px] text-orange-main">star</span>
+<span>4.9</span>
+</div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal line-clamp-2">Paste your Python spaghetti code and get back a clean, PEP-8 compliant version.</p>
+<div class="mt-auto pt-4 flex items-center justify-between text-xs text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span>5.6k views</span>
+</div>
+<span class="text-slate-300 dark:text-slate-600">Updated 5d ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

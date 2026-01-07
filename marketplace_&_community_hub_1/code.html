@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Nexus - Marketplace &amp; Community</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "primary-hover": "#1d6bf5",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111722",
+                        "surface-dark": "#1a2436",
+                        "surface-darker": "#232f48",
+                        "text-secondary": "#92a4c9",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "sans": ["Space Grotesk", "sans-serif"] 
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-x-hidden antialiased">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-surface-darker bg-background-dark px-10 py-3 shrink-0 z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 flex items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-2xl">hub</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">AI Nexus</h2>
+</div>
+<!-- Global Search -->
+<label class="hidden md:flex flex-col min-w-40 !h-10 w-96">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full relative group">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border-none bg-surface-darker placeholder:text-text-secondary pl-10 text-sm font-normal leading-normal transition-all" placeholder="Search templates, agents, or users..." value=""/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-2">
+<span class="text-xs text-text-secondary border border-surface-dark px-1.5 py-0.5 rounded">⌘K</span>
+</div>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-surface-darker text-text-secondary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-background-dark"></span>
+</button>
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-surface-darker text-text-secondary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-8 w-px bg-surface-darker"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-transparent group-hover:ring-primary transition-all" data-alt="User profile avatar showing a digital illustration" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBcsH70UYZWgdtJoMBLIHuBxBzIx95TPRKjS9WInpOFQJIyi5LhAvieUS3SCwdIMTHUdVAiI1OY9tC0L-fnQ66KhwdvXFECAdYdIPS5DlyxeirCLfBOjCIbniZxH7hCsDskW-oRE3an3bSNP5Ff_igVGC-GRzM3tjiMlm1M5MXjM_fBO_eGg7HcK3035reBKh_OSZvsWVQIam4hMGUkVm9Ariz7xnOByo2g-gvPM_IoS2aAjAGd1FgDSDyaGiPb7ftUPJiBnyUxO5mp");'></div>
+<div class="hidden lg:flex flex-col">
+<span class="text-sm font-bold text-white leading-none">Alex Builder</span>
+<span class="text-xs text-text-secondary pt-1">Pro Member</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 overflow-hidden">
+<!-- Left Sidebar (Filters) -->
+<aside class="w-64 bg-[#0d121c] border-r border-surface-darker overflow-y-auto hidden lg:flex flex-col">
+<div class="p-6">
+<h3 class="text-xs font-bold text-text-secondary uppercase tracking-wider mb-4">Categories</h3>
+<div class="flex flex-col gap-1">
+<label class="flex items-center gap-3 py-2 px-3 rounded-lg bg-primary/10 text-primary cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+<span class="text-sm font-medium">All Assets</span>
+</label>
+<label class="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-surface-darker text-text-secondary hover:text-white cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+<span class="text-sm font-medium">AI Agents</span>
+</label>
+<label class="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-surface-darker text-text-secondary hover:text-white cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[20px]">web</span>
+<span class="text-sm font-medium">Templates</span>
+</label>
+<label class="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-surface-darker text-text-secondary hover:text-white cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[20px]">apps</span>
+<span class="text-sm font-medium">Full Apps</span>
+</label>
+</div>
+<div class="h-px bg-surface-darker my-6"></div>
+<h3 class="text-xs font-bold text-text-secondary uppercase tracking-wider mb-4">Filters</h3>
+<div class="space-y-6">
+<!-- Consistency Rating Filter -->
+<div>
+<p class="text-sm font-medium text-white mb-3">Self-Consistency</p>
+<div class="space-y-2">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="form-checkbox rounded border-surface-darker bg-surface-dark text-primary focus:ring-0 size-4" type="checkbox"/>
+<span class="text-sm text-text-secondary">95% + (Highly Reliable)</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="form-checkbox rounded border-surface-darker bg-surface-dark text-primary focus:ring-0 size-4" type="checkbox"/>
+<span class="text-sm text-text-secondary">90% - 95%</span>
+</label>
+</div>
+</div>
+<!-- Price Filter -->
+<div>
+<p class="text-sm font-medium text-white mb-3">Price</p>
+<div class="flex items-center gap-2">
+<input class="w-full bg-surface-darker border-none rounded text-white text-sm py-2 px-3 focus:ring-1 focus:ring-primary" placeholder="Min" type="number"/>
+<span class="text-text-secondary">-</span>
+<input class="w-full bg-surface-darker border-none rounded text-white text-sm py-2 px-3 focus:ring-1 focus:ring-primary" placeholder="Max" type="number"/>
+</div>
+</div>
+<!-- Tech Tree -->
+<div>
+<p class="text-sm font-medium text-white mb-3">Tech Tree</p>
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="form-checkbox rounded border-surface-darker bg-surface-dark text-primary focus:ring-0 size-4" type="checkbox"/>
+<span class="text-sm text-text-secondary">Verified Components</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Banner in sidebar -->
+<div class="mt-auto p-6">
+<div class="bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-xl p-4 border border-primary/20">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-symbols-outlined">school</span>
+<span class="text-xs font-bold uppercase">Community</span>
+</div>
+<p class="text-white text-sm font-bold mb-1">Join the Hackathon</p>
+<p class="text-xs text-text-secondary mb-3">Build the best agent and win prizes.</p>
+<button class="w-full py-2 bg-primary hover:bg-primary-hover text-white text-xs font-bold rounded transition-colors">Join Now</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Scroll Area -->
+<div class="flex-1 overflow-y-auto relative">
+<!-- Sticky Sub-header -->
+<div class="sticky top-0 z-10 bg-background-dark/95 backdrop-blur-sm border-b border-surface-darker px-8 pt-4 pb-0 flex flex-col sm:flex-row justify-between items-end sm:items-center gap-4">
+<div class="flex gap-8">
+<a class="flex items-center gap-2 border-b-[3px] border-primary text-white pb-3 px-1" href="#">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+<span class="text-sm font-bold tracking-wide">Marketplace</span>
+</a>
+<a class="flex items-center gap-2 border-b-[3px] border-transparent text-text-secondary hover:text-white pb-3 px-1 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">forum</span>
+<span class="text-sm font-bold tracking-wide">Community Hub</span>
+</a>
+<a class="flex items-center gap-2 border-b-[3px] border-transparent text-text-secondary hover:text-white pb-3 px-1 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">co_present</span>
+<span class="text-sm font-bold tracking-wide">Showcase</span>
+</a>
+</div>
+<div class="pb-3">
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-[0_0_15px_rgba(19,91,236,0.3)] hover:shadow-[0_0_20px_rgba(19,91,236,0.5)]">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>Submit Creation</span>
+</button>
+</div>
+</div>
+<div class="p-8 max-w-[1400px] mx-auto space-y-10">
+<!-- Hero Section -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-white text-xl font-bold">Featured this Week</h2>
+<div class="flex gap-2">
+<button class="size-8 rounded-full border border-surface-darker flex items-center justify-center text-text-secondary hover:bg-surface-darker hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+</button>
+<button class="size-8 rounded-full border border-surface-darker flex items-center justify-center text-text-secondary hover:bg-surface-darker hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Featured Card 1 -->
+<div class="relative group rounded-xl overflow-hidden aspect-[16/9] md:aspect-auto md:h-64 cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Abstract blue digital network representing data analysis" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBX1yf7j0zn-O8QmZjm-3weTN1nIyvPedFByPBFxNwHZJn_qtRc1cwl-V9h4Q7horjDde3S0CqCmDfk3ZqyLS0VXmadFpqvu-qv3Ff9MQEUHsgDFUy7XkFp0kmEF94PBhmSureKmAnpTgF5DaN1aWoxDnhBM5aDrSX_UIeXWfURLr7S88QK7mamyyhIPdrsP2fhkrioVCjPEoCVyO5g0S-A19v5ZtB-jzVgRgWaFWBMPtc0oZaEbOW8sbFJP239HhigSZx3xG95h9Hf");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/50 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Editor's Choice</span>
+<span class="text-green-400 text-xs flex items-center gap-1 font-medium"><span class="material-symbols-outlined text-[14px]">verified</span> 99% Consistent</span>
+</div>
+<h3 class="text-white text-2xl font-bold mb-1">DataWiz Analytics</h3>
+<p class="text-text-secondary text-sm line-clamp-1">Automated data cleaning and visualization agent.</p>
+</div>
+</div>
+<!-- Featured Card 2 -->
+<div class="relative group rounded-xl overflow-hidden aspect-[16/9] md:aspect-auto md:h-64 cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Purple abstract geometric shapes representing code logic" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC9nCKz0btGSAt6B-OD34hjYcoVLOjK8E1S_l-RXmu1Vrq5FH_gZywFrhDocB-Tab-NBtACfv42uTRWPUguRc-jvH_cp6GxxtUeJmW7PvlnGR18NDHIOukVas2tLpbu_R8pl-OWDsU9gEoO3sI89_a1cjQsPFG5yyUrIPH3WOmOmdYnegljicy4TK-5P58iXv7dXSV9niK1KVPedcX1u6fBvablkQBkQq6LAMNrxJIZFwsudc0CjKXahPWnjww54zsV7v8fHH6GcLPr");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/50 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-purple-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Trending</span>
+</div>
+<h3 class="text-white text-2xl font-bold mb-1">CodeRefactor Pro</h3>
+<p class="text-text-secondary text-sm line-clamp-1">Optimize your codebase with AI-driven suggestions.</p>
+</div>
+</div>
+<!-- Featured Card 3 -->
+<div class="relative group rounded-xl overflow-hidden aspect-[16/9] md:aspect-auto md:h-64 cursor-pointer lg:hidden xl:block">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Dark futuristic city interface" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDh9aZWtFNcG3jqJq2R9EOGqZFp0I-JM_VcX4J3ud7m6A0FUtRKA9uSubDhUjktHD4A_X2xY0pmu949WYGUBpEKdyjPGbMSL8KVhho30k61A_c1v_2AdGVFWRWiFZCER8vA33HO7LhKHamIvFjaBK-2IEVHrU2ktPH9t4NMHoRiN4AOqhGw7pSD4b536Tr-6nLaekUUVJ8gpQNX_8ox8lDwfSDR2LwIpMprG4ZvQlxYhKQK8sR46kFwkmh94Q2WHsSzbq60OIy3Uo1N");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/50 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">New</span>
+</div>
+<h3 class="text-white text-2xl font-bold mb-1">CitySim Agent</h3>
+<p class="text-text-secondary text-sm line-clamp-1">Urban planning simulation environment template.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Popular Agents Grid -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-4">
+<h2 class="text-white text-xl font-bold">Popular Agents</h2>
+<div class="h-6 w-px bg-surface-darker"></div>
+<div class="flex gap-2 text-sm">
+<button class="text-white font-medium bg-surface-darker px-3 py-1 rounded-full">Top Rated</button>
+<button class="text-text-secondary hover:text-white px-3 py-1 transition-colors">Newest</button>
+<button class="text-text-secondary hover:text-white px-3 py-1 transition-colors">Free</button>
+</div>
+</div>
+<a class="text-primary text-sm font-bold hover:underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Card Component -->
+<div class="group bg-surface-dark hover:bg-surface-darker rounded-xl border border-surface-darker hover:border-primary/50 transition-all duration-300 flex flex-col overflow-hidden">
+<div class="relative h-40 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Abstract gradient mesh in blue and cyan" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB62AmcEtxAo_XdR8fPlbjS-6Nweeq-6-YCt5RmOLek96HoVLbnAJCViPJ91yingoi4XGFwXB0llkcRq40REH9GtEKL6WO7vd73lUK4t7vHzMek2h-67T3hYFk5E5-0O1Ghasm36O3O-6Bn8ASrUAnv2UU6OKmHkX3tPJ-Q2tmUP5OsfnXHAlK6chcefAx5h8zjMdZQTYlZKWQ9n6Jhfz7bi5TBmo4PfvDcjghlXUswZPIGa-VZ7WYYFoKWbiACAA1JOV1ESONiOrnH");'></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-yellow-400">star</span> 4.9
+                                    </div>
+<div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white p-1.5 rounded-lg border border-white/10" title="Tech Tree Compatible">
+<span class="material-symbols-outlined text-[16px] text-primary">account_tree</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-white font-bold text-lg leading-tight group-hover:text-primary transition-colors">SEO Writer Bot</h3>
+</div>
+<p class="text-text-secondary text-xs line-clamp-2 mb-4">Generates SEO-optimized blog posts based on keyword research.</p>
+<div class="mt-auto space-y-3">
+<!-- Consistency Bar -->
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-medium uppercase tracking-wide">
+<span class="text-text-secondary">Self-Consistency</span>
+<span class="text-green-400">98%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-darker rounded-full overflow-hidden">
+<div class="h-full bg-green-500 rounded-full w-[98%]"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-darker/50">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-cover bg-center" data-alt="Creator avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCLpeXoWZf5p1_Klv5lGxaLLvek0tDStB3jy6bxKaW8bN1Etm8_Qp1J5MGZbndZfc9_DY-BIhjHdxSnx7lMlQFqS88MPSRiaMsYDbRS06XBkM-Rm5cH5lbw2rlHRdz_fmi6MoT8SQhTsP8NEvRBw-ykgrX_I4vP9_ctFMmnXRCWYW-Y3Vm0i8ZQGNvPQKL_Sw5nJJdGzBQu3M83tlRQlJ3asyu1ai5JYbrZsfYfrFJJqqa_xhv18E5IojINtL_MCsWVCLdIEfGd-2sq");'></div>
+<span class="text-xs text-text-secondary">By Sarah L.</span>
+</div>
+<span class="text-white font-bold">$15.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card Component -->
+<div class="group bg-surface-dark hover:bg-surface-darker rounded-xl border border-surface-darker hover:border-primary/50 transition-all duration-300 flex flex-col overflow-hidden">
+<div class="relative h-40 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Abstract orange and red geometric patterns" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD0eQrlZ-_g_4WNTt8tDQcO3W0iBQ-DKcgFB1JO8fmCEKbKLQathV7Bg68ojZoyOkEwasNvHWqYMkLIM-6HBOQHXiXyzZMKaZMYNutajDB0uIMKoNe4WcnAOwX0mh8WzZt2WZIw04rArA8ZyYqExUOl8pmE6VxrlyOv6GLrSZm-gPDGg4mhpZA2JxFeZNgDKeP8DRtEwBC4vxIHUHy7EkGt_5XnbcTeyxksWq7hxLjK3ovcdYpZz9K-Nkeg9pQLytGGyR0p7H1QlPqg");'></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-yellow-400">star</span> 4.7
+                                    </div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-white font-bold text-lg leading-tight group-hover:text-primary transition-colors">ImageGen V2</h3>
+</div>
+<p class="text-text-secondary text-xs line-clamp-2 mb-4">Advanced prompt engineering wrapper for stable diffusion models.</p>
+<div class="mt-auto space-y-3">
+<!-- Consistency Bar -->
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-medium uppercase tracking-wide">
+<span class="text-text-secondary">Self-Consistency</span>
+<span class="text-yellow-400">89%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-darker rounded-full overflow-hidden">
+<div class="h-full bg-yellow-500 rounded-full w-[89%]"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-darker/50">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-cover bg-center" data-alt="Creator avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCTs5fgJUxZk5Kh7EpNSEu16eEJsVmZfgnv-V66YB3jWEk7CiDQ4ZYQND9Fk0K8CzG4jibT-7nOW49gsYaYEhyPx8cWeeGKwBWhEnztJdR9vQt1zoJrqHhBjMwBgC_EeTCjnY1knbh4EoWypkIG-62kQqZUQ0znWds33nBz0H_JUPMrzs1Q6W0p4oDIiSMbvscnR4OHTngpsVXlWbCjzJumPEhNu3Z8K5Y58O0c3L6JzJLC6UspKqJ4gvN-b04_MiUs2R6R9toyEOC3");'></div>
+<span class="text-xs text-text-secondary">By DevMike</span>
+</div>
+<span class="text-white font-bold">Free</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card Component -->
+<div class="group bg-surface-dark hover:bg-surface-darker rounded-xl border border-surface-darker hover:border-primary/50 transition-all duration-300 flex flex-col overflow-hidden">
+<div class="relative h-40 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist dark code editor background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAVcI8kWuZ45b7FpnbsMQnM6AeR6em_-85itucFJGbU6L8OwIXWvxP1jLtTNS5XZnDKuNJFoPf1COn5-PGnWMDm9r-UD1snNsf-v5uL0O8mgH3ewRI0yO-gPyXhiDWnoNrIi0BF62tqw_r5S7x8VK7eCzRj7VGrTDpVixgtCS_mqe0xnermwCkepyCrgMnAV64DY1StBaahm9HlfmkTJqEKHQGOXQMkv7CkqdbjyX7viXGt6rw2K5opnyGOinJSNzI2I-DrjE6hnbGi");'></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-yellow-400">star</span> 5.0
+                                    </div>
+<div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white p-1.5 rounded-lg border border-white/10" title="Tech Tree Compatible">
+<span class="material-symbols-outlined text-[16px] text-primary">account_tree</span>
+</div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-white font-bold text-lg leading-tight group-hover:text-primary transition-colors">Rust Assistant</h3>
+</div>
+<p class="text-text-secondary text-xs line-clamp-2 mb-4">Specialized agent for Rust programming language support and debugging.</p>
+<div class="mt-auto space-y-3">
+<!-- Consistency Bar -->
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-medium uppercase tracking-wide">
+<span class="text-text-secondary">Self-Consistency</span>
+<span class="text-green-400">99%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-darker rounded-full overflow-hidden">
+<div class="h-full bg-green-500 rounded-full w-[99%]"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-darker/50">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-cover bg-center" data-alt="Creator avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB3rJ_0WTsnO0g72HTKSnYSs8xJGnAoEBbgjRRWZmi9Jtnht59vtaa278GT_UtfhvpziNzls3lk_blES-dsS6WwofWm2rFYq24IoKi9mj5sdJb4yFTXRrS1iN-Lu1nmH0DWZ9TzOn7Ay-498SX2vttlHVv6gRestG3BLF73MWTDX024Z0oVysyy_s5gW1La4R1APGruO1VX5KNZQMFQi8uC8kKp8EMrXael0v3PjDu2F-bkOiryYPC4BvZ_4sffXcg1eWQTd-hyTbdW");'></div>
+<span class="text-xs text-text-secondary">By Rustacean</span>
+</div>
+<span class="text-white font-bold">$29.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card Component -->
+<div class="group bg-surface-dark hover:bg-surface-darker rounded-xl border border-surface-darker hover:border-primary/50 transition-all duration-300 flex flex-col overflow-hidden">
+<div class="relative h-40 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Colorful abstract waves data flow" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD62RkvHYNqfd5xVGqQGZPiQht41LICtN6Ei34U-FExm8M9ldlI-zy3MeF7m6uSZTKH7Y1u6MLlleK-ge85_UdAsnr8KPFGd3a4bzKtBKN8nHafkEsDKXQHQG-DobrlpSwtsEUjmwsSCfYwL_Nu94J6E6kr6atRmFuIi26lNHgKwFeQrDFWeympLIrSUpO2oJLwtcnhkbhrDFtxZcvpaSW2oOu82yKwyJtDYi_GXDZk3A9smSh2VgSmoQuD_SEPSBsxiNzksvxCNK9V");'></div>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-yellow-400">star</span> 4.5
+                                    </div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-white font-bold text-lg leading-tight group-hover:text-primary transition-colors">Marketing Copy Gen</h3>
+</div>
+<p class="text-text-secondary text-xs line-clamp-2 mb-4">Create converting ad copy for Facebook and Google Ads instantly.</p>
+<div class="mt-auto space-y-3">
+<!-- Consistency Bar -->
+<div class="space-y-1">
+<div class="flex justify-between text-[10px] font-medium uppercase tracking-wide">
+<span class="text-text-secondary">Self-Consistency</span>
+<span class="text-yellow-400">92%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-darker rounded-full overflow-hidden">
+<div class="h-full bg-yellow-500 rounded-full w-[92%]"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-darker/50">
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-cover bg-center" data-alt="Creator avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9Tnab8NJDh-FOJQ3NOxCd7uW8IZGCrKpwMmiQE-XQR-zaE2QD_JoJk-8_DDSW-Vuz9JNcrTaWhaY4Kc1h3Fk6OLeLJI2lhdfkVBdob9xC70Wb90MY7aX4tTea9GShMP9VitUN004J3U8tsiZjaEPEMpntq6X4OS9_vEGBiquzB0G78hRy0pHtgL7Uvg1jTewY8dm8Bs_jEKcDwsNoeEVhOJbq9qE8Y9RZF4tYktiXDoyrfrD03MjZSphJQx4zuOyPo9p6HNti4yQ1");'></div>
+<span class="text-xs text-text-secondary">By AdMaster</span>
+</div>
+<span class="text-white font-bold">$12.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Community Highlights (Preview of other tab) -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-white text-xl font-bold">Community Discussions</h2>
+<a class="text-primary text-sm font-bold hover:underline" href="#">Go to Forum</a>
+</div>
+<div class="bg-surface-dark rounded-xl border border-surface-darker overflow-hidden">
+<!-- Discussion Item -->
+<div class="flex items-center gap-4 p-4 border-b border-surface-darker hover:bg-surface-darker/50 transition-colors">
+<div class="flex flex-col items-center gap-1 min-w-[50px]">
+<span class="material-symbols-outlined text-text-secondary hover:text-primary cursor-pointer">keyboard_arrow_up</span>
+<span class="text-white font-bold text-sm">342</span>
+</div>
+<div class="flex-1">
+<h4 class="text-white font-medium hover:text-primary cursor-pointer text-base">Best practices for chaining multiple agents?</h4>
+<div class="flex gap-3 mt-1 text-xs text-text-secondary">
+<span class="bg-surface-darker px-2 py-0.5 rounded">Tutorial</span>
+<span>Posted by <span class="text-white">DevGuru</span> 2h ago</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">chat_bubble</span> 45 comments</span>
+</div>
+</div>
+</div>
+<!-- Discussion Item -->
+<div class="flex items-center gap-4 p-4 border-b border-surface-darker hover:bg-surface-darker/50 transition-colors">
+<div class="flex flex-col items-center gap-1 min-w-[50px]">
+<span class="material-symbols-outlined text-text-secondary hover:text-primary cursor-pointer">keyboard_arrow_up</span>
+<span class="text-white font-bold text-sm">128</span>
+</div>
+<div class="flex-1">
+<h4 class="text-white font-medium hover:text-primary cursor-pointer text-base">Showcase: My fully autonomous news aggregator</h4>
+<div class="flex gap-3 mt-1 text-xs text-text-secondary">
+<span class="bg-surface-darker px-2 py-0.5 rounded">Showcase</span>
+<span>Posted by <span class="text-white">NewsBot_Creator</span> 5h ago</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">chat_bubble</span> 22 comments</span>
+</div>
+</div>
+</div>
+<!-- Discussion Item -->
+<div class="flex items-center gap-4 p-4 hover:bg-surface-darker/50 transition-colors">
+<div class="flex flex-col items-center gap-1 min-w-[50px]">
+<span class="material-symbols-outlined text-text-secondary hover:text-primary cursor-pointer">keyboard_arrow_up</span>
+<span class="text-white font-bold text-sm">89</span>
+</div>
+<div class="flex-1">
+<h4 class="text-white font-medium hover:text-primary cursor-pointer text-base">Looking for collaborators: FinTech prediction model</h4>
+<div class="flex gap-3 mt-1 text-xs text-text-secondary">
+<span class="bg-surface-darker px-2 py-0.5 rounded">Collaboration</span>
+<span>Posted by <span class="text-white">CryptoQuant</span> 1d ago</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">chat_bubble</span> 18 comments</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Spacer -->
+<div class="h-20"></div>
+</div>
+</main>
+</div>
+</body></html>

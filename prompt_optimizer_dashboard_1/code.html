@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prompt Optimizer Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary: #6366f1;--primary-hover: #4f46e5;--bg-dark: #0B1120;--panel-bg: #151e32;--border-color: #1e293b;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+        }
+        .glass-panel {
+            background: rgba(21, 30, 50, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .variant-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
+            backdrop-filter: blur(10px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #334155;
+            border-radius: 20px;
+        }
+        .h-scroll-container::-webkit-scrollbar {
+            height: 6px;}
+        .h-scroll-container::-webkit-scrollbar-thumb {
+            background-color: #334155;
+            border-radius: 20px;
+        }
+        .h-scroll-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden bg-[var(--bg-dark)] selection:bg-indigo-500/30">
+<header class="h-16 border-b border-[var(--border-color)] bg-[var(--bg-dark)] flex items-center px-8 justify-between z-20 relative">
+<div class="flex items-center gap-4">
+<div class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+<span class="material-symbols-outlined text-white text-xl">auto_fix_high</span>
+</div>
+<h1 class="font-semibold text-lg tracking-tight text-white">Prompt Optimizer</h1>
+</div>
+<nav class="flex items-center gap-8 text-sm font-medium text-slate-400">
+<a class="text-white transition-colors" href="#">Dashboard</a>
+<a class="hover:text-white transition-colors" href="#">History</a>
+<a class="hover:text-white transition-colors" href="#">Settings</a>
+<div class="w-9 h-9 rounded-full bg-slate-800 ml-4 border border-slate-700 ring-2 ring-slate-900 cursor-pointer hover:border-slate-500 transition-colors"></div>
+</nav>
+</header>
+<main class="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
+<aside class="w-full lg:w-[450px] xl:w-[500px] flex flex-col border-r border-[var(--border-color)] bg-[var(--panel-bg)] z-10 custom-scrollbar overflow-y-auto shrink-0 shadow-xl">
+<div class="p-8 flex flex-col min-h-full">
+<div class="flex-1 space-y-10">
+<section>
+<div class="flex justify-between items-end mb-3">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">edit_note</span>
+                            Initial Prompt
+                        </label>
+<span class="text-[10px] text-slate-500 font-mono">0/2000</span>
+</div>
+<div class="relative group">
+<textarea class="w-full h-64 bg-[#0B1120] border border-slate-700/50 rounded-2xl p-5 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 outline-none resize-none placeholder-slate-600 shadow-inner transition-all leading-relaxed font-light" placeholder="Describe your request in detail... For example: 'Create a python script that analyzes stock market data using yfinance and creates a candlestick chart.'"></textarea>
+</div>
+</section>
+<section>
+<label class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">imagesmode</span>
+                        Multimodal Context
+                    </label>
+<div class="relative border border-dashed border-slate-700 rounded-2xl p-10 flex flex-col items-center justify-center text-center hover:border-indigo-500/50 hover:bg-[#0B1120] transition-all cursor-pointer group bg-[#0B1120]/30">
+<div class="w-14 h-14 bg-slate-800/50 rounded-full flex items-center justify-center mb-4 group-hover:bg-indigo-500/10 transition-colors duration-300">
+<span class="material-symbols-outlined text-2xl text-slate-500 group-hover:text-indigo-400 transition-colors">cloud_upload</span>
+</div>
+<p class="text-sm font-medium text-slate-300 mb-1">Click or Drop files here</p>
+<p class="text-xs text-slate-500">Supports Images, PDF, TXT</p>
+</div>
+</section>
+</div>
+<div class="pt-8 mt-4 sticky bottom-0 bg-[var(--panel-bg)] pb-2">
+<button class="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold text-lg py-4 rounded-xl shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-0.5 active:translate-y-0 border border-indigo-500/20">
+<span class="material-symbols-outlined text-2xl">auto_awesome</span>
+                    Optimize Prompt
+                </button>
+<div class="mt-6 flex items-center justify-between px-1">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider text-slate-500 font-bold mb-1">Optimization Mode</span>
+<span class="text-sm text-indigo-300 font-medium">Deep Analysis</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-1.5 w-24 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full w-full bg-indigo-500 rounded-full"></div>
+</div>
+<span class="text-xs text-slate-400 font-mono">100%</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<section class="flex-1 flex flex-col bg-[var(--bg-dark)] overflow-hidden relative">
+<div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+<div class="absolute -top-[20%] -right-[10%] w-[800px] h-[800px] bg-indigo-900/10 rounded-full blur-[100px]"></div>
+<div class="absolute top-[40%] left-[10%] w-[600px] h-[600px] bg-emerald-900/5 rounded-full blur-[120px]"></div>
+</div>
+<div class="flex-1 p-8 overflow-y-auto custom-scrollbar flex flex-col relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10 min-h-[500px] lg:h-[60%] shrink-0">
+<div class="flex flex-col h-full group">
+<div class="flex items-center justify-between mb-4 px-1">
+<h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest">Original Prompt</h3>
+</div>
+<div class="glass-panel rounded-2xl p-6 flex-1 shadow-sm relative overflow-hidden flex flex-col border border-slate-800 hover:border-slate-700 transition-colors">
+<div class="absolute top-0 left-0 w-1 h-full bg-slate-700/50"></div>
+<p class="text-slate-300 leading-relaxed text-sm whitespace-pre-wrap font-mono flex-1 opacity-80">Write a python script to analyze stock market data. It should download data from yahoo finance and show me a plot.</p>
+<div class="mt-auto pt-6 border-t border-slate-700/30">
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-3">Context Files</p>
+<div class="flex gap-3">
+<div class="w-12 h-12 bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center relative overflow-hidden group/img cursor-pointer hover:border-slate-500 transition-colors">
+<span class="material-symbols-outlined text-slate-600 text-xl">image</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col h-full">
+<div class="flex items-center justify-between mb-4 px-1">
+<h3 class="text-xs font-bold text-indigo-400 uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-base">stars</span>
+                            AI-Enhanced Mega Prompt
+                        </h3>
+<div class="flex gap-2">
+<button class="flex items-center gap-1.5 px-3 py-1 bg-indigo-500/10 text-indigo-300 rounded-full text-[10px] font-bold uppercase tracking-wide border border-indigo-500/20 hover:bg-indigo-500/20 transition-colors">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                                Copy
+                            </button>
+</div>
+</div>
+<div class="glass-panel rounded-2xl p-8 flex-1 shadow-[0_0_40px_-10px_rgba(79,70,229,0.15)] border-indigo-500/20 relative overflow-hidden bg-gradient-to-br from-slate-900/80 to-[#0F172A] flex flex-col ring-1 ring-indigo-500/30">
+<div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-indigo-500 to-purple-600 shadow-[0_0_15px_rgba(99,102,241,0.5)]"></div>
+<div class="prose prose-invert prose-sm max-w-none custom-scrollbar overflow-y-auto flex-1 pr-2">
+<p class="text-slate-200 leading-relaxed whitespace-pre-wrap font-mono text-sm"><span class="text-emerald-300 bg-emerald-900/30 px-2 py-0.5 rounded border border-emerald-500/20">Act as a senior data scientist and Python developer.</span> Create a robust, modular Python script for stock market analysis using the `yfinance` library.
+The script must include the following functionalities:
+1.  **Data Ingestion:** Securely download historical OHLCV data for a user-specified ticker symbol (default: SPY) over a configurable date range. Handle potential API errors gracefully.
+2.  **Data Processing:** Calculate a 50-day and 200-day Moving Average (SMA). 
+3.  **Visualization:** Generate a professional-grade interactive plot using `matplotlib` or `plotly`. The plot should display the closing price, both SMAs, and volume data in a subplot.
+<span class="text-indigo-300 block mt-6 p-4 bg-indigo-900/20 border-l-2 border-indigo-500 rounded-r text-xs italic">// Reasoning based on image context: The provided sketch indicates a preference for Candlestick charts over Line charts. Ensure the plotting function defaults to Candlestick representation.</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-none pb-8">
+<div class="flex items-center justify-between mb-6 px-1">
+<h3 class="text-sm font-semibold text-slate-200 flex items-center gap-2">
+<span class="material-symbols-outlined text-indigo-400">view_carousel</span>
+                        Prompt Variants
+                    </h3>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors border border-slate-700">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors border border-slate-700">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-6 overflow-x-auto pb-6 h-scroll-container snap-x px-1">
+<div class="min-w-[340px] max-w-[340px] bg-gradient-to-b from-slate-800 to-slate-900 border-2 border-indigo-500 rounded-2xl p-6 relative flex flex-col snap-start shadow-xl shadow-indigo-900/20">
+<div class="absolute -top-3 right-6 bg-indigo-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wide flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">check</span> Selected
+                         </div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="text-base font-semibold text-white">Visualization Focused</h4>
+<span class="text-xs text-slate-400">Variant B</span>
+</div>
+<span class="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded border border-emerald-500/20">98% SCORE</span>
+</div>
+<p class="text-xs text-slate-300 line-clamp-4 mb-6 font-mono leading-relaxed bg-[#0B1120] p-4 rounded-xl border border-slate-700/50">"Create a Streamlit dashboard app that visualizes stock data using Plotly. Focus on interactive candlestick charts with zoom capabilities and volume overlay..."</p>
+<div class="mt-auto grid grid-cols-[1fr_auto_auto] gap-2">
+<button class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2">
+                                Selected
+                            </button>
+<button class="w-10 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg border border-slate-700 transition-colors" title="Refine">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+<button class="w-10 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg border border-slate-700 transition-colors" title="Compare Details">
+<span class="material-symbols-outlined text-lg">compare_arrows</span>
+</button>
+</div>
+</div>
+<div class="min-w-[340px] max-w-[340px] variant-card border border-slate-700 rounded-2xl p-6 hover:border-indigo-500/30 hover:bg-slate-800 transition-all cursor-pointer group snap-start flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="text-base font-semibold text-slate-200 group-hover:text-white transition-colors">OOP Structure</h4>
+<span class="text-xs text-slate-500">Variant A</span>
+</div>
+<span class="text-[10px] font-bold text-emerald-400/80 bg-emerald-900/10 px-2 py-1 rounded border border-emerald-500/10">92% SCORE</span>
+</div>
+<p class="text-xs text-slate-400 line-clamp-4 mb-6 font-mono leading-relaxed bg-[#0B1120]/50 p-4 rounded-xl border border-slate-700/30 group-hover:text-slate-300 transition-colors">"Develop a Python class `StockAnalyzer` with encapsulated methods for data ingestion, processing, and plotting using Matplotlib strategies..."</p>
+<div class="mt-auto grid grid-cols-[1fr_auto_auto] gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+<button class="bg-slate-700 hover:bg-white hover:text-slate-900 text-slate-200 text-xs font-semibold py-2.5 rounded-lg transition-colors">
+                                Select
+                            </button>
+<button class="w-10 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg border border-slate-700 transition-colors">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+<button class="w-10 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg border border-slate-700 transition-colors">
+<span class="material-symbols-outlined text-lg">compare_arrows</span>
+</button>
+</div>
+</div>
+<div class="min-w-[340px] max-w-[340px] variant-card border border-slate-700 rounded-2xl p-6 hover:border-indigo-500/30 hover:bg-slate-800 transition-all cursor-pointer group snap-start flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="text-base font-semibold text-slate-200 group-hover:text-white transition-colors">Async Performance</h4>
+<span class="text-xs text-slate-500">Variant C</span>
+</div>
+<span class="text-[10px] font-bold text-yellow-500/80 bg-yellow-900/10 px-2 py-1 rounded border border-yellow-500/10">88% SCORE</span>
+</div>
+<p class="text-xs text-slate-400 line-clamp-4 mb-6 font-mono leading-relaxed bg-[#0B1120]/50 p-4 rounded-xl border border-slate-700/30 group-hover:text-slate-300 transition-colors">"Write an asynchronous python script using `aiohttp` for concurrent data fetching and `pandas` for high-speed calculation pipelines..."</p>
+<div class="mt-auto grid grid-cols-[1fr_auto_auto] gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+<button class="bg-slate-700 hover:bg-white hover:text-slate-900 text-slate-200 text-xs font-semibold py-2.5 rounded-lg transition-colors">
+                                Select
+                            </button>
+<button class="w-10 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg border border-slate-700 transition-colors">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+<button class="w-10 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg border border-slate-700 transition-colors">
+<span class="material-symbols-outlined text-lg">compare_arrows</span>
+</button>
+</div>
+</div>
+<div class="min-w-[340px] max-w-[340px] variant-card border border-slate-700 rounded-2xl p-6 hover:border-indigo-500/30 hover:bg-slate-800 transition-all cursor-pointer group snap-start flex flex-col opacity-75 hover:opacity-100">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="text-base font-semibold text-slate-200 group-hover:text-white transition-colors">Minimal Script</h4>
+<span class="text-xs text-slate-500">Variant D</span>
+</div>
+<span class="text-[10px] font-bold text-slate-400 bg-slate-800 px-2 py-1 rounded border border-slate-700">85% SCORE</span>
+</div>
+<p class="text-xs text-slate-400 line-clamp-4 mb-6 font-mono leading-relaxed bg-[#0B1120]/50 p-4 rounded-xl border border-slate-700/30 group-hover:text-slate-300 transition-colors">"Provide a concise, single-file script using only standard libraries where possible, focusing on readability and ease of maintenance..."</p>
+<div class="mt-auto grid grid-cols-[1fr_auto_auto] gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+<button class="bg-slate-700 hover:bg-white hover:text-slate-900 text-slate-200 text-xs font-semibold py-2.5 rounded-lg transition-colors">
+                                Select
+                            </button>
+<button class="w-10 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg border border-slate-700 transition-colors">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+<button class="w-10 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg border border-slate-700 transition-colors">
+<span class="material-symbols-outlined text-lg">compare_arrows</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="h-16 bg-[var(--bg-dark)] border-t border-[var(--border-color)] flex items-center justify-between px-8 shrink-0 z-20">
+<div class="flex items-center gap-6 text-xs font-medium text-slate-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">token</span>
+<span>452 Tokens</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">smart_toy</span>
+<span>GPT-4 Turbo</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-5 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors hover:bg-slate-800 rounded-lg">Discard Changes</button>
+<button class="bg-white text-slate-900 hover:bg-slate-200 px-6 py-2 rounded-lg text-sm font-bold shadow-lg shadow-white/5 flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-lg">rocket_launch</span>
+                    Apply to Project
+                </button>
+</div>
+</div>
+</section>
+</main>
+
+</body></html>

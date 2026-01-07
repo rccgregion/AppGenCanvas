@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Help &amp; Support - AI Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "text-main": "#0d121b",
+                        "text-subtle": "#4c669a",
+                        "deep-teal": "#008080", // Approximate for "Deep Teal"
+                        "soft-orange": "#FFB347", // Approximate for "Soft Orange"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-white min-h-screen flex flex-col font-display">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-[#e7ebf3] dark:border-gray-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">AI Builder</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Projects</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Marketplace</a>
+<a class="text-sm font-medium text-primary" href="#">Support</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="size-9 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="size-9 rounded-full bg-cover bg-center border border-gray-200 dark:border-gray-700" data-alt="User profile avatar showing a smiling face" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAU1n-Kt1Azjyh_IR5NqDFbF_xPlKgDFH1PKLQn5ZK4E2VFI9sSp9SsK10vVXizgViXoAdcVhNWZG7TlzeATmMHnkDBlzl2PxM5CdZ7Iz0N7OZFq2D8rYFXDcKFwMuZJv0JgcxwzxlOsiiJpGE0IVKWBGQNbpugtSGDIvdLNon3pEUObbhNDIkLSufWGF6m7dKW18IT-WZhcO49XmlvHjww7lnglwqbCnlGuTDRhz2SHmbSSAQbFyPhi9UNjzSpwLMd-2_t8UUWA4st");'>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-[1200px] mx-auto px-6 py-8">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-sm mb-8">
+<a class="text-text-subtle hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-gray-300">/</span>
+<span class="font-medium">Help Center</span>
+</div>
+<!-- Hero Section -->
+<div class="relative w-full rounded-2xl overflow-hidden bg-background-dark text-white mb-12 min-h-[320px] flex flex-col items-center justify-center text-center px-4" data-alt="Abstract deep blue digital wave background representing AI connections" style='background-image: linear-gradient(135deg, rgba(19, 91, 236, 0.9), rgba(16, 22, 34, 0.95)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuATypCYLTS02AfI4AcS2dyGIY1Z5BwUwoPckELlxj7BeOcUDkZnjDveeL8ny0XbClxKw4QY-hfkrvZn-dPg-jm-jT9o9aQrhxXUvH8v8vXGZ3CtwtBmfRU5xHh05jO1VMSH9rLldCKPncNwn9hEhkl7bCLbdjqqEAKWiwRsOTERIcaHeTASKiJ5_jnhJKrky9whgK2kp4heR_pnBgWUrJkK_33RIGsypi_Lnhl2OJxbSRGwsgEhGE1p5jv6USxyQLsFO8UJrAHESTd8"); background-size: cover; background-position: center;'>
+<h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">How can we help you today?</h1>
+<p class="text-gray-300 text-lg mb-8 max-w-xl">Search our knowledge base for answers to technical questions, billing inquiries, and integration guides.</p>
+<!-- Search Bar -->
+<div class="w-full max-w-2xl relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-text-subtle group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full h-14 pl-12 pr-4 rounded-xl border-0 bg-white text-text-main placeholder:text-text-subtle focus:ring-2 focus:ring-primary shadow-lg text-lg transition-all" placeholder="Ask a question about AI models, deployment, or billing..." type="text"/>
+<div class="absolute inset-y-0 right-2 flex items-center">
+<button class="bg-primary hover:bg-primary/90 text-white h-10 px-4 rounded-lg text-sm font-medium transition-colors">
+                        Search
+                    </button>
+</div>
+</div>
+</div>
+<!-- Quick Access Categories -->
+<section class="mb-16">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold">Quick Access Categories</h2>
+<a class="text-primary font-medium hover:underline flex items-center gap-1 text-sm" href="#">
+                    View all categories
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+<!-- Card 1 -->
+<a class="group p-6 rounded-xl bg-white dark:bg-[#1A2230] border border-gray-100 dark:border-gray-800 hover:border-primary/30 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center gap-3 relative overflow-hidden" href="#">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="size-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<h3 class="font-bold text-lg">Getting Started</h3>
+<p class="text-sm text-text-subtle">Set up your workspace and first project.</p>
+</a>
+<!-- Card 2 -->
+<a class="group p-6 rounded-xl bg-white dark:bg-[#1A2230] border border-gray-100 dark:border-gray-800 hover:border-primary/30 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center gap-3 relative overflow-hidden" href="#">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="size-12 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined">build</span>
+</div>
+<h3 class="font-bold text-lg">Troubleshooting</h3>
+<p class="text-sm text-text-subtle">Fix common errors and deployment issues.</p>
+</a>
+<!-- Card 3 -->
+<a class="group p-6 rounded-xl bg-white dark:bg-[#1A2230] border border-gray-100 dark:border-gray-800 hover:border-primary/30 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center gap-3 relative overflow-hidden" href="#">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="size-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+<h3 class="font-bold text-lg">Billing</h3>
+<p class="text-sm text-text-subtle">Manage subscriptions and payment methods.</p>
+</a>
+<!-- Card 4 -->
+<a class="group p-6 rounded-xl bg-white dark:bg-[#1A2230] border border-gray-100 dark:border-gray-800 hover:border-primary/30 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center gap-3 relative overflow-hidden" href="#">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="size-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<h3 class="font-bold text-lg">Integrations</h3>
+<p class="text-sm text-text-subtle">Connect with APIs and third-party tools.</p>
+</a>
+<!-- Card 5 -->
+<a class="group p-6 rounded-xl bg-white dark:bg-[#1A2230] border border-gray-100 dark:border-gray-800 hover:border-primary/30 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center gap-3 relative overflow-hidden" href="#">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="size-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined">diversity_3</span>
+</div>
+<h3 class="font-bold text-lg">Community</h3>
+<p class="text-sm text-text-subtle">Guidelines and forum best practices.</p>
+</a>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left: FAQs -->
+<div class="lg:col-span-2">
+<h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<details class="group bg-white dark:bg-[#1A2230] rounded-xl border border-gray-100 dark:border-gray-800 open:ring-1 open:ring-primary/20 overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none">
+<h3 class="font-semibold text-lg group-hover:text-primary transition-colors">How do I export my AI model to production?</h3>
+<span class="material-symbols-outlined transform group-open:rotate-180 transition-transform text-text-subtle">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-text-subtle leading-relaxed border-t border-gray-50 dark:border-gray-700/50 pt-4">
+                            To export your model, navigate to the <strong>Deploy</strong> tab within your project dashboard. Select "Export Model" and choose your desired format (e.g., TensorFlow, PyTorch, ONNX). Once generated, you can download the artifacts directly or deploy via our API endpoint.
+                        </div>
+</details>
+<!-- FAQ Item 2 -->
+<details class="group bg-white dark:bg-[#1A2230] rounded-xl border border-gray-100 dark:border-gray-800 open:ring-1 open:ring-primary/20 overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none">
+<h3 class="font-semibold text-lg group-hover:text-primary transition-colors">What happens if I exceed my monthly API limits?</h3>
+<span class="material-symbols-outlined transform group-open:rotate-180 transition-transform text-text-subtle">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-text-subtle leading-relaxed border-t border-gray-50 dark:border-gray-700/50 pt-4">
+                            If you reach your plan's API limit, requests will be rate-limited but not immediately cut off for critical endpoints. You will receive an email notification at 80% and 100% usage. To avoid interruption, you can enable auto-scaling in your billing settings or upgrade to the Enterprise tier.
+                        </div>
+</details>
+<!-- FAQ Item 3 -->
+<details class="group bg-white dark:bg-[#1A2230] rounded-xl border border-gray-100 dark:border-gray-800 open:ring-1 open:ring-primary/20 overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none">
+<h3 class="font-semibold text-lg group-hover:text-primary transition-colors">Can I collaborate with team members on a single project?</h3>
+<span class="material-symbols-outlined transform group-open:rotate-180 transition-transform text-text-subtle">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-text-subtle leading-relaxed border-t border-gray-50 dark:border-gray-700/50 pt-4">
+                            Yes! Team collaboration is available on Pro and Enterprise plans. Go to <strong>Settings &gt; Team Members</strong> to invite users via email. You can assign roles such as Admin, Editor, or Viewer to control access permissions for sensitive data.
+                        </div>
+</details>
+<!-- FAQ Item 4 -->
+<details class="group bg-white dark:bg-[#1A2230] rounded-xl border border-gray-100 dark:border-gray-800 open:ring-1 open:ring-primary/20 overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none">
+<h3 class="font-semibold text-lg group-hover:text-primary transition-colors">Where can I find my invoices?</h3>
+<span class="material-symbols-outlined transform group-open:rotate-180 transition-transform text-text-subtle">expand_more</span>
+</summary>
+<div class="px-5 pb-5 text-text-subtle leading-relaxed border-t border-gray-50 dark:border-gray-700/50 pt-4">
+                            Invoices are automatically generated at the end of each billing cycle. You can download PDF versions of past invoices from the <strong>Billing &amp; Subscription</strong> section in your account settings.
+                        </div>
+</details>
+</div>
+</div>
+<!-- Right: Support Channels Sidebar -->
+<div class="lg:col-span-1">
+<div class="sticky top-24 space-y-6">
+<div class="bg-white dark:bg-[#1A2230] p-6 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm">
+<h3 class="text-xl font-bold mb-4">Still need help?</h3>
+<p class="text-text-subtle mb-6 text-sm">Our support team is available 24/7 to assist you with any technical issues.</p>
+<div class="space-y-3">
+<a class="flex items-center gap-3 w-full p-3 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors justify-center font-medium" href="#">
+<span class="material-symbols-outlined">chat</span>
+                                Contact Support
+                            </a>
+<a class="flex items-center gap-3 w-full p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors justify-center font-medium text-text-main dark:text-gray-200" href="#">
+<span class="material-symbols-outlined">forum</span>
+                                Community Forums
+                            </a>
+</div>
+</div>
+<div class="bg-primary/5 dark:bg-primary/10 p-6 rounded-xl border border-primary/10">
+<div class="flex items-center gap-3 mb-3 text-primary">
+<span class="material-symbols-outlined">menu_book</span>
+<h4 class="font-bold">Documentation</h4>
+</div>
+<p class="text-text-subtle text-sm mb-4">Browse detailed technical guides and API references.</p>
+<a class="text-sm font-semibold text-primary hover:underline" href="#">Go to Docs →</a>
+</div>
+<div class="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-6 rounded-xl overflow-hidden relative">
+<div class="relative z-10">
+<h4 class="font-bold text-lg mb-2">System Status</h4>
+<div class="flex items-center gap-2 mb-4">
+<div class="size-2 rounded-full bg-green-400 animate-pulse"></div>
+<span class="text-sm font-medium text-green-400">All systems operational</span>
+</div>
+<a class="text-xs text-gray-400 hover:text-white underline" href="#">View status history</a>
+</div>
+<!-- Decorative pattern -->
+<div class="absolute right-[-20px] bottom-[-20px] opacity-10">
+<span class="material-symbols-outlined text-[100px]">dns</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="mt-auto border-t border-[#e7ebf3] dark:border-gray-800 py-10 bg-white dark:bg-[#1A2230]">
+<div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 text-text-subtle text-sm">
+<span>© 2024 AI Builder Inc.</span>
+<span>•</span>
+<a class="hover:text-primary" href="#">Privacy</a>
+<span>•</span>
+<a class="hover:text-primary" href="#">Terms</a>
+</div>
+<div class="flex gap-4">
+<a class="text-text-subtle hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">alternate_email</span>
+</a>
+<a class="text-text-subtle hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+</div>
+</div>
+</footer>
+</body></html>
